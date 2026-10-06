@@ -1,0 +1,1040 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Every face is served from this origin. A font host is a second DNS lookup, a
+ * second TLS handshake, and a stylesheet that blocks the first paint, all before
+ * a byte of the face itself is asked for; the three files below arrive on the
+ * connection the page is already using.
+ *
+ * Each is the variable latin cut, so one file covers every weight the site sets
+ * rather than one file per weight. The unicode-range is the same latin block the
+ * font host serves, so a character outside it still falls through to the stack
+ * instead of being drawn from a face that has no glyph for it.
+ *
+ * The italic is its own file because Archivo's italic is drawn, not slanted, and
+ * it is what the display headlines are set in: the heavy italic echoes the
+ * wordmark on the company's sign.
+ */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin-variable.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/archivo-latin-variable.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/archivo-italic-latin-variable.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/**
+ * The faces the text is set in while the real ones are still arriving. Each is
+ * the local grotesque re-metricked to occupy the same space as the face it
+ * stands in for: the ratios come from the average advance across the character
+ * set the site actually uses, measured against Arial at the weight and style the
+ * site sets, and the ascent and descent are divided back through that ratio so
+ * the line box does not move either.
+ *
+ * The italic fallback is measured against Arial Bold Italic at Archivo's 800,
+ * because the only italic the site sets is the extra-bold display headline.
+ *
+ * `font-display: swap` without these is a page that reflows every line the
+ * moment a face lands, which is layout shift the loading strategy caused.
+ */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  font-display: swap;
+  size-adjust: 104.97%;
+  ascent-override: 92.29%;
+  descent-override: 22.98%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Archivo Fallback';
+  font-style: normal;
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  font-display: swap;
+  size-adjust: 103.53%;
+  ascent-override: 84.8%;
+  descent-override: 20.28%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Archivo Fallback';
+  font-style: italic;
+  src: local('Arial Bold Italic'), local('Arial Italic'), local('Helvetica Neue Bold Italic');
+  font-display: swap;
+  size-adjust: 104.04%;
+  ascent-override: 84.39%;
+  descent-override: 20.18%;
+  line-gap-override: 0%;
+}
+
+/**
+ * Three layers, in the order a value travels: primitives hold the raw ramps and
+ * the shapes built from them, and never change; semantics name what a value is
+ * for and are the only layer a theme rewrites; the component classes further
+ * down reference the semantics and never a primitive. That middle layer is what
+ * makes the two themes possible, so a component reaching past it to --navy-700
+ * is a bug.
+ *
+ * The ramps come from the company's own marks. Navy and sky are the two halves
+ * of the diamond in the logo, anchored at navy-800 (#272b67) and sky-200
+ * (#a7d5e9). Black is the logo's outline and type. Tan is the gold of the
+ * location graphics and brochures, anchored at tan-300 (#d3b574). Iron is the
+ * neutral, a grey with a trace of the navy in it so it sits with the rest.
+ *
+ * Tan is light: it fails as text on white, so on a light ground it is only ever
+ * a fill or a rule behind dark type, and as text it appears only on the dark
+ * bands.
+ */
+:root {
+  --navy-50: #f3f4fa;
+  --navy-100: #e4e6f3;
+  --navy-200: #c9cde8;
+  --navy-300: #a2a8d6;
+  --navy-400: #737bbd;
+  --navy-500: #5058a3;
+  --navy-600: #3c4389;
+  --navy-700: #2f3575;
+  --navy-800: #272b67;
+  --navy-900: #1d2050;
+  --navy-950: #11132f;
+
+  --sky-50: #f1f8fc;
+  --sky-100: #ddf0f8;
+  --sky-200: #a7d5e9;
+  --sky-300: #7fc2df;
+  --sky-400: #4fa8cf;
+  --sky-500: #2b8cb8;
+  --sky-600: #1f7099;
+  --sky-700: #1b5a7c;
+
+  --tan-50: #faf6ec;
+  --tan-100: #f3ead3;
+  --tan-200: #e7d6ab;
+  --tan-300: #d3b574;
+  --tan-400: #c19e55;
+  --tan-500: #a68340;
+  --tan-600: #836631;
+  --tan-700: #634d26;
+
+  --iron-50: #f6f7f9;
+  --iron-100: #eceef2;
+  --iron-200: #d8dce3;
+  --iron-300: #b6bcc8;
+  --iron-400: #8a92a3;
+  --iron-500: #646d80;
+  --iron-600: #4a5264;
+  --iron-700: #363c4b;
+  --iron-800: #232733;
+  --iron-900: #15181f;
+  --iron-950: #0b0d12;
+
+  --red-50: #fef2f2;
+  --red-300: #fca5a5;
+  --red-600: #b91c1c;
+  --red-950: #3a1418;
+
+  /* The sticky header, the anchor offsets, and the sub-nav that parks under it
+     all have to agree on one number, so there is one number. The utility strip
+     above the bar is not in it: the strip scrolls away and the bar is what
+     sticks, so a page offsetting against this offsets against what is actually
+     covering it. */
+  --header-height: 4rem;
+
+  /* One height for every control on the site. A button beside an input at a
+     different height is the most visible tuning miss on a form, and it happens
+     whenever each rule picks its own number. 44px is also the touch floor, so
+     the shared value is the accessible one. */
+  --control-height: 2.75rem;
+
+  /* The action rail pinned to the bottom edge on a phone. The page reserves
+     this much beneath its last element, so the rail sits over the gap it asked
+     for rather than over the end of the content. Zero past the breakpoint that
+     drops the rail, so the reservation disappears with the thing it was for. */
+  --rail-height: 4rem;
+
+  /* One stacking order for the whole site, named by what sits at each step. A
+     raw number decided at the point of use is a number nobody can compare
+     against the others, which is how a menu ends up under the bar it opened
+     from. The in-page sub-nav sits below the header so the two stack instead of
+     overlapping, and the flyout the header opens sits between them. */
+  --layer-behind: -1;
+  --layer-base: 0;
+  --layer-sticky: 30;
+  --layer-dropdown: 40;
+  --layer-sticky-nav: 50;
+  --layer-overlay: 60;
+  --layer-modal: 70;
+  --layer-toast: 80;
+
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  /* The stock CSS easings are too weak to read as intentional at 150-200ms.
+     One curve, referenced everywhere, is the whole motion vocabulary. */
+  --ease-quart-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* The shapes are drawn once here and colored per theme by the stops below,
+     so a gradient's geometry cannot drift between themes. */
+  --surface-inverse-wash: linear-gradient(
+    140deg,
+    var(--wash-1) 0%,
+    var(--wash-2) 55%,
+    var(--wash-3) 100%
+  );
+  --surface-scrim: linear-gradient(
+    100deg,
+    var(--scrim-1) 0%,
+    var(--scrim-2) 50%,
+    var(--scrim-3) 100%
+  );
+  --grid-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  /* The tile the two lines above repeat over. Fixed rather than relative to the
+     band, so the texture stays the same density on a short header and a tall
+     one. */
+  --grid-size: 2.5rem;
+
+  /* Chrome and Safari paint an autofilled field with their own background, and
+     it survives background-color. An inset shadow the size of the field is what
+     covers it, so it is a shadow the scale knows about rather than a one-off. */
+  --autofill-cover: 0 0 0 100px var(--surface-field) inset;
+
+  /* The brand bands. Navy is the hero, the page headers and the parts counter;
+     black is the utility strip and the footer; sky is the stat strip and the
+     closing band. None of them is a theme surface: navy and black stay what
+     they are in both themes and carry their own ink, and sky is restated per
+     theme because a pale band is a light ground in a dark page. */
+  --band-navy: var(--navy-800);
+  --band-black: #000000;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 5rem;
+    --rail-height: 0rem;
+  }
+}
+
+/**
+ * Light. White paper, near-black type, a navy action, and the logo's two blues
+ * and the brochure tan as the bands that break the page up. The navy hero and
+ * the black footer are brand surfaces rather than theme surfaces: they stay
+ * dark in both themes and carry their own ink tokens, so the same markup reads
+ * correctly whichever theme is on.
+ */
+:root,
+:root[data-theme='light'] {
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-sunken: var(--iron-50);
+  --surface-field: #ffffff;
+  /* The sticky header lets the page show through; a flat surface token cannot
+     do that, so the veil is its own value in every theme. */
+  --surface-veil: rgba(255, 255, 255, 0.88);
+  --surface-inverse: var(--navy-800);
+  --header-bg: #ffffff;
+  --wash-1: var(--navy-900);
+  --wash-2: var(--navy-800);
+  --wash-3: var(--navy-700);
+  --scrim-1: rgba(17, 19, 47, 0.94);
+  --scrim-2: rgba(29, 32, 80, 0.82);
+  --scrim-3: rgba(39, 43, 103, 0.45);
+  --grid-line: rgba(255, 255, 255, 0.05);
+
+  --band-sky: var(--sky-200);
+  --band-sky-ink: var(--navy-800);
+  --band-sky-body: var(--iron-900);
+  --band-sky-line: rgba(39, 43, 103, 0.35);
+
+  --ink: var(--iron-950);
+  --ink-body: var(--iron-800);
+  --ink-muted: var(--iron-600);
+  --ink-faint: var(--iron-500);
+  --ink-inverse: #ffffff;
+  --ink-inverse-muted: var(--navy-100);
+  --ink-inverse-faint: var(--navy-300);
+
+  --line: var(--iron-200);
+  --line-strong: var(--iron-300);
+  /* A control boundary is a UI boundary, so it answers to 3:1 rather than to
+     the hairline used between rows. */
+  --line-field: var(--iron-400);
+  --line-inverse: rgba(255, 255, 255, 0.14);
+  --line-inverse-strong: rgba(255, 255, 255, 0.45);
+
+  /* The one action that matters on a light ground: the navy of the logo, with
+     white type. */
+  --accent: var(--navy-800);
+  --accent-hover: var(--navy-900);
+  --accent-ink: #ffffff;
+  --accent-text: var(--navy-700);
+  /* Labels and rules on the dark bands. */
+  --accent-inverse: var(--tan-300);
+
+  /* The neutral button: black, the logo's third colour, for the second-most
+     important thing on a page. */
+  --action: var(--iron-900);
+  --action-hover: #000000;
+  --action-ink: #ffffff;
+
+  /* The tan fill, for the primary action on a dark band. Black type, because
+     white on tan fails. */
+  --tan: var(--tan-300);
+  --tan-hover: var(--tan-200);
+  --tan-ink: #000000;
+  /* Rating stars: tan reads on dark grounds only, so light takes the deep step. */
+  --star: var(--tan-600);
+
+  --danger: var(--red-600);
+  --danger-surface: var(--red-50);
+  --danger-ring: rgba(185, 28, 28, 0.2);
+
+  --focus: var(--navy-500);
+  --focus-inverse: var(--sky-200);
+  --field-ring: rgba(80, 88, 163, 0.2);
+  --selection: rgba(167, 213, 233, 0.7);
+  --placeholder-fill: var(--iron-100);
+  --brand-plate: #ffffff;
+  /* The logo is drawn for a light ground. On the white header it needs
+     nothing behind it; the dark theme gives it a plate. */
+  --logo-plate: transparent;
+  /* The dim the page takes while a menu sits open over it. */
+  --overlay: rgba(17, 19, 47, 0.4);
+
+  --shadow-card: 0 1px 2px rgba(11, 13, 18, 0.04), 0 8px 24px -14px rgba(11, 13, 18, 0.18);
+  --shadow-card-hover: 0 4px 8px rgba(11, 13, 18, 0.06), 0 18px 40px -16px rgba(11, 13, 18, 0.28);
+}
+
+/**
+ * Dark is designed rather than inverted, and it is navy rather than grey: the
+ * page ground is the logo's navy taken down to its deepest step, the surfaces
+ * step up from it instead of down, and the action moves to the logo's sky
+ * because navy on navy is no action at all. The navy hero stays the logo's own
+ * navy, so it reads as a lit band against the deeper page. The sky band turns
+ * to the sky ramp's deep end with white type, because a pale band in a dark
+ * page is a light left on.
+ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --surface: var(--navy-950);
+    --surface-raised: #191c44;
+    --surface-sunken: #0c0e26;
+    --surface-field: #1b1e48;
+    --surface-veil: rgba(17, 19, 47, 0.88);
+    --surface-inverse: var(--navy-800);
+    --header-bg: var(--navy-950);
+    --wash-1: #0c0e26;
+    --wash-2: var(--navy-900);
+    --wash-3: var(--navy-800);
+    --scrim-1: rgba(8, 9, 24, 0.94);
+    --scrim-2: rgba(17, 19, 47, 0.84);
+    --scrim-3: rgba(29, 32, 80, 0.5);
+    --grid-line: rgba(255, 255, 255, 0.04);
+
+    --band-sky: var(--sky-700);
+    --band-sky-ink: #ffffff;
+    --band-sky-body: var(--sky-50);
+    --band-sky-line: rgba(255, 255, 255, 0.35);
+
+    --ink: var(--navy-50);
+    --ink-body: #dde0f0;
+    --ink-muted: #b9bedf;
+    --ink-faint: #969cc9;
+    --ink-inverse: #ffffff;
+    --ink-inverse-muted: var(--navy-100);
+    --ink-inverse-faint: var(--navy-300);
+
+    --line: #272b5e;
+    --line-strong: #363b78;
+    --line-field: #6870b0;
+    --line-inverse: rgba(255, 255, 255, 0.12);
+    --line-inverse-strong: rgba(255, 255, 255, 0.4);
+
+    --accent: var(--sky-200);
+    --accent-hover: var(--sky-100);
+    --accent-ink: var(--navy-950);
+    --accent-text: var(--sky-200);
+    --accent-inverse: var(--tan-300);
+
+    --action: var(--navy-600);
+    --action-hover: var(--navy-500);
+    --action-ink: #ffffff;
+
+    --tan: var(--tan-300);
+    --tan-hover: var(--tan-200);
+    --tan-ink: #000000;
+    --star: var(--tan-300);
+
+    --danger: var(--red-300);
+    --danger-surface: var(--red-950);
+    --danger-ring: rgba(252, 165, 165, 0.24);
+
+    --focus: var(--sky-300);
+    --focus-inverse: var(--sky-200);
+    --field-ring: rgba(127, 194, 223, 0.24);
+    --selection: rgba(127, 194, 223, 0.35);
+    --placeholder-fill: #20234f;
+    --brand-plate: #ffffff;
+    --logo-plate: #ffffff;
+    --overlay: rgba(4, 5, 16, 0.6);
+
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
+    --shadow-card-hover: 0 4px 6px rgba(0, 0, 0, 0.45), 0 18px 40px -16px rgba(0, 0, 0, 0.8);
+  }
+}
+
+:root[data-theme='dark'] {
+  --surface: var(--navy-950);
+  --surface-raised: #191c44;
+  --surface-sunken: #0c0e26;
+  --surface-field: #1b1e48;
+  --surface-veil: rgba(17, 19, 47, 0.88);
+  --surface-inverse: var(--navy-800);
+  --header-bg: var(--navy-950);
+  --wash-1: #0c0e26;
+  --wash-2: var(--navy-900);
+  --wash-3: var(--navy-800);
+  --scrim-1: rgba(8, 9, 24, 0.94);
+  --scrim-2: rgba(17, 19, 47, 0.84);
+  --scrim-3: rgba(29, 32, 80, 0.5);
+  --grid-line: rgba(255, 255, 255, 0.04);
+
+  --band-sky: var(--sky-700);
+  --band-sky-ink: #ffffff;
+  --band-sky-body: var(--sky-50);
+  --band-sky-line: rgba(255, 255, 255, 0.35);
+
+  --ink: var(--navy-50);
+  --ink-body: #dde0f0;
+  --ink-muted: #b9bedf;
+  --ink-faint: #969cc9;
+  --ink-inverse: #ffffff;
+  --ink-inverse-muted: var(--navy-100);
+  --ink-inverse-faint: var(--navy-300);
+
+  --line: #272b5e;
+  --line-strong: #363b78;
+  --line-field: #6870b0;
+  --line-inverse: rgba(255, 255, 255, 0.12);
+  --line-inverse-strong: rgba(255, 255, 255, 0.4);
+
+  --accent: var(--sky-200);
+  --accent-hover: var(--sky-100);
+  --accent-ink: var(--navy-950);
+  --accent-text: var(--sky-200);
+  --accent-inverse: var(--tan-300);
+
+  --action: var(--navy-600);
+  --action-hover: var(--navy-500);
+  --action-ink: #ffffff;
+
+  --tan: var(--tan-300);
+  --tan-hover: var(--tan-200);
+  --tan-ink: #000000;
+  --star: var(--tan-300);
+
+  --danger: var(--red-300);
+  --danger-surface: var(--red-950);
+  --danger-ring: rgba(252, 165, 165, 0.24);
+
+  --focus: var(--sky-300);
+  --focus-inverse: var(--sky-200);
+  --field-ring: rgba(127, 194, 223, 0.24);
+  --selection: rgba(127, 194, 223, 0.35);
+  --placeholder-fill: #20234f;
+  --brand-plate: #ffffff;
+  --logo-plate: #ffffff;
+  --overlay: rgba(4, 5, 16, 0.6);
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
+  --shadow-card-hover: 0 4px 6px rgba(0, 0, 0, 0.45), 0 18px 40px -16px rgba(0, 0, 0, 0.8);
+}
+
+/**
+ * A dark band moves the focus ring to the light step, so a keyboard user can
+ * still see where they are on the navy hero, the parts counter, and the footer.
+ * The band is marked rather than every control inside it.
+ */
+.band-dark {
+  --focus: var(--focus-inverse);
+  --accent-text: var(--sky-200);
+  --selection: rgba(211, 181, 116, 0.45);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    /* Set at the root rather than left to a body utility, so every portal and
+       overlay inherits the same rendering. */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Clipped rather than hidden: hidden on a scroll container silently breaks
+       every sticky descendant, and the sticky header is one. */
+    overflow-x: clip;
+    /* The sticky header would otherwise land on top of every anchor target. */
+    scroll-padding-top: calc(var(--header-height) + 1rem);
+  }
+
+  body {
+    @apply bg-surface font-sans text-ink antialiased;
+    overflow-x: clip;
+    /* An email address, a model number, or a street address is one unbreakable
+       token. At a large text size in a narrow column it is wider than the column,
+       and without this it pushes the page sideways instead of wrapping. */
+    overflow-wrap: break-word;
+  }
+
+  /* A flex or grid child defaults to min-width: auto, which stops it shrinking
+     below its own content. On a page that is mostly flex columns that means one
+     long option label or one wide field sets a floor for the whole column, and
+     at a large text size the layout grows sideways instead of wrapping. :where()
+     keeps the specificity at zero so any utility still overrides it. */
+  :where(.flex, .grid) > * {
+    min-width: 0;
+  }
+
+  /* Anchor targets clear the header on their own too, so a jump lands the
+     heading in view whether or not the browser honors scroll-padding. */
+  section[id],
+  article[id],
+  h2[id],
+  h3[id],
+  /* A failed submit moves focus to the first field that needs work; without this
+     the browser can park it directly under the sticky header. */
+  .field {
+    scroll-margin-top: calc(var(--header-height) + 1.5rem);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-bold tracking-tight text-ink;
+  }
+
+  /* The two top levels are set heavier: the section headings in the design are
+     the extra-bold upright cut, and the display headlines add the italic on top
+     through .display. */
+  h1,
+  h2 {
+    @apply font-extrabold;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    /* A model number or a long hyphenated term is otherwise wide enough to push
+       a display heading past the viewport on a phone. */
+    overflow-wrap: anywhere;
+    min-width: 0;
+    /* Even lines instead of a stranded last word wherever the engine can. */
+    text-wrap: balance;
+  }
+
+  /* The heading above balances its lines; body copy takes the cheaper rule that
+     only protects the last line, so a paragraph never ends on one short word. */
+  p,
+  li,
+  dd,
+  figcaption {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--selection);
+    color: var(--ink);
+  }
+
+  /* Every clickable thing, named by tag so the affordance does not depend on a
+     class being remembered. touch-manipulation drops the 300ms tap delay; the
+     tap highlight goes because the press states below answer the finger. */
+  a,
+  button,
+  summary,
+  [role='button'],
+  label {
+    @apply touch-manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a,
+  button,
+  summary,
+  [role='button'] {
+    cursor: pointer;
+  }
+
+  /* An icon carries one intrinsic size and cannot reflow, so it must never be
+     the thing that gives up space in a tight row. A label beside it can wrap or
+     truncate; a glyph squeezed to zero width leaves its control rendering as a
+     filled block with nothing in it, which reads as a broken build rather than
+     as a layout fault. The quote button in the header is the tightest case: it
+     hides its label below sm, so the icon is the only thing it has left. */
+  :where(a, button, summary, label, [role='button']) svg {
+    flex-shrink: 0;
+  }
+
+  /* An outline's offset gap is transparent, so the same focus indicator reads on
+     the light pages and on the dark bands. A ring with a surface-colored offset
+     would paint a solid box around anything focused on a dark section. The
+     selectors name their tags rather than relying on a bare :focus-visible, so
+     every control is covered by something that says so. */
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  details:focus-visible,
+  [role='button']:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  /* Press feedback, as the default rather than as something each control opts
+     into. transform does nothing to a non-replaced inline box, so a link in a
+     paragraph answers with a brief dim and anything box-level takes the scale.
+     .btn declares its own press, and :where() keeps these rules at a specificity
+     a utility can still beat, so nothing here doubles up on a component that
+     already styles its own states. */
+  a:where(:not(.btn)):active {
+    opacity: 0.85;
+  }
+
+  button:where(:not(.btn)):active,
+  summary:active,
+  [role='button']:where(:not(.btn)):active {
+    transform: scale(0.97);
+  }
+
+  /* The hover fallback for anything that does not name its own: a link in prose,
+     the wordmark, the skip link. */
+  a:where(:not(.btn)):hover,
+  button:where(:not(.btn)):hover,
+  summary:hover,
+  [role='button']:where(:not(.btn)):hover {
+    color: var(--accent-text);
+  }
+
+  button:disabled,
+  [aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: var(--autofill-cover);
+    box-shadow: var(--autofill-cover);
+    -webkit-text-fill-color: var(--ink);
+    caret-color: var(--ink);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Motion is removed rather than shortened: state changes still land, they
+     just stop traveling. One query rather than a pair, so there is one place
+     that says what a visitor who asked for less motion gets, and the smooth
+     scroll above is put back to a jump inside it. */
+  @media (prefers-reduced-motion: reduce) {
+    /* The placeholder is the one entrance dropped rather than shortened. Held
+       to a hundredth of a millisecond it still runs, and a fade that runs is a
+       fade: the grey has to be there the instant the placeholder is, not a
+       frame later. It leads the block because it is the exception the blanket
+       rule below would otherwise swallow. */
+    .skeleton-in {
+      animation: none !important;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    ::before,
+    ::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      /* Staggered entrances lose their delays too, or the items would still
+         trickle in one by one with the travel removed. */
+      animation-delay: 0ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}
+
+@layer components {
+  /* 80rem of content at the widest, which is the 1280px measure the design
+     sets inside a 1440px frame, with the gutters outside it. */
+  .container-page {
+    @apply mx-auto w-full max-w-[84rem] px-5 sm:px-8;
+  }
+
+  /* The headline voice: Archivo at its extra-bold italic, which is the closest
+     a typeface gets to the heavy slanted wordmark on the sign. It is for the
+     one statement a band makes - the hero, a page header, the closing band -
+     and never for a heading in a list. */
+  .display {
+    @apply font-display font-extrabold italic tracking-tight;
+    line-height: 1.04;
+  }
+
+  /* The short tan rule the design sets before an eyebrow on a dark band. */
+  .eyebrow-rule {
+    @apply flex items-center gap-3;
+  }
+
+  .eyebrow-rule::before {
+    content: '';
+    @apply block h-0.5 w-6 shrink-0 bg-[color:var(--tan)];
+  }
+
+  .eyebrow {
+    @apply font-display text-xs font-bold uppercase tracking-eyebrow text-accent-text;
+  }
+
+  /* The strip above the bar. It holds what a visitor needs before they have
+     chosen a page - the number, the desk to write to, where the trucks go out
+     from - so the bar below is left holding destinations and one action. It
+     scrolls away with the page rather than sticking, which is why the header
+     token does not count it. */
+  .utility-bar {
+    @apply bg-[color:var(--band-black)] text-ink-inverse;
+  }
+
+  .utility-bar a {
+    @apply inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-fast hover:text-ink-inverse;
+  }
+
+  /* The bar ActionRail pins to the bottom edge below the large breakpoint. The
+     safe-area padding clears the home indicator on a phone that has one; the
+     height the page reserves for it is --rail-height, which has to move with
+     this rule. */
+  .action-rail {
+    @apply fixed inset-x-0 bottom-0 z-sticky border-t border-line bg-surface-raised lg:hidden;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* A row of facts, at the density of a row of facts. The head column names
+     what each row is about, so the table reads down as well as across, and the
+     hairlines are the same one used between rows everywhere else. */
+  .fact-table {
+    @apply w-full border-collapse text-left text-sm;
+  }
+
+  .fact-table th,
+  .fact-table td {
+    @apply border-b border-line py-3 pr-6 align-top leading-relaxed last:pr-0;
+  }
+
+  .fact-table thead th {
+    @apply font-display text-xs font-bold uppercase tracking-eyebrow text-ink-muted;
+  }
+
+  .fact-table tbody th {
+    @apply font-display font-bold text-ink;
+  }
+
+  .fact-table td {
+    @apply text-ink-muted;
+  }
+
+  /* The transparent border keeps every variant the same box height as the
+     bordered ones, so a primary and an outline button align side by side. The
+     min-height is the 44px touch floor, shared with the fields so a control and
+     the input beside it are the same height. Transitioned properties are named;
+     transform is among them so the press scale animates instead of snapping. */
+  /* Labels are written in Title Case at the source, which is what a screen
+     reader and a copied link carry, and set in tracked capitals here, which is
+     how the design draws them. */
+  .btn {
+    @apply inline-flex min-h-control select-none items-center justify-center gap-2 rounded border-2 border-transparent text-center font-display text-[0.8125rem] font-bold uppercase leading-none tracking-[0.06em] transition-[color,background-color,border-color,transform] duration-fast ease-quart-out active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-lg {
+    @apply min-h-[3rem] px-6 py-3 text-sm;
+  }
+
+  .btn-md {
+    @apply px-5 py-2;
+  }
+
+  .btn-primary {
+    @apply bg-accent text-accent-ink hover:bg-accent-hover;
+  }
+
+  .btn-action {
+    @apply bg-action text-action-ink hover:bg-action-hover;
+  }
+
+  /* The secondary action on a light ground: the primary's colour as a frame. */
+  .btn-outline {
+    @apply border-accent bg-surface-raised text-accent-text hover:bg-surface-sunken;
+  }
+
+  /* A quiet frame, for controls that are not a call to action: filter chips,
+     the copy button, the undo. */
+  .btn-quiet {
+    @apply border-line-field bg-surface-raised text-ink-body hover:border-ink-faint hover:bg-surface-sunken;
+  }
+
+  /* The primary action on a dark band: a tan fill with black type. */
+  .btn-tan {
+    @apply bg-[color:var(--tan)] text-[color:var(--tan-ink)] hover:bg-[color:var(--tan-hover)];
+  }
+
+  /* The secondary action on a dark band, outlined in the logo's sky. */
+  .btn-sky-outline {
+    @apply border-[color:var(--sky-200)] text-ink-inverse hover:bg-white/10;
+  }
+
+  /* The actions on the sky band: navy fill, and navy outline. */
+  .btn-on-sky {
+    @apply bg-[color:var(--navy-800)] text-white hover:bg-[color:var(--navy-900)];
+  }
+
+  .btn-on-sky-outline {
+    @apply border-[color:var(--band-sky-ink)] text-[color:var(--band-sky-ink)] hover:bg-white/20;
+  }
+
+  .card {
+    @apply rounded-md border border-line bg-surface-raised;
+  }
+
+  /* Only cards that go somewhere get the lift; a hover response on a static
+     card promises a click it cannot honor. The hover: variants are capability
+     gated by hoverOnlyWhenSupported, so a tap on touch does not stick. */
+  .card-lift {
+    @apply transition-[box-shadow,transform] duration-base ease-quart-out hover:-translate-y-0.5 hover:shadow-card-hover;
+  }
+
+  .field-label {
+    @apply block select-none font-display text-xs font-bold uppercase tracking-eyebrow text-ink-muted;
+  }
+
+  /* The field sits on its own surface rather than on the page ground, so it
+     reads as somewhere to type instead of as a bordered label. 16px is the
+     floor: below it iOS zooms the page the moment the field takes focus. Fields
+     own their entire focus look - border plus a soft halo, the same for mouse
+     and keyboard - and focus:outline-none keeps the global ring off them so the
+     two treatments never stack. */
+  /* min-w-0 is what lets a select shrink below the width of its longest option:
+     without it the option list sets a floor that the grid column has to honor,
+     and the whole form grows past the screen at a large text size. */
+  .field {
+    @apply min-h-control w-full min-w-0 rounded border border-line-field px-4 py-2 text-ink transition-[border-color,box-shadow] duration-fast placeholder:text-ink-faint hover:border-ink-faint focus:border-focus;
+    /* The floor is absolute rather than relative, so a page set at a smaller
+       root size still hands iOS a field it will not zoom into. */
+    font-size: max(1rem, 16px);
+    background-color: var(--surface-field);
+    /* Reserved transparent at rest, so taking focus colors an outline that was
+       always there rather than adding one. Building the indicator out of the
+       border instead would move the text by a pixel every time. */
+    outline: 2px solid transparent;
+    outline-offset: 1px;
+  }
+
+  .field:focus-visible {
+    outline-color: var(--focus);
+  }
+
+  /* Invalid is never color alone: the border turns, and the field carries
+     aria-invalid with a message and a marker beside it. */
+  .field[aria-invalid='true'] {
+    @apply border-danger focus:border-danger focus:ring-danger-ring;
+  }
+
+  /* The slot is held whether or not there is a message, so the first error on a
+     form does not push every field below it down the page. */
+  .field-error {
+    @apply flex min-h-[1.25rem] items-start gap-2 text-sm font-medium text-danger;
+  }
+
+  .field-hint {
+    @apply text-sm leading-relaxed text-ink-muted;
+  }
+
+  /* A native select paints its own arrow, in a different place and a different
+     grey on every platform, which is the one control that breaks the set. The
+     platform's option list and its accessibility are kept; only the closed
+     control is restyled, with the chevron drawn beside it from the same icon set
+     as the rest of the site. Extra right padding keeps a long option from
+     running under it. */
+  .field-select {
+    @apply cursor-pointer appearance-none pr-11;
+  }
+
+  /* An icon set beside a line of text is centred on that line's box rather than
+     hung from its own top edge, so it holds its alignment with the first line
+     however many lines follow, without a nudge of its own to maintain. */
+  .icon-lead {
+    @apply flex h-5 shrink-0 items-center;
+  }
+
+  /* An icon is 17px and a finger is not. The control holds the shared 44px
+     floor in both directions whatever the glyph inside it measures. */
+  .icon-btn {
+    @apply inline-flex min-h-control min-w-control select-none items-center justify-center rounded transition-[color,background-color,transform] duration-fast active:scale-95;
+  }
+
+  .field-select-chevron {
+    @apply pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-ink-faint;
+  }
+
+  .prose-body {
+    @apply max-w-prose leading-relaxed text-ink-muted;
+  }
+
+  /* Scrolls as one row where the screen is narrow and wraps normally once there
+     is room. The negative margin lets the row run to the screen edge, so a chip
+     cut off at the boundary reads as scrollable rather than as a clipped bug. */
+  .chip-rail {
+    @apply -mx-5 flex gap-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-x-visible sm:px-0 sm:pb-0;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .chip-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* A section below the first screen costs style, layout, and paint at load
+     whether or not anybody scrolls to it, and this hands all three back to the
+     browser to spend when the reader is approaching the section instead.
+
+     `auto` on the intrinsic size is what keeps it invisible: the browser holds
+     each section's last rendered height and measures the skipped box at that,
+     so scrolling back over a section moves nothing. The length behind it stands
+     in only for the first pass, before the section has ever been drawn, which
+     is why each use names one near its own height.
+
+     Not applied to a section that is an anchor target: the scroll for a
+     fragment in the URL is computed on the first layout, and at that point a
+     skipped section is still its placeholder height. */
+  .section-defer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto var(--section-intrinsic, 32rem);
+  }
+
+  /* The fill that holds an image's box from first paint until the file decodes,
+     so the space is never an empty hole while the network runs. */
+  .media-frame {
+    @apply overflow-hidden bg-placeholder;
+  }
+
+  /* The full lockup is drawn for a light ground, so it is given one in every
+     theme rather than recolored or dropped onto a dark card. The plate paints
+     before the file decodes, which is also what holds the box. */
+  .brand-plate {
+    @apply flex items-center justify-center rounded bg-brand-plate p-5;
+  }
+
+  /* The logo in the header. It is drawn for a light ground, so the dark theme
+     gives it the white field it was drawn on; the light theme gives it none. */
+  .logo-plate {
+    @apply rounded-full;
+    background-color: var(--logo-plate);
+    padding: 0.125rem 0.375rem;
+  }
+
+  /* A product shot photographed or cut out on white keeps its white in every
+     theme, so the tile reads as a catalog plate rather than a hole. */
+  .product-plate {
+    @apply flex items-center justify-center overflow-hidden bg-white;
+  }
+
+  /* The sky band: the stat strip and the closing call to action. */
+  .band-sky {
+    background-color: var(--band-sky);
+    color: var(--band-sky-body);
+  }
+
+  /* Entrances for elements that appear in place after an interaction: opacity
+     plus a small offset, never from a point, always under 300ms. */
+  .rise-in {
+    animation: rise-in var(--duration-base) var(--ease-quart-out) both;
+  }
+
+  .drop-in {
+    animation: drop-in var(--duration-base) var(--ease-quart-out) both;
+  }
+
+  .pop-in {
+    animation: pop-in var(--duration-fast) var(--ease-quart-out) both;
+  }
+
+  /* For a covering layer - a dim, a scrim - which fades where an element
+     would travel. */
+  .fade-in {
+    animation: fade-in var(--duration-base) var(--ease-quart-out) both;
+  }
+
+  /* A placeholder holding space for content still on the wire. `both` keeps it
+     at zero opacity through the delay, which is longer than a warm cache takes,
+     so a wait nobody would have noticed produces no flash of grey. */
+  .skeleton-in {
+    animation: fade-in var(--duration-base) var(--ease-quart-out) 200ms both;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}

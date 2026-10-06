@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#272b67" />
+    <script>
+      // Reads the stored theme before the first paint, so a visitor who chose
+      // dark does not get a white flash on every navigation. Nothing here knows
+      // a colour: it sets the attribute, and the stylesheet does the rest. With
+      // no stored choice the attribute stays off and the system preference wins.
+      (function () {
+        try {
+          var stored = window.localStorage.getItem('southbelt.theme.v1');
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.setAttribute('data-theme', stored);
+          }
+        } catch (ignored) {}
+      })();
+    </script>
+    <meta
+      name="description"
+      content="Southbelt builds the BP-14, DP-12 and SBM-12 batch plants, stocks batch plant parts, and repairs equipment 24/7 from yards in Houston, San Marcos and Dallas."
+    />
+    <!-- Written by scripts/generate-crawl-files.mjs from VITE_SITE_INDEXABLE,
+         the same switch src/lib/seo.js and robots.txt read, so the shell, the
+         routes and the crawl files open and close to search together. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="https://southbelt.taylorurl.com/" />
+    <!-- Static share and identity tags for the fetchers that read the shell
+         without running the app; each route rewrites them as it mounts. The
+         values here are the home route's, because that is the page the shell
+         renders. -->
+    <meta property="og:title" content="Concrete Batch Plants, Parts and Repair in Texas" />
+    <meta
+      property="og:description"
+      content="Southbelt builds the BP-14, DP-12 and SBM-12 batch plants, stocks batch plant parts, and repairs equipment 24/7 from yards in Houston, San Marcos and Dallas."
+    />
+    <meta property="og:url" content="https://southbelt.taylorurl.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Southbelt Repair and Supply Inc." />
+    <meta property="og:image" content="https://southbelt.taylorurl.com/brand/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Southbelt Repair and Supply Inc. logo, with its Houston, San Marcos and Dallas yards"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Concrete Batch Plants, Parts and Repair in Texas" />
+    <meta
+      name="twitter:description"
+      content="Southbelt builds the BP-14, DP-12 and SBM-12 batch plants, stocks batch plant parts, and repairs equipment 24/7 from yards in Houston, San Marcos and Dallas."
+    />
+    <!-- The photo beside the home headline is the largest thing on the first
+         screen at desktop widths, and the preload starts it in the head rather
+         than at the point the parser reaches the shell's own markup. Its
+         candidates and the widths they are chosen at are the img's own,
+         restated here because a preload naming a different file than the
+         element picks is a file fetched and never used.
+
+         It is asked for ahead of the faces below because it is the paint being
+         measured and they are not: the text is already set in a fallback
+         re-metricked to the same space, so a face arriving a moment later swaps
+         without moving a line, while a photo arriving a moment later is the
+         first screen filling in. -->
+    <link
+      rel="preload"
+      as="image"
+      href="/photos/crew-under-plant-800.webp"
+      imagesrcset="
+        /photos/crew-under-plant-480.webp 480w,
+        /photos/crew-under-plant-800.webp 800w,
+        /photos/crew-under-plant-1200.webp 1200w,
+        /photos/crew-under-plant-1600.webp 1600w"
+      imagesizes="(min-width: 1024px) 43vw, 100vw"
+      fetchpriority="high"
+    />
+    <!-- All three faces are served from this origin and declared in the
+         stylesheet. The stylesheet is discovered a step later than the
+         document, so the files the first screen sets type in are asked for
+         here instead of waiting for it: Inter for the text, Archivo for the
+         labels, and its italic for the headline. -->
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/archivo-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/archivo-italic-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <title>Concrete Batch Plants, Parts and Repair in Texas</title>
+    <script type="application/ld+json" id="local-business">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://southbelt.taylorurl.com/#organization",
+        "name": "Southbelt Repair and Supply Inc.",
+        "alternateName": "Southbelt Inc.",
+        "legalName": "Southbelt Repair & Supply Co. Inc.",
+        "url": "https://southbelt.taylorurl.com",
+        "logo": "https://southbelt.taylorurl.com/brand/logo-600.webp",
+        "image": "https://southbelt.taylorurl.com/brand/og.png",
+        "description": "Concrete batch plant manufacturer, parts supplier, repair and fabrication shop, and equipment rentals, with yards in Houston, San Marcos and Dallas, Texas.",
+        "email": "sales@southbeltinc.com",
+        "telephone": "713-645-9099",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "109 North Richey St",
+          "addressLocality": "Pasadena",
+          "addressRegion": "TX",
+          "postalCode": "77506",
+          "addressCountry": "US"
+        },
+        "department": [
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://southbelt.taylorurl.com/#yard-houston",
+            "name": "Southbelt Repair and Supply Inc. - Houston",
+            "url": "https://southbelt.taylorurl.com/contact#houston",
+            "telephone": "713-645-9099",
+            "email": "sales@southbeltinc.com",
+            "image": "https://southbelt.taylorurl.com/photos/yard-houston-800.webp",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "109 North Richey St",
+              "addressLocality": "Pasadena",
+              "addressRegion": "TX",
+              "postalCode": "77506",
+              "addressCountry": "US"
+            },
+            "parentOrganization": {
+              "@id": "https://southbelt.taylorurl.com/#organization"
+            }
+          },
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://southbelt.taylorurl.com/#yard-san-marcos",
+            "name": "Southbelt Repair and Supply Inc. - San Marcos",
+            "url": "https://southbelt.taylorurl.com/contact#san-marcos",
+            "telephone": "830-372-8929",
+            "email": "sales@southbeltinc.com",
+            "image": "https://southbelt.taylorurl.com/photos/yard-san-marcos-800.webp",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "1110 FM 1339",
+              "addressLocality": "Kingsbury",
+              "addressRegion": "TX",
+              "postalCode": "78638",
+              "addressCountry": "US"
+            },
+            "parentOrganization": {
+              "@id": "https://southbelt.taylorurl.com/#organization"
+            }
+          },
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://southbelt.taylorurl.com/#yard-dallas",
+            "name": "Southbelt Repair and Supply Inc. - Dallas",
+            "url": "https://southbelt.taylorurl.com/contact#dallas",
+            "telephone": "682-518-6622",
+            "email": "sales@southbeltinc.com",
+            "image": "https://southbelt.taylorurl.com/photos/yard-dallas-800.webp",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "4525 Maxey Rd",
+              "addressLocality": "Alvarado",
+              "addressRegion": "TX",
+              "postalCode": "76009",
+              "addressCountry": "US"
+            },
+            "parentOrganization": {
+              "@id": "https://southbelt.taylorurl.com/#organization"
+            }
+          }
+        ],
+        "foundingDate": "2002",
+        "areaServed": [
+          {
+            "@type": "State",
+            "name": "Texas"
+          },
+          {
+            "@type": "State",
+            "name": "Louisiana"
+          },
+          {
+            "@type": "Country",
+            "name": "United States"
+          }
+        ],
+        "memberOf": [
+          {
+            "@type": "Organization",
+            "name": "Texas Aggregates & Concrete Association",
+            "url": "https://www.tx-taca.org/"
+          }
+        ],
+        "sameAs": [
+          "https://www.facebook.com/southbeltinc"
+        ]
+      }
+    </script>
+    <script>
+      (function () {
+        var endpoint = 'https://sunday.tail1f78d7.ts.net/report';
+        var site = 'Southbelt Repair and Supply';
+        var sent = 0;
+        // Nothing the page can intercept reaches the visitor's console. Each
+        // error is reported first and swallowed second, so the report is made
+        // whether or not the suppression holds. What survives is written by the
+        // browser's own network layer, which no page script can reach.
+        var loud = false;
+        var held = [];
+        try {
+          if (location.search.indexOf('console=on') > -1)
+            localStorage.setItem('reporter-console', '1');
+          if (location.search.indexOf('console=off') > -1)
+            localStorage.removeItem('reporter-console');
+          loud = localStorage.getItem('reporter-console') === '1';
+        } catch (ignored) {}
+        // An extension injects its scripts into the page, so a rejection thrown
+        // inside one arrives at this handler with nothing of the site in its
+        // stack. A stack naming only extension scripts describes the visitor's
+        // browser; one carrying a single site frame is the site's.
+        function extensionOnly(stack) {
+          var schemes = String(stack || '').match(/[a-z][a-z0-9+.-]*:\/\//gi);
+          if (!schemes) return false;
+          for (var i = 0; i < schemes.length; i += 1) {
+            var scheme = schemes[i].slice(0, -3).toLowerCase();
+            if (scheme.slice(-9) !== 'extension') return false;
+          }
+          return true;
+        }
+        // A request the page makes writes its own failure to the console when it
+        // fails, and a collector that cannot be reached would then be the loudest
+        // thing on the page. The same request issued inside a worker writes
+        // nothing, so reports travel that way while the page is alive.
+        var unloading = false;
+        var worker = null;
+        var workerFailed = false;
+        function transport() {
+          if (worker || workerFailed) return worker;
+          try {
+            var source =
+              "self.onmessage=function(e){fetch(e.data.endpoint,{method:'POST',body:e.data.body}).then(function(){},function(){})}";
+            worker = new Worker(
+              URL.createObjectURL(new Blob([source], { type: 'text/javascript' }))
+            );
+          } catch (ignored) {
+            workerFailed = true;
+          }
+          return worker;
+        }
+        function send(body) {
+          // On the way out the worker dies with the page, and the console goes
+          // with it, so the beacon's survival is worth more than its silence.
+          if (!unloading) {
+            var channel = transport();
+            if (channel) {
+              channel.postMessage({ endpoint: endpoint, body: body });
+              return;
+            }
+          }
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon(endpoint, body);
+          } else {
+            fetch(endpoint, { method: 'POST', body: body, keepalive: true }).catch(function () {});
+          }
+        }
+        // Registered before the asset flush below, so anything that flush reports
+        // on the way out already knows to travel by beacon rather than by a worker
+        // dying with the page.
+        addEventListener('pagehide', function () {
+          unloading = true;
+        });
+        // Everything swallowed stays readable on the page itself, so a live
+        // console with the flag off still answers what happened.
+        function hold(kind, message, stack) {
+          if (held.length < 50)
+            held.push({ kind: kind, message: String(message), stack: String(stack || '') });
+        }
+        window.__reporter = {
+          held: held,
+          replay: function () {
+            return held.slice();
+          },
+        };
+        function report(kind, message, stack) {
+          hold(kind, message, stack);
+          if (sent >= 10) return; // a page stuck in an error loop stops at ten
+          if (extensionOnly(stack)) return;
+          sent += 1;
+          try {
+            send(
+              JSON.stringify({
+                site: site,
+                kind: kind,
+                message: String(message || 'Unknown error').slice(0, 1500),
+                stack: String(stack || '').slice(0, 4000),
+                url: location.href,
+                userAgent: navigator.userAgent,
+              })
+            );
+          } catch (ignored) {}
+        }
+        function flatten(args, from) {
+          var parts = [];
+          for (var i = from; i < args.length; i += 1) {
+            var piece = args[i];
+            if (piece && piece.stack) {
+              parts.push(piece.stack);
+            } else if (typeof piece === 'object') {
+              try {
+                parts.push(JSON.stringify(piece));
+              } catch (ignored) {
+                parts.push(String(piece));
+              }
+            } else {
+              parts.push(String(piece));
+            }
+          }
+          return parts.join(' ');
+        }
+        /*
+         * A tab open across a deploy asks for a chunk filename the host has
+         * replaced, and the browser fails the preload link before the import
+         * rejects. That first failure arrives here with nothing attached to say
+         * the page is about to reload and fix itself, so asset failures wait
+         * instead of reporting at once. src/lib/chunk-recovery.js fires the
+         * refresh event on its way out, which drops them; anything still held
+         * when the wait elapses was a real failure and goes.
+         */
+        var HOLD_MS = 1500;
+        var heldAssets = [];
+        function flushHeldAssets() {
+          var pending = heldAssets.splice(0, heldAssets.length);
+          for (var i = 0; i < pending.length; i += 1) report('resource', pending[i]);
+        }
+        window.addEventListener('southbelt:build-refresh', function () {
+          heldAssets.length = 0;
+        });
+        // Leaving for any other reason ends the wait, so a page closed on a
+        // real failure still reports it.
+        window.addEventListener('pagehide', flushHeldAssets);
+        // Capture phase, because element load failures fire error events that do not bubble.
+        window.addEventListener(
+          'error',
+          function (event) {
+            try {
+              if (event.target && event.target !== window && event.target.tagName) {
+                // A preload is a hint the browser is allowed to drop. Googlebot's
+                // renderer cancels ones it does not need in time, and iOS Safari
+                // drops preloads for images whose imagesrcset picks a candidate
+                // that is not the href. Neither is a failure the visitor sees:
+                // the stylesheet still asks for the font it needs, and an image
+                // that the picture element renders fires its own error event if
+                // that fetch fails. Reporting a hint the browser chose not to use
+                // files a ticket for behaviour that is by design.
+                var rel = (event.target.rel || '').toLowerCase();
+                if (
+                  event.target.tagName.toLowerCase() === 'link' &&
+                  (rel === 'preload' || rel === 'modulepreload' || rel === 'prefetch')
+                ) {
+                  return;
+                }
+                heldAssets.push(
+                  'Failed to load ' +
+                    event.target.tagName.toLowerCase() +
+                    ': ' +
+                    (event.target.src || event.target.href || '')
+                );
+                setTimeout(flushHeldAssets, HOLD_MS);
+              } else {
+                report('uncaught', event.message, event.error && event.error.stack);
+              }
+            } finally {
+              if (!loud) event.preventDefault();
+            }
+          },
+          true
+        );
+        window.addEventListener('unhandledrejection', function (event) {
+          try {
+            var reason = event.reason;
+            report(
+              'rejection',
+              reason && reason.message ? reason.message : reason,
+              reason && reason.stack
+            );
+          } finally {
+            if (!loud) event.preventDefault();
+          }
+        });
+        // A library writing to these is addressing whoever maintains the site
+        // rather than whoever is reading the page, so the message travels to the
+        // Pi instead of to the visitor's console.
+        ['error', 'warn', 'trace'].forEach(function (level) {
+          var original = console[level];
+          console[level] = function () {
+            report('console', flatten(arguments, 0));
+            if (loud) original.apply(console, arguments);
+          };
+        });
+        var originalAssert = console.assert;
+        console.assert = function (condition) {
+          if (condition) return;
+          report('console', 'Assertion failed: ' + flatten(arguments, 1));
+          if (loud) originalAssert.apply(console, arguments);
+        };
+        if (window.fetch) {
+          var originalFetch = window.fetch;
+          window.fetch = function (input) {
+            var target = typeof input === 'string' ? input : (input && input.url) || '';
+            // Reports about the reporter's own request would loop, so the endpoint passes through unwrapped.
+            if (target.indexOf(endpoint) === 0) return originalFetch.apply(window, arguments);
+            return originalFetch.apply(window, arguments).then(
+              function (response) {
+                if (response.status >= 500)
+                  report('http', 'HTTP ' + response.status + ' from ' + target.split('?')[0]);
+                return response;
+              },
+              function (error) {
+                report(
+                  'network',
+                  (error && error.message ? error.message : String(error)) +
+                    ' fetching ' +
+                    target.split('?')[0]
+                );
+                throw error;
+              }
+            );
+          };
+        }
+      })();
+    </script>
+    <!-- Keeps a visitor whose entry bundle never arrived from being left on a
+         page that cannot become the site.
+
+         src/lib/chunk-recovery.js already answers for a route chunk that goes
+         missing, and it cannot answer for this: it is compiled into the entry
+         bundle, so the one failure it could never cover is the bundle itself
+         not arriving. That recovery has to be in the document or nowhere, which
+         is why it is written out here rather than imported.
+
+         What the visitor is left with without it is quiet rather than broken.
+         The shell below is the home route's first screen and the sheet is in
+         this document, so the page looks finished: it is styled, it has the
+         headline and the phone number, and nothing on it says anything failed.
+         React never mounts, so nothing on it responds either, and because
+         vercel.json rewrites every path to this document, a visitor who asked
+         for /contact or /parts is reading the home page under their own URL
+         with no form and no catalog.
+
+         Three failures reach here and they want different answers. A request
+         that simply did not arrive is answered by asking again, so the bundle
+         is retried twice under a query string - the URL has to differ, or the
+         browser serves back the failure it already cached. A file a deploy
+         replaced cannot be fetched at any address, because the name itself is
+         gone; only a new document naming the file that replaced it recovers
+         that, so the retries fall back to a reload.
+
+         A file that arrived and did not parse is the third, and neither answer
+         fits it: the same bytes parse the same way at another address, and a
+         reload asks the host for the same document again. Both were being
+         spent on it anyway, which downloaded a bundle that could never run a
+         second time and filed the identical fault twice. So a parse failure
+         ends the recovery, and what the reader is owed instead is a word. The
+         engine is asked, at that moment, to compile the syntax the bundle is
+         built out of: refusing it, the engine cannot run any build of this
+         site and the notice says so, above a page whose links and phone number
+         all still work. Compiling it, the engine is one the site targets and
+         the build is at fault, which is a thing for the report to carry and
+         not for the reader to read.
+
+         One reload per tab, which is enough for a build that moved and not
+         enough for a bundle that will never arrive to become a loop, and a
+         store that cannot be read counts as an allowance already spent. A boot
+         that succeeds hands the allowance back, so the next incident gets its
+         own.
+
+         Nothing here quiets the report. The reporter above has already sent
+         'Failed to load script' by the time any of this runs, and it stays
+         sent: a recovery that hid the failure would buy silence at the cost of
+         ever hearing about it again. -->
+    <script>
+      (function () {
+        var MARK = 'southbelt.entry-refresh.v1';
+        var RETRY_LIMIT = 2;
+        // The load event waits for the entry script, so a document that has
+        // finished loading without the bundle having run is not going to get
+        // it. The grace is for the frame the browser takes to run it.
+        var GRACE_MS = 1500;
+
+        var arrived = false;
+        var attempts = 0;
+        var answering = false;
+        var unparsable = false;
+        var told = false;
+
+        function spent() {
+          try {
+            return sessionStorage.getItem(MARK) === '1';
+          } catch (ignored) {
+            return true;
+          }
+        }
+        function spend() {
+          try {
+            sessionStorage.setItem(MARK, '1');
+          } catch (ignored) {
+            // Nothing to spend when the store is closed to us.
+          }
+        }
+        function release() {
+          try {
+            sessionStorage.removeItem(MARK);
+          } catch (ignored) {
+            // Nothing to release when the store is closed to us.
+          }
+        }
+
+        // src/main.jsx calls this the moment the bundle executes. It is the one
+        // signal that separates a bundle that never arrived from a bundle that
+        // arrived and threw, and only the first is this code's business.
+        window.__southbeltEntryArrived = function () {
+          arrived = true;
+          release();
+        };
+
+        // The build writes one module script with no query on it; the retries
+        // below all carry one, so this always finds the original.
+        function entrySrc() {
+          var tags = document.querySelectorAll('script[type="module"][src]');
+          for (var i = 0; i < tags.length; i += 1) {
+            var src = tags[i].getAttribute('src') || '';
+            if (src && src.indexOf('?') === -1) return src;
+          }
+          return '';
+        }
+
+        function reload() {
+          if (unparsable || spent()) return;
+          spend();
+          window.location.reload();
+        }
+
+        // A sample of the syntax the bundle is built out of, handed to the
+        // engine that is about to be asked to run it. vite.config.js states the
+        // floor; this is what that floor buys, so an engine that will not
+        // compile it cannot run any build of this site. A page whose policy
+        // refuses Function throws something other than a SyntaxError, and a
+        // locked-down page is not an engine that cannot read the language.
+        function engineRefusesSyntax() {
+          try {
+            new Function(
+              'class P { #v = 1; static {} get v() { return this.#v } }' +
+                'return function (a) { var b = a?.b ?? 0; b ??= 1; return b + new P().v; }'
+            );
+            return false;
+          } catch (error) {
+            return error instanceof SyntaxError;
+          }
+        }
+
+        // The shell below is a finished first screen, so an engine that cannot
+        // run the bundle is left reading a page that looks complete and answers
+        // nothing. This is a banner rather than a cover, because the links and
+        // the phone number under it are the part that still works and taking
+        // the page away would take those with it.
+        function tellReader() {
+          if (told) return;
+          told = true;
+          var box = document.createElement('div');
+          box.setAttribute('role', 'status');
+          box.style.cssText =
+            'box-sizing:border-box;padding:16px 20px;border-bottom:1px solid ' +
+            'var(--line,#d4d4d8);background:var(--surface,#ffffff);' +
+            'color:var(--ink,#18181b);font:400 15px/1.5 system-ui,sans-serif;';
+          var heading = document.createElement('strong');
+          heading.style.cssText = 'display:block;font-weight:600;';
+          heading.appendChild(document.createTextNode('Your Browser Is Out of Date'));
+          var body = document.createElement('span');
+          body.style.cssText = 'display:block;color:var(--ink-muted,#52525b);';
+          body.appendChild(
+            document.createTextNode(
+              'The site needs a newer browser to run. Everything on this page still reads, and the contact details on it still reach us.'
+            )
+          );
+          box.appendChild(heading);
+          box.appendChild(body);
+          function place() {
+            if (document.body) document.body.insertBefore(box, document.body.firstChild);
+          }
+          if (document.body) place();
+          else document.addEventListener('DOMContentLoaded', place);
+        }
+
+        // A file the engine could not compile fires no error event on its tag,
+        // so this arrives at the window instead, naming the entry as its
+        // source. Retrying and reloading are both spent here rather than on it.
+        function parseFailure(event) {
+          var src = entrySrc();
+          if (!src) return false;
+          var where = String(event.filename || '').split('?')[0];
+          if (where.length < src.length || where.slice(-src.length) !== src) return false;
+          var error = event.error;
+          if (error) return error instanceof SyntaxError || error.name === 'SyntaxError';
+          return String(event.message || '').indexOf('SyntaxError') > -1;
+        }
+
+        function answer() {
+          if (arrived || unparsable) return;
+          var src = entrySrc();
+          if (!src || attempts >= RETRY_LIMIT) {
+            reload();
+            return;
+          }
+          attempts += 1;
+          var tag = document.createElement('script');
+          tag.type = 'module';
+          tag.crossOrigin = 'anonymous';
+          tag.src = src + '?retry=' + attempts;
+          // No onerror here: the listener below is on the window in capture
+          // phase and already sees this tag fail. Handling it twice would spend
+          // both retries on the first failure.
+          document.head.appendChild(tag);
+        }
+
+        // Capture phase, because a script that fails to load fires an error
+        // event that does not bubble.
+        window.addEventListener(
+          'error',
+          function (event) {
+            var target = event.target;
+            if (!target || target === window || !target.tagName) {
+              if (parseFailure(event)) {
+                unparsable = true;
+                answering = true;
+                if (engineRefusesSyntax()) tellReader();
+              }
+              return;
+            }
+            if (target.tagName.toLowerCase() !== 'script') return;
+            if ((target.type || '') !== 'module') return;
+            answering = true;
+            answer();
+          },
+          true
+        );
+
+        // A bundle can also fail to run without ever firing an error event -
+        // a proxy answering it as HTML, a truncated response. The load event
+        // having passed with nothing having booted says so.
+        window.addEventListener('load', function () {
+          window.setTimeout(function () {
+            if (!arrived && !answering) answer();
+          }, GRACE_MS);
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- The shell a fetcher that runs no scripts is served: the same landmarks,
+         headline, and contact block the app renders, in the site's own classes.
+         React clears the container before its first paint, so this is what the
+         page is until the bundle lands and what it is to anything that never
+         runs one. Every claim in it comes from src/content/company.js and has
+         to move with it. -->
+    <div id="root">
+      <div class="flex min-h-dvh flex-col pb-[var(--rail-height)]">
+        <!-- The same strip the app puts above the bar. -->
+        <div class="utility-bar band-dark">
+          <div class="container-page flex items-center justify-between gap-6 py-2 text-xs">
+            <p class="hidden text-[color:var(--tan)] md:block">
+              Concrete batch plants, parts and service since 2002
+            </p>
+            <ul class="chip-rail items-center gap-x-6 md:gap-x-8" aria-label="Call a Yard">
+              <li class="shrink-0">
+                <a class="inline-flex items-center gap-2 whitespace-nowrap text-ink-inverse-muted" href="tel:+17136459099"
+                  ><span>Houston</span
+                  ><span class="font-medium tabular-nums text-white">713-645-9099</span></a
+                >
+              </li>
+              <li class="shrink-0">
+                <a class="inline-flex items-center gap-2 whitespace-nowrap text-ink-inverse-muted" href="tel:+18303728929"
+                  ><span>San Marcos</span
+                  ><span class="font-medium tabular-nums text-white">830-372-8929</span></a
+                >
+              </li>
+              <li class="shrink-0">
+                <a class="inline-flex items-center gap-2 whitespace-nowrap text-ink-inverse-muted" href="tel:+16825186622"
+                  ><span>Dallas</span
+                  ><span class="font-medium tabular-nums text-white">682-518-6622</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <header class="sticky top-0 z-sticky-nav h-header border-b border-line bg-header">
+          <div class="container-page relative flex h-full items-center justify-between gap-6">
+            <a href="/" class="min-w-0" aria-label="Southbelt Repair and Supply Inc. Home">
+              <span class="logo-plate inline-flex shrink-0 items-center">
+                <img
+                  src="/brand/logo-400.webp"
+                  srcset="/brand/logo-200.webp 200w, /brand/logo-400.webp 400w, /brand/logo-600.webp 600w"
+                  sizes="(min-width: 1024px) 144px, 120px"
+                  width="3038"
+                  height="946"
+                  alt="Southbelt Repair and Supply Inc."
+                  class="h-auto w-[7.5rem] lg:w-36"
+                />
+              </span>
+            </a>
+            <!-- The app's Equipment panel, built on <details> so it opens with
+                 no script behind it, and reaching the same eleven machines a
+                 fetcher that runs no scripts would otherwise have to find from
+                 /equipment one hop further on.
+
+                 The list between the markers is written by
+                 scripts/generate-crawl-files.mjs from the same content module
+                 the app renders, so a machine added there cannot be missing
+                 here. -->
+            <nav aria-label="Main" class="hidden items-center gap-7 lg:flex">
+              <details class="relative">
+                <summary
+                  class="flex list-none cursor-pointer items-center gap-1 font-display text-[0.8125rem] font-bold uppercase tracking-[0.06em] text-ink-body [&::-webkit-details-marker]:hidden"
+                >
+                  Equipment
+                </summary>
+                <div
+                  class="nav-panel absolute left-0 top-full z-dropdown mt-4 flex w-[26rem] flex-col gap-4 rounded-md border border-line bg-surface-raised p-5 shadow-card-hover"
+                >
+                  <ul class="flex flex-col" id="shell-equipment">
+                    <li class="flex flex-col gap-1 pb-3">
+                      <p class="font-display text-micro font-bold uppercase tracking-eyebrow text-ink-faint">
+                        Batch Plants
+                      </p>
+                      <a class="block py-1 font-display text-sm font-bold text-ink" href="/equipment/bp-14-batch-plant">BP-14 Concrete Batch Plant</a>
+                      <a class="block py-1 font-display text-sm font-bold text-ink" href="/equipment/bp-14-augerless-batch-plant">BP-14 Augerless Batch Plant</a>
+                      <a class="block py-1 font-display text-sm font-bold text-ink" href="/equipment/dp-12-decumulating-plant">DP-12 Decumulating Plant</a>
+                      <a class="block py-1 font-display text-sm font-bold text-ink" href="/equipment/sbm-12-semi-mobile-batch-plant">SBM-12 Semi-Mobile Batch Plant</a>
+                    </li>
+                    <li class="flex flex-col gap-1 pb-3">
+                      <p class="font-display text-micro font-bold uppercase tracking-eyebrow text-ink-faint">
+                        Pugmills
+                      </p>
+                      <a class="block py-1 font-display text-sm font-bold text-ink" href="/equipment/portable-pugmill">Portable Pugmill</a>
+                      <a class="block py-1 font-display text-sm font-bold text-ink" href="/equipment/stationary-pugmill">Stationary Pugmill</a>
+                    </li>
+                    <li class="flex flex-col gap-1 pb-3">
+                      <p class="font-display text-micro font-bold uppercase tracking-eyebrow text-ink-faint">
+                        Silos and Storage Pigs
+                      </p>
+                      <a class="block py-1 font-display text-sm font-bold text-ink" href="/equipment/vertical-pigs">Vertical Pigs</a>
+                      <a class="block py-1 font-display text-sm font-bold text-ink" href="/equipment/portable-storage-pigs">Portable Storage Pigs</a>
+                    </li>
+                    <li class="flex flex-col gap-1 pb-3">
+                      <p class="font-display text-micro font-bold uppercase tracking-eyebrow text-ink-faint">
+                        Blowers, Tanks and Conveyors
+                      </p>
+                      <a class="block py-1 font-display text-sm font-bold text-ink" href="/equipment/dry-bulk-blowers">Dry Bulk Blowers</a>
+                      <a class="block py-1 font-display text-sm font-bold text-ink" href="/equipment/self-erecting-water-tank">Self-Erecting Water Tank</a>
+                      <a class="block py-1 font-display text-sm font-bold text-ink" href="/equipment/rm-series-conveyor">RM-Series Industrial Conveyor</a>
+                    </li>
+                  </ul>
+                  <a class="btn btn-md btn-outline self-start" href="/equipment">All Equipment</a>
+                </div>
+              </details>
+              <a href="/parts" class="font-display text-[0.8125rem] font-bold uppercase tracking-[0.06em] text-ink-body">Parts</a>
+              <a href="/services" class="font-display text-[0.8125rem] font-bold uppercase tracking-[0.06em] text-ink-body">Services</a>
+              <a href="/rentals" class="font-display text-[0.8125rem] font-bold uppercase tracking-[0.06em] text-ink-body">Rentals</a>
+              <a href="/about" class="font-display text-[0.8125rem] font-bold uppercase tracking-[0.06em] text-ink-body">About</a>
+              <a href="/contact" class="font-display text-[0.8125rem] font-bold uppercase tracking-[0.06em] text-ink-body">Contact</a>
+            </nav>
+            <a
+              href="/contact?topic=quote#request"
+              class="btn btn-md btn-primary hidden whitespace-nowrap sm:inline-flex"
+              >Request a Quote</a
+            >
+          </div>
+        </header>
+
+        <main class="flex-1">
+          <section class="band-dark relative overflow-hidden bg-band-navy">
+            <div class="lg:grid lg:min-h-[40rem] lg:grid-cols-[57fr_43fr]">
+              <div
+                class="container-page flex items-center py-14 sm:py-16 lg:ml-auto lg:mr-0 lg:max-w-[52rem] lg:py-24 lg:pr-16"
+              >
+                <div class="flex flex-col items-start gap-10">
+                  <div class="flex flex-col items-start gap-6">
+                    <div class="flex flex-col items-start gap-5">
+                      <p
+                        class="eyebrow-rule font-display text-xs font-bold uppercase tracking-eyebrow text-accent-inverse"
+                      >
+                        Houston · San Marcos · Dallas
+                      </p>
+                      <h1
+                        class="display max-w-[11ch] text-5xl text-ink-inverse sm:text-6xl lg:text-[4.25rem]"
+                      >
+                        Batch plants built and kept running.
+                      </h1>
+                    </div>
+                    <p class="max-w-[34rem] text-lg leading-relaxed text-ink-inverse-muted">
+                      Southbelt builds the BP-14, DP-12 and SBM-12 batch plants, stocks parts for
+                      the plant you already run, and repairs equipment with technicians available
+                      24/7.
+                    </p>
+                  </div>
+                  <div
+                    class="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center"
+                  >
+                    <a href="/contact?topic=repair#request" class="btn btn-lg btn-tan">Request Service</a>
+                    <a href="/parts" class="btn btn-lg btn-sky-outline">Browse Parts</a>
+                  </div>
+                </div>
+              </div>
+              <div class="media-frame relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-auto">
+                <img
+                  src="/photos/crew-under-plant-800.webp"
+                  srcset="
+                  /photos/crew-under-plant-480.webp 480w,
+                  /photos/crew-under-plant-800.webp 800w,
+                  /photos/crew-under-plant-1200.webp 1200w,
+                  /photos/crew-under-plant-1600.webp 1600w"
+                  sizes="(min-width: 1024px) 43vw, 100vw"
+                  alt="Two Southbelt crew members in hard hats and safety vests looking up at the steel of a batch plant"
+                  width="4480"
+                  height="6720"
+                  fetchpriority="high"
+                  decoding="sync"
+                  class="absolute inset-0 h-full w-full object-cover"
+                  style="object-position: 50% 40%"
+                />
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer class="band-dark bg-band-black pb-5 pt-14 text-ink-inverse-muted">
+          <div class="container-page flex flex-col gap-10">
+            <address class="flex flex-col gap-3 text-sm not-italic">
+              <span class="font-display font-bold text-white">Southbelt Repair &amp; Supply Co. Inc.</span>
+              <span>Houston: 109 North Richey St, Pasadena, TX 77506, <a href="tel:+17136459099">713-645-9099</a></span>
+              <span>San Marcos: 1110 FM 1339, Kingsbury, TX 78638, <a href="tel:+18303728929">830-372-8929</a></span>
+              <span>Dallas: 4525 Maxey Rd, Alvarado, TX 76009, <a href="tel:+16825186622">682-518-6622</a></span>
+              <a href="mailto:sales@southbeltinc.com">sales@southbeltinc.com</a>
+            </address>
+            <nav aria-label="Site" class="flex flex-wrap gap-5 text-xs text-ink-inverse-faint">
+              <a href="/equipment/used">Used Equipment</a>
+              <a href="/quote">Quote List</a>
+              <a href="/privacy">Privacy</a>
+              <a href="/terms">Terms</a>
+            </nav>
+          </div>
+        </footer>
+
+        <!-- The same rail the app pins to the bottom edge on a phone. -->
+        <div class="action-rail">
+          <div class="container-page grid grid-cols-2 gap-3 py-2">
+            <a href="tel:+17136459099" class="btn btn-md btn-action">Call</a>
+            <a href="/contact?topic=quote#request" class="btn btn-md btn-primary">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
