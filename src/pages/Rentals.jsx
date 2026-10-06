@@ -91,7 +91,10 @@ export default function Rentals() {
         </div>
       </PageHeader>
 
-      <section className="container-page flex flex-col gap-10 py-16 lg:py-20" aria-labelledby="fleet">
+      <section
+        className="container-page flex flex-col gap-10 py-16 lg:py-20"
+        aria-labelledby="fleet"
+      >
         <SectionHeading
           id="fleet"
           eyebrow="Rental Fleet"
@@ -119,7 +122,11 @@ export default function Rentals() {
                   {unit.note && <p className="text-sm text-ink-muted">{unit.note}</p>}
                 </div>
                 <div className="mt-auto flex flex-wrap items-center gap-4">
-                  <button type="button" onClick={() => pick(unit.name)} className="btn btn-md btn-primary">
+                  <button
+                    type="button"
+                    onClick={() => pick(unit.name)}
+                    className="btn btn-md btn-primary"
+                  >
                     Rent This
                   </button>
                   {unit.detail && (
@@ -148,7 +155,10 @@ export default function Rentals() {
           />
           <ol className="grid gap-6 md:grid-cols-3">
             {rentalSteps.map((step, index) => (
-              <li key={step.title} className="flex flex-col gap-3 border-t-2 border-[color:var(--tan)] pt-5">
+              <li
+                key={step.title}
+                className="flex flex-col gap-3 border-t-2 border-[color:var(--tan)] pt-5"
+              >
                 <span className="font-display text-4xl font-extrabold italic text-[color:var(--tan)]">
                   {index + 1}
                 </span>

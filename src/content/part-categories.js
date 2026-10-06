@@ -20,7 +20,8 @@ export const partCategories = [
   {
     slug: 'motors-and-gearboxes',
     name: 'Motors and Gearboxes',
-    blurb: 'Electric motors and gear reducers from WEG, Baldor, North American, Dodge, Rexnord and SEW.',
+    blurb:
+      'Electric motors and gear reducers from WEG, Baldor, North American, Dodge, Rexnord and SEW.',
     photo: 'part-motors',
     photoAlt: 'A gray electric gear motor on a test bench',
   },

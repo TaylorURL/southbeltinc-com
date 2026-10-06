@@ -57,7 +57,8 @@ const equipmentCards = [
     to: '/equipment#pugmills',
     eyebrow: 'Mixing',
     title: 'Pugmills',
-    summary: 'Portable and stationary pugmills at 500, 750 or 1000 TPH, with silos from 400 to 1200 BBL.',
+    summary:
+      'Portable and stationary pugmills at 500, 750 or 1000 TPH, with silos from 400 to 1200 BBL.',
     photo: 'portable-pugmill',
     photoAlt: 'A portable pugmill with its feeders, conveyors and cement silo on a job site',
   },
@@ -65,7 +66,8 @@ const equipmentCards = [
     to: '/equipment#storage',
     eyebrow: 'Storage',
     title: 'Vertical and Portable Pigs',
-    summary: 'Vertical silos that fill and discharge at once, and storage pigs to buy new, buy used or rent.',
+    summary:
+      'Vertical silos that fill and discharge at once, and storage pigs to buy new, buy used or rent.',
     photo: 'storage-pig',
     photoAlt: 'A gray Southbelt portable storage pig on its trailer, parked on grass',
   },
@@ -88,7 +90,11 @@ const serviceRows = [
     name: 'Preventative Maintenance',
     note: 'Weekly or monthly plans',
   },
-  { to: '/services#fabrication', name: 'Custom Fabrication', note: 'Plant, silo, tank and structural' },
+  {
+    to: '/services#fabrication',
+    name: 'Custom Fabrication',
+    note: 'Plant, silo, tank and structural',
+  },
   { to: '/rentals', name: 'Equipment Rentals', note: 'Pigs, blowers, tanks and a crane' },
 ];
 
@@ -199,8 +205,8 @@ export default function Home() {
               </div>
               <p className="max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
                 Qualified technicians for emergency repairs, maintenance on a weekly or monthly
-                schedule, and fabrication from our own shops, for the concrete and material
-                handling equipment you run.
+                schedule, and fabrication from our own shops, for the concrete and material handling
+                equipment you run.
               </p>
             </div>
             <ul className="w-full border-t border-line">

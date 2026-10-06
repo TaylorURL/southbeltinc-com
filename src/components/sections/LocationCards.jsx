@@ -43,7 +43,9 @@ export default function LocationCards({ detailed = false, headingLevel = 3 }) {
                 <br />
                 {location.city}, {location.state} {location.zip}
               </address>
-              {detailed && <p className="text-sm leading-relaxed text-ink-body">{location.blurb}</p>}
+              {detailed && (
+                <p className="text-sm leading-relaxed text-ink-body">{location.blurb}</p>
+              )}
               <div className="mt-auto flex flex-col gap-3">
                 <a
                   href={telHref(location.phone)}

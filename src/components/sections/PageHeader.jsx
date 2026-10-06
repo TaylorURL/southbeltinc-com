@@ -32,7 +32,10 @@ export default function PageHeader({ eyebrow, title, intro, photo, children }) {
           </h1>
         </div>
         {intro && (
-          <p data-hero="intro" className="max-w-prose text-lg leading-relaxed text-ink-inverse-muted">
+          <p
+            data-hero="intro"
+            className="max-w-prose text-lg leading-relaxed text-ink-inverse-muted"
+          >
             {intro}
           </p>
         )}
@@ -64,7 +67,10 @@ export default function PageHeader({ eyebrow, title, intro, photo, children }) {
   }
 
   return (
-    <section data-hero="band" className="band-dark relative overflow-hidden bg-surface-inverse-wash">
+    <section
+      data-hero="band"
+      className="band-dark relative overflow-hidden bg-surface-inverse-wash"
+    >
       <div className="absolute inset-0 bg-grid bg-grid-tile opacity-60" aria-hidden="true" />
       <div className="container-page relative pb-16 pt-12 lg:pb-20 lg:pt-16">{text}</div>
     </section>

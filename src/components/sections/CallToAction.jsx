@@ -15,8 +15,12 @@ export default function CallToAction({
     <section className="band-tan section-defer [--section-intrinsic:16rem]">
       <div className="container-page flex flex-col items-start gap-8 py-14 lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:py-20">
         <div className="flex max-w-2xl flex-col gap-3">
-          <h2 className="display text-3xl text-[color:var(--navy-800)] sm:text-4xl lg:text-[2.75rem]">{title}</h2>
-          <p className="text-base leading-relaxed text-[color:var(--iron-950)] sm:text-lg">{body}</p>
+          <h2 className="display text-3xl text-[color:var(--navy-800)] sm:text-4xl lg:text-[2.75rem]">
+            {title}
+          </h2>
+          <p className="text-base leading-relaxed text-[color:var(--iron-950)] sm:text-lg">
+            {body}
+          </p>
         </div>
         {/* shrink-0 keeps the pair on one line beside the heading, and on a
             phone they go full width so the two do not sit at ragged widths. */}

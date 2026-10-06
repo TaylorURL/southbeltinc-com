@@ -109,12 +109,7 @@ export default function Footer({ children }) {
           {company.locations.map((location) => (
             <li key={location.slug} className="flex flex-col gap-1 text-sm">
               <p className="font-display font-bold text-white">{location.name}</p>
-              <a
-                href={mapHref(location)}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={mapHref(location)} className={linkClass} target="_blank" rel="noreferrer">
                 {addressOf(location)}
               </a>
               <a href={telHref(location.phone)} className={`${linkClass} tabular-nums`}>

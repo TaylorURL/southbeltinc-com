@@ -151,11 +151,15 @@ export default function Parts() {
           // on the parts path read as one state and not as a page that broke.
           <div className="flex flex-col items-center gap-6 rounded-md border-2 border-dashed border-line-strong bg-surface-sunken p-10 text-center">
             <div className="flex flex-col items-center gap-3">
-              <PackageSearch size={iconSize.feature} className="text-ink-faint" aria-hidden="true" />
+              <PackageSearch
+                size={iconSize.feature}
+                className="text-ink-faint"
+                aria-hidden="true"
+              />
               <h2 className="text-xl">No parts match that search</h2>
               <p className="max-w-md text-ink-muted">
-                The catalog is a portion of what we carry. Send the part, the brand and the plant
-                it goes on to{' '}
+                The catalog is a portion of what we carry. Send the part, the brand and the plant it
+                goes on to{' '}
                 <a
                   href={`mailto:${company.email.sales}`}
                   className="text-ink underline transition-colors duration-fast hover:text-accent-text"

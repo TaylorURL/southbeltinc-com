@@ -22,7 +22,12 @@
  */
 
 const plantDetails = ['Plant make and model', 'Where the part goes on the plant'];
-const partDetails = ['Part number or model, if you have it', 'Brand', 'Quantity', 'Yard for pickup, or a ship-to'];
+const partDetails = [
+  'Part number or model, if you have it',
+  'Brand',
+  'Quantity',
+  'Yard for pickup, or a ship-to',
+];
 
 export const parts = [
   {
@@ -56,7 +61,16 @@ export const parts = [
     description:
       'Bearings take the friction between a turning shaft and the frame it runs in, which lets equipment run with less noise and vibration. Pulleys, idlers, augers and mixers all run on them.',
     askFor: ['Bearing number or shaft size', 'Housing style', ...plantDetails, ...partDetails],
-    keywords: ['bearing', 'pillow block', 'flange bearing', 'split bearing', 'dodge', 'link-belt', 'rexnord', 'craft'],
+    keywords: [
+      'bearing',
+      'pillow block',
+      'flange bearing',
+      'split bearing',
+      'dodge',
+      'link-belt',
+      'rexnord',
+      'craft',
+    ],
   },
   {
     slug: 'dust-collectors',
@@ -66,8 +80,22 @@ export const parts = [
     summary: 'Silo and central dust collectors from C&W Manufacturing and WAM, and their filters.',
     description:
       'A dust collection system cleans the air where cement and fly ash are moved and stored. Southbelt fits C&W silo collectors, central collectors and load shrouds on the plants it builds, and supplies collectors and parts for the plant you already run.',
-    askFor: ['Collector make and model', 'Filter or cartridge part number', ...plantDetails, ...partDetails],
-    keywords: ['dust collector', 'silo collector', 'filter', 'c&w', 'cw', 'wam', 'silotop', 'load shroud'],
+    askFor: [
+      'Collector make and model',
+      'Filter or cartridge part number',
+      ...plantDetails,
+      ...partDetails,
+    ],
+    keywords: [
+      'dust collector',
+      'silo collector',
+      'filter',
+      'c&w',
+      'cw',
+      'wam',
+      'silotop',
+      'load shroud',
+    ],
   },
   {
     slug: 'anti-overfill-systems',
@@ -88,7 +116,12 @@ export const parts = [
     summary: 'WAM screw conveyors, augers and flights.',
     description:
       'Screw conveyors move cement and other dry material out of silos and into batchers. The BP-14 carries a 10-inch WAM auger on its auxiliary silo.',
-    askFor: ['Diameter and length', 'Inlet and outlet arrangement', ...plantDetails, ...partDetails],
+    askFor: [
+      'Diameter and length',
+      'Inlet and outlet arrangement',
+      ...plantDetails,
+      ...partDetails,
+    ],
     keywords: ['screw conveyor', 'auger', 'flight', 'wam', 'cement screw'],
   },
   {
@@ -108,8 +141,14 @@ export const parts = [
     category: 'material-handling',
     brands: [],
     summary: 'Chains and sprockets for plant drives.',
-    description: 'Chains and sprockets for the drives on a plant. Send the chain size and the sprocket details and the counter matches them.',
-    askFor: ['Chain size and length', 'Sprocket tooth count and bore', ...plantDetails, ...partDetails],
+    description:
+      'Chains and sprockets for the drives on a plant. Send the chain size and the sprocket details and the counter matches them.',
+    askFor: [
+      'Chain size and length',
+      'Sprocket tooth count and bore',
+      ...plantDetails,
+      ...partDetails,
+    ],
     keywords: ['chain', 'roller chain', 'sprocket', 'drive'],
   },
   {
@@ -120,8 +159,23 @@ export const parts = [
     summary: 'Air valves, solenoids and air cylinders from Schrader Bellows, MAC and SMC.',
     description:
       'Pneumatics run the clam gates and air vibrators on a batch plant. The BP-14 carries banks of SMC solenoids on both batchers and air cylinders on its bins and aggregate batcher.',
-    askFor: ['Valve or cylinder model', 'Bore and stroke, for a cylinder', 'Coil voltage, for a solenoid', ...plantDetails, ...partDetails],
-    keywords: ['air valve', 'solenoid', 'air cylinder', 'pneumatic', 'smc', 'mac', 'schrader bellows', 'clam gate'],
+    askFor: [
+      'Valve or cylinder model',
+      'Bore and stroke, for a cylinder',
+      'Coil voltage, for a solenoid',
+      ...plantDetails,
+      ...partDetails,
+    ],
+    keywords: [
+      'air valve',
+      'solenoid',
+      'air cylinder',
+      'pneumatic',
+      'smc',
+      'mac',
+      'schrader bellows',
+      'clam gate',
+    ],
   },
   {
     slug: 'air-compressors',
@@ -140,7 +194,8 @@ export const parts = [
     category: 'pneumatics',
     brands: ['Sealfast'],
     summary: 'Sealfast cement hose, air hose and fittings.',
-    description: 'Hose and fittings for moving cement and air between trucks, pigs, blowers and silos.',
+    description:
+      'Hose and fittings for moving cement and air between trucks, pigs, blowers and silos.',
     askFor: ['Hose inside diameter and length', 'Fitting type and size', ...partDetails],
     keywords: ['cement hose', 'air hose', 'fittings', 'sealfast', 'coupling'],
   },
@@ -152,7 +207,12 @@ export const parts = [
     summary: 'Water pumps, and components for the pumps already on your plant.',
     description:
       'Pumps move water through a plant, turning engine or electrical power into flow. Send the pump make and model and what it feeds, and the counter supplies the pump or the part.',
-    askFor: ['Pump make and model', 'Inlet and outlet size', 'Engine or electric drive', ...partDetails],
+    askFor: [
+      'Pump make and model',
+      'Inlet and outlet size',
+      'Engine or electric drive',
+      ...partDetails,
+    ],
     keywords: ['pump', 'water pump', 'trash pump', 'impeller', 'seal'],
   },
   {
@@ -163,7 +223,13 @@ export const parts = [
     summary: 'Butterfly valves from Bray, WAM and Keystone.',
     description:
       'The BP-14 runs 10-inch valves on its cement batcher and silo and a 6-inch valve on its water batcher.',
-    askFor: ['Valve size', 'Manual or air actuated', 'Valve make and model', ...plantDetails, ...partDetails],
+    askFor: [
+      'Valve size',
+      'Manual or air actuated',
+      'Valve make and model',
+      ...plantDetails,
+      ...partDetails,
+    ],
     keywords: ['butterfly valve', 'bfv', 'bray', 'wam', 'keystone', 'valve'],
   },
   {
@@ -171,10 +237,17 @@ export const parts = [
     name: 'Conveyor Belting and Fasteners',
     category: 'conveyor-components',
     brands: [],
-    summary: 'Conveyor belting from a large inventory, with fasteners, vulcanization and installation.',
+    summary:
+      'Conveyor belting from a large inventory, with fasteners, vulcanization and installation.',
     description:
       'Southbelt keeps a large belting inventory and has full vulcanization and installation capabilities, available 24/7.',
-    askFor: ['Belt width and length', 'Ply and cover', 'Splice: vulcanized or mechanical fasteners', ...plantDetails, ...partDetails],
+    askFor: [
+      'Belt width and length',
+      'Ply and cover',
+      'Splice: vulcanized or mechanical fasteners',
+      ...plantDetails,
+      ...partDetails,
+    ],
     keywords: ['belt', 'belting', 'conveyor belt', 'vulcanize', 'splice', 'fasteners'],
     service: 'conveyor-belting',
   },
@@ -196,7 +269,13 @@ export const parts = [
     brands: ['Dodge', 'PPI', 'Superior'],
     summary: 'Head, tail and drive pulleys from Dodge, PPI and Superior.',
     description: 'Pulleys for batch conveyors, truck load belts and radial stackers.',
-    askFor: ['Pulley diameter and face width', 'Shaft size', 'Lagged or bare', ...plantDetails, ...partDetails],
+    askFor: [
+      'Pulley diameter and face width',
+      'Shaft size',
+      'Lagged or bare',
+      ...plantDetails,
+      ...partDetails,
+    ],
     keywords: ['pulley', 'head pulley', 'tail pulley', 'drive pulley', 'dodge', 'ppi', 'superior'],
   },
   {
@@ -215,9 +294,17 @@ export const parts = [
     category: 'controls-and-instruments',
     brands: ['Conveyor Components Co.'],
     summary: 'Conveyor Components Co. emergency stop switches, and limit switches.',
-    description: 'Emergency stop switches for conveyors from Conveyor Components Co., and limit switches.',
+    description:
+      'Emergency stop switches for conveyors from Conveyor Components Co., and limit switches.',
     askFor: ['Switch make and model', ...plantDetails, ...partDetails],
-    keywords: ['e-stop', 'emergency stop', 'pull cord', 'limit switch', 'ccc', 'conveyor components'],
+    keywords: [
+      'e-stop',
+      'emergency stop',
+      'pull cord',
+      'limit switch',
+      'ccc',
+      'conveyor components',
+    ],
   },
   {
     slug: 'batch-plant-automation',
@@ -228,7 +315,14 @@ export const parts = [
     description:
       'Batching controls from Command Alkon and Jonel. The DP-12 offers a batching computer as an option.',
     askFor: ['Current control system, if any', ...plantDetails, ...partDetails],
-    keywords: ['batch computer', 'batching computer', 'automation', 'controls', 'command alkon', 'jonel'],
+    keywords: [
+      'batch computer',
+      'batching computer',
+      'automation',
+      'controls',
+      'command alkon',
+      'jonel',
+    ],
   },
   {
     slug: 'level-indicators',
@@ -249,7 +343,13 @@ export const parts = [
     summary: 'Rice Lake load cells for cement, aggregate and water batchers.',
     description:
       'The batchers on a BP-14 hang on load cells with a summing box: four 10K cells on the cement batcher, four 20K on the aggregate batcher and three 5K on the water batcher.',
-    askFor: ['Cell capacity', 'Number of cells on the batcher', 'Cell make and model', ...plantDetails, ...partDetails],
+    askFor: [
+      'Cell capacity',
+      'Number of cells on the batcher',
+      'Cell make and model',
+      ...plantDetails,
+      ...partDetails,
+    ],
     keywords: ['load cell', 'summing box', 'rice lake', 'batcher scale'],
   },
   {
@@ -271,7 +371,16 @@ export const parts = [
     description:
       'Blowers move cement out of storage pigs and trailers. Southbelt carries the Paragon 1057, P858 and P657, comparable to Gardner Denver and Tuthill, and repairs the blower you have.',
     askFor: ['Blower make and model', 'Electric or diesel drive', ...partDetails],
-    keywords: ['blower', 'pneumatic blower', 'paragon', 'tuthill', 'gardner denver', 'p858', 'p657', '1057'],
+    keywords: [
+      'blower',
+      'pneumatic blower',
+      'paragon',
+      'tuthill',
+      'gardner denver',
+      'p858',
+      'p657',
+      '1057',
+    ],
     equipment: 'dry-bulk-blowers',
   },
   {
@@ -282,8 +391,25 @@ export const parts = [
     summary: 'Synthetic oil, melt plugs and filter elements for the Paragon P657, P858 and P1057.',
     description:
       'P657: oil 409-007 synthetic. P858 and P1057: oil 409-002 synthetic. All three take melt plug 543-003 (left hand) and filter element 573-003 for a 5-inch outlet or 575-005 for a 4-inch outlet.',
-    askFor: ['Blower model', 'Outlet size: 4-inch or 5-inch', 'Kit parts needed', 'Quantity', 'Yard for pickup, or a ship-to'],
-    keywords: ['service kit', 'paragon', 'blower oil', 'melt plug', 'filter element', '409-007', '409-002', '543-003', '573-003', '575-005'],
+    askFor: [
+      'Blower model',
+      'Outlet size: 4-inch or 5-inch',
+      'Kit parts needed',
+      'Quantity',
+      'Yard for pickup, or a ship-to',
+    ],
+    keywords: [
+      'service kit',
+      'paragon',
+      'blower oil',
+      'melt plug',
+      'filter element',
+      '409-007',
+      '409-002',
+      '543-003',
+      '573-003',
+      '575-005',
+    ],
     equipment: 'dry-bulk-blowers',
   },
   {

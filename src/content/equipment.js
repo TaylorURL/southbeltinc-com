@@ -55,7 +55,8 @@ export const equipment = [
     summary:
       'A 14-yard cement batcher under a 400 to 1900 BBL batching silo, with overhead bins, an aggregate batcher and a radial stacker.',
     photo: 'bp-14-plant',
-    photoAlt: 'A Southbelt BP-14 batch plant with two silos, its batchers and conveyor in a ready-mix yard',
+    photoAlt:
+      'A Southbelt BP-14 batch plant with two silos, its batchers and conveyor in a ready-mix yard',
     brochure: '/brochures/southbelt-bp-14-batch-plant.pdf',
     brand: 'Southbelt',
   },
@@ -68,7 +69,8 @@ export const equipment = [
     summary:
       'The BP-14 specification without the 10-inch WAM auger on the auxiliary silo, with the same 14-yard batcher and 400 to 1900 BBL silo.',
     photo: 'bp-14-augerless-plant',
-    photoAlt: 'A BP-14 Augerless batch plant at sunset, its silo, batcher and stacker lit from the side',
+    photoAlt:
+      'A BP-14 Augerless batch plant at sunset, its silo, batcher and stacker lit from the side',
     brochure: '/brochures/southbelt-bp-14-augerless-plant.pdf',
     brand: 'Southbelt',
   },
@@ -81,7 +83,8 @@ export const equipment = [
     summary:
       'A low-profile decum plant loaded directly by a front-end loader, with a 400 to 1200 BBL silo and gravity discharge.',
     photo: 'dp-12-plant',
-    photoAlt: 'A DP-12 decumulating plant with its silo, truck load belt and a mixer truck underneath',
+    photoAlt:
+      'A DP-12 decumulating plant with its silo, truck load belt and a mixer truck underneath',
     brochure: '/brochures/southbelt-dp-12-decumulating-plant.pdf',
     brand: 'Southbelt',
   },
@@ -94,7 +97,8 @@ export const equipment = [
     summary:
       'A semi-mobile plant whose mainframe carries the knee braces for an auxiliary silo, so a second cement silo can go on years later.',
     photo: 'sbm-12-plant',
-    photoAlt: 'An SBM-12 semi-mobile batch plant with its aggregate hopper, conveyor and cement silo',
+    photoAlt:
+      'An SBM-12 semi-mobile batch plant with its aggregate hopper, conveyor and cement silo',
     photoPosition: '35% 50%',
     brochure: '/brochures/southbelt-sbm-12-semi-mobile-batch-plant.pdf',
     brand: 'Southbelt',
