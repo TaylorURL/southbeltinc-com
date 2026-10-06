@@ -132,7 +132,7 @@ export default function Header() {
             <Link
               to="/contact?topic=quote#request"
               onClick={closeMobile}
-              className="btn btn-md btn-primary hidden whitespace-nowrap sm:inline-flex"
+              className="btn btn-md btn-tan hidden whitespace-nowrap sm:inline-flex"
             >
               Request a Quote
             </Link>
@@ -205,7 +205,7 @@ export default function Header() {
                 <Link
                   to="/contact?topic=quote#request"
                   onClick={closeMobile}
-                  className="btn btn-lg btn-primary my-4"
+                  className="btn btn-lg btn-tan my-4"
                 >
                   Request a Quote
                 </Link>
