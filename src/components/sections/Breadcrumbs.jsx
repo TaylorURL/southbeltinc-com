@@ -19,7 +19,11 @@ export default function Breadcrumbs({ trail }) {
             return (
               <li key={crumb.path} className="flex shrink-0 items-center gap-2 whitespace-nowrap">
                 {index > 0 && (
-                  <ChevronRight size={iconSize.chrome} className="text-ink-faint" aria-hidden="true" />
+                  <ChevronRight
+                    size={iconSize.chrome}
+                    className="text-ink-faint"
+                    aria-hidden="true"
+                  />
                 )}
                 {last ? (
                   <span className="text-ink" aria-current="page">

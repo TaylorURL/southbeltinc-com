@@ -9,7 +9,13 @@ import LocationCards from '../components/sections/LocationCards';
 import PageHeader from '../components/sections/PageHeader';
 import { company } from '../content/company';
 import { focusField, useContactForm } from '../lib/contact-form';
-import { buildContactRequest, deskFor, requestTopics, topicByValue, useSentRequest } from '../lib/request-email';
+import {
+  buildContactRequest,
+  deskFor,
+  requestTopics,
+  topicByValue,
+  useSentRequest,
+} from '../lib/request-email';
 import { useSeo } from '../lib/seo';
 import { localBusinessSchema } from '../lib/structured-data';
 import { iconSize } from '../lib/icon-size';
@@ -115,7 +121,11 @@ function ContactPage({ initialTopic }) {
 
             {/* noValidate hands the messages to the form rather than to the
                 browser, so every field explains itself the same way everywhere. */}
-            <form onSubmit={handleSubmit} noValidate className="card flex flex-col gap-6 p-6 lg:p-8">
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              className="card flex flex-col gap-6 p-6 lg:p-8"
+            >
               <FormErrorSummary
                 errors={{ ...errors, message: messageError }}
                 labels={{ name: 'Name', email: 'Email', message: 'Your Request' }}

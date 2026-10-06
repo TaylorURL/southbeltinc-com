@@ -109,9 +109,9 @@ export default function Privacy() {
         <section className="section-defer [--section-intrinsic:10rem] flex flex-col gap-3">
           <h2 className="text-xl">Errors, and no analytics</h2>
           <p className="leading-relaxed text-ink-muted">
-            If something on a page breaks, an error reporter sends us the error, the page it happened
-            on, and your browser version, so we can fix it. It carries nothing you typed into a
-            form.
+            If something on a page breaks, an error reporter sends us the error, the page it
+            happened on, and your browser version, so we can fix it. It carries nothing you typed
+            into a form.
           </p>
           <p className="leading-relaxed text-ink-muted">
             The site runs no analytics, no page counter and no advertising scripts.
@@ -137,8 +137,8 @@ export default function Privacy() {
           <h2 className="text-xl">Email you send us</h2>
           <p className="leading-relaxed text-ink-muted">
             Email sent to {company.email.sales}, {company.email.quotes} or {company.email.rentals}{' '}
-            is kept as business correspondence, and is used to answer your request and service
-            your account.
+            is kept as business correspondence, and is used to answer your request and service your
+            account.
           </p>
           <p className="leading-relaxed text-ink-muted">
             It isn&apos;t sold, and it isn&apos;t shared for marketing.

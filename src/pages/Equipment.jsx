@@ -127,9 +127,9 @@ export default function Equipment() {
               <h2 className="text-3xl leading-tight sm:text-4xl">Buy used, or rent</h2>
             </div>
             <p className="max-w-xl leading-relaxed text-ink-muted">
-              Used equipment comes and goes from the yards daily: pugmills, hoppers, silos,
-              blowers, storage pigs and conveyors, sold as-is, where-is. Storage pigs, blowers,
-              a water tank, an auger, a boom crane and an insulated frac tank are also for rent.
+              Used equipment comes and goes from the yards daily: pugmills, hoppers, silos, blowers,
+              storage pigs and conveyors, sold as-is, where-is. Storage pigs, blowers, a water tank,
+              an auger, a boom crane and an insulated frac tank are also for rent.
             </p>
             <div className="flex flex-wrap gap-6">
               <Link

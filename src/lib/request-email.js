@@ -89,8 +89,7 @@ export const requestTopics = [
 export const topicByValue = Object.fromEntries(requestTopics.map((topic) => [topic.value, topic]));
 
 /** The address a topic's desk answers at. */
-export const deskFor = (topicValue) =>
-  company.email[topicByValue[topicValue]?.desk || 'sales'];
+export const deskFor = (topicValue) => company.email[topicByValue[topicValue]?.desk || 'sales'];
 
 function formatQuoteLines(items) {
   return items
@@ -158,7 +157,15 @@ export function buildContactRequest({ contact, topic, yard, message }) {
 }
 
 /** @returns {{ subject: string, body: string, mailto: string, recipient: string }} */
-export function buildRentalRequest({ contact, equipment, yard, timeFrame, freight, shipTo, notes }) {
+export function buildRentalRequest({
+  contact,
+  equipment,
+  yard,
+  timeFrame,
+  freight,
+  shipTo,
+  notes,
+}) {
   const recipient = company.email.rentals;
   const subject = `Rental request: ${equipment || 'equipment'} for ${contact.company || contact.name}`;
   const rental = [
@@ -230,7 +237,9 @@ export function useSentRequest() {
   const copyRequest = useCallback(async () => {
     if (!sent) return;
     try {
-      await navigator.clipboard.writeText(`To: ${sent.recipient}\nSubject: ${sent.subject}\n\n${sent.body}`);
+      await navigator.clipboard.writeText(
+        `To: ${sent.recipient}\nSubject: ${sent.subject}\n\n${sent.body}`
+      );
       setCopied(true);
     } catch {
       setCopied(false);

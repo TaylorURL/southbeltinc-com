@@ -67,7 +67,8 @@ export const services = [
       'Batch plants are designed and fabricated with parameters set around your workflow. Silos and tanks get the systems and supports that let them hold more and perform better. Structural work fits the layout of the plant you already have.',
     ],
     photo: 'welders-shop',
-    photoAlt: 'A welder working inside a steel frame on the floor of the Southbelt fabrication shop',
+    photoAlt:
+      'A welder working inside a steel frame on the floor of the Southbelt fabrication shop',
     groups: [
       {
         title: 'Batch Plant Fabrication',

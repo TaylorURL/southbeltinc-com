@@ -50,8 +50,7 @@ const mobileLink = ({ isActive }) =>
     isActive ? 'text-ink before:opacity-100' : 'text-ink-body before:opacity-0'
   }`;
 
-const menuLine =
-  'h-0.5 w-5 bg-current transition-[transform,opacity] duration-base ease-quart-out';
+const menuLine = 'h-0.5 w-5 bg-current transition-[transform,opacity] duration-base ease-quart-out';
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -88,7 +87,12 @@ export default function Header() {
         onMouseLeave={closePanel}
       >
         <div className="container-page relative flex h-full items-center justify-between gap-6">
-          <Link to="/" className="min-w-0" aria-label={`${company.name} Home`} onClick={closeMobile}>
+          <Link
+            to="/"
+            className="min-w-0"
+            aria-label={`${company.name} Home`}
+            onClick={closeMobile}
+          >
             <Logo imageClass="w-[7.5rem] lg:w-36" sizes="(min-width: 1024px) 144px, 120px" />
           </Link>
 
@@ -132,7 +136,7 @@ export default function Header() {
             <Link
               to="/contact?topic=quote#request"
               onClick={closeMobile}
-              className="btn btn-md btn-primary hidden whitespace-nowrap sm:inline-flex"
+              className="btn btn-md btn-tan hidden whitespace-nowrap sm:inline-flex"
             >
               Request a Quote
             </Link>
@@ -159,9 +163,7 @@ export default function Header() {
           </div>
 
           {panelOpen && (
-            <div
-              className="drop-in absolute inset-x-5 top-full z-dropdown hidden pt-px sm:inset-x-8 lg:block"
-            >
+            <div className="drop-in absolute inset-x-5 top-full z-dropdown hidden pt-px sm:inset-x-8 lg:block">
               <EquipmentPanel onNavigate={closePanel} />
             </div>
           )}
@@ -205,7 +207,7 @@ export default function Header() {
                 <Link
                   to="/contact?topic=quote#request"
                   onClick={closeMobile}
-                  className="btn btn-lg btn-primary my-4"
+                  className="btn btn-lg btn-tan my-4"
                 >
                   Request a Quote
                 </Link>
@@ -237,7 +239,11 @@ function UtilityBar() {
                 href={telHref(location.phone)}
                 className="inline-flex items-center gap-2 whitespace-nowrap text-ink-inverse-muted transition-colors duration-fast hover:text-white"
               >
-                <Phone size={iconSize.chrome} aria-hidden="true" className="text-[color:var(--tan)] md:hidden" />
+                <Phone
+                  size={iconSize.chrome}
+                  aria-hidden="true"
+                  className="text-[color:var(--tan)] md:hidden"
+                />
                 <span>{location.name}</span>
                 <span className="font-medium tabular-nums text-white">{location.phone}</span>
               </a>

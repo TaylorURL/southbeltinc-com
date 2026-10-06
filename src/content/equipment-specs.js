@@ -317,10 +317,7 @@ export const specsBySlug = {
       },
       {
         title: 'Benefits',
-        items: [
-          'Fill and discharge at the same time',
-          'Smaller footprint than a horizontal pig',
-        ],
+        items: ['Fill and discharge at the same time', 'Smaller footprint than a horizontal pig'],
       },
       {
         title: 'Optional Equipment',

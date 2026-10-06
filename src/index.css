@@ -724,8 +724,17 @@
     @apply block h-0.5 w-6 shrink-0 bg-[color:var(--tan)];
   }
 
+  /* Every eyebrow carries the same short tan rule as the ones on the dark
+     bands, so the brochure tan runs through the light sections too. The rule
+     is decoration beside text that already names the section, so it does not
+     have to clear text contrast on white. */
   .eyebrow {
-    @apply font-display text-xs font-bold uppercase tracking-eyebrow text-accent-text;
+    @apply flex items-center gap-3 font-display text-xs font-bold uppercase tracking-eyebrow text-accent-text;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply block h-[3px] w-8 shrink-0 bg-[color:var(--tan-400)];
   }
 
   /* The strip above the bar. It holds what a visitor needs before they have
@@ -823,13 +832,14 @@
     @apply border-[color:var(--sky-200)] text-ink-inverse hover:bg-white/10;
   }
 
-  /* The actions on the sky band: navy fill, and navy outline. */
-  .btn-on-sky {
+  /* The actions on the tan band: the same navy pair, which clears contrast on
+     tan where white type would not. */
+  .btn-on-tan {
     @apply bg-[color:var(--navy-800)] text-white hover:bg-[color:var(--navy-900)];
   }
 
-  .btn-on-sky-outline {
-    @apply border-[color:var(--band-sky-ink)] text-[color:var(--band-sky-ink)] hover:bg-white/20;
+  .btn-on-tan-outline {
+    @apply border-[color:var(--navy-800)] text-[color:var(--navy-800)] hover:bg-white/25;
   }
 
   .card {
@@ -839,8 +849,10 @@
   /* Only cards that go somewhere get the lift; a hover response on a static
      card promises a click it cannot honor. The hover: variants are capability
      gated by hoverOnlyWhenSupported, so a tap on touch does not stick. */
+  /* The edge turns tan as the card lifts, so the hover answers in the brand's
+     accent rather than in shadow alone. */
   .card-lift {
-    @apply transition-[box-shadow,transform] duration-base ease-quart-out hover:-translate-y-0.5 hover:shadow-card-hover;
+    @apply transition-[box-shadow,transform,border-color] duration-base ease-quart-out hover:-translate-y-0.5 hover:border-[color:var(--tan)] hover:shadow-card-hover;
   }
 
   .field-label {
@@ -978,10 +990,22 @@
     @apply flex items-center justify-center overflow-hidden bg-white;
   }
 
-  /* The sky band: the stat strip and the closing call to action. */
+  /* The sky band: the stat strip. */
   .band-sky {
     background-color: var(--band-sky);
     color: var(--band-sky-body);
+  }
+
+  /* The tan band: the closing call to action. A brand surface, so it stays tan
+     with dark type in both themes. */
+  .band-tan {
+    background-color: var(--tan-300);
+    color: var(--iron-950);
+  }
+
+  /* The tan stripe the footer opens with. */
+  .tan-stripe {
+    border-top: 6px solid var(--tan-300);
   }
 
   /* Entrances for elements that appear in place after an interaction: opacity

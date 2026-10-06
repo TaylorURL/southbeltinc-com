@@ -28,7 +28,10 @@ export default function ActionRail() {
           <Phone size={iconSize.text} aria-hidden="true" />
           Call
         </a>
-        <Link to="/contact?topic=quote#request" className="btn btn-md btn-primary whitespace-nowrap">
+        <Link
+          to="/contact?topic=quote#request"
+          className="btn btn-md btn-primary whitespace-nowrap"
+        >
           <ClipboardList size={iconSize.text} aria-hidden="true" />
           Get a Quote
         </Link>

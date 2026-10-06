@@ -44,7 +44,7 @@ export default function Footer({ children }) {
   const year = currentYear();
 
   return (
-    <footer className="band-dark flex flex-col bg-band-black pt-14 text-ink-inverse-muted">
+    <footer className="band-dark tan-stripe flex flex-col bg-band-black pt-14 text-ink-inverse-muted">
       <div className="container-page grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:gap-12">
         <div className="flex flex-col items-start gap-5">
           <Link to="/" aria-label={`${company.name} Home`}>
@@ -109,12 +109,7 @@ export default function Footer({ children }) {
           {company.locations.map((location) => (
             <li key={location.slug} className="flex flex-col gap-1 text-sm">
               <p className="font-display font-bold text-white">{location.name}</p>
-              <a
-                href={mapHref(location)}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={mapHref(location)} className={linkClass} target="_blank" rel="noreferrer">
                 {addressOf(location)}
               </a>
               <a href={telHref(location.phone)} className={`${linkClass} tabular-nums`}>
