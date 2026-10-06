@@ -75,7 +75,10 @@ function EquipmentPage({ item, specs }) {
         <section aria-label="Key Figures" className="border-b border-line">
           <dl className="container-page grid grid-cols-2 gap-x-6 gap-y-6 py-8 sm:grid-cols-4">
             {specs.figures.map((figure) => (
-              <div key={`${figure.value}-${figure.label}`} className="flex flex-col gap-1 border-l-2 border-[color:var(--tan)] pl-4">
+              <div
+                key={`${figure.value}-${figure.label}`}
+                className="flex flex-col gap-1 border-l-2 border-[color:var(--tan)] pl-4"
+              >
                 <dt className="order-2 text-sm text-ink-muted">{figure.label}</dt>
                 <dd className="order-1 font-display text-xl font-extrabold leading-tight text-accent-text sm:text-2xl">
                   {figure.value}
@@ -171,8 +174,8 @@ function EquipmentPage({ item, specs }) {
             <div className="flex flex-col gap-2">
               <h2 className="text-lg">Price This {item.shortName}</h2>
               <p className="text-sm leading-relaxed text-ink-muted">
-                The quotes desk prices plants and equipment. Your email opens with the model
-                already in the subject line.
+                The quotes desk prices plants and equipment. Your email opens with the model already
+                in the subject line.
               </p>
             </div>
             <div className="flex flex-col gap-3">

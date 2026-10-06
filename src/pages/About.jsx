@@ -53,7 +53,9 @@ export default function About() {
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
             <p className="eyebrow">Concrete Commitment to Quality</p>
-            <h2 className="text-3xl leading-tight sm:text-4xl">We succeed when we fulfill your needs</h2>
+            <h2 className="text-3xl leading-tight sm:text-4xl">
+              We succeed when we fulfill your needs
+            </h2>
           </div>
           <p className="text-lg leading-relaxed text-ink-body">
             {company.name} serves the concrete and industrial sectors with equipment, parts,
@@ -61,9 +63,9 @@ export default function About() {
             {company.foundedYear}, and our team brings over three decades of industry experience.
           </p>
           <p className="prose-body">
-            We saw the need for a one-stop source for the concrete and industrial fields: replacement
-            parts and repairs for the equipment those industries run, rentals that keep projects
-            moving, and the fabrication and manufacturing to build batch plants and more.
+            We saw the need for a one-stop source for the concrete and industrial fields:
+            replacement parts and repairs for the equipment those industries run, rentals that keep
+            projects moving, and the fabrication and manufacturing to build batch plants and more.
           </p>
           <p className="prose-body">
             Our work goes beyond supplying the product. We install, maintain and repair what we

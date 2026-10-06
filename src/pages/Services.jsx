@@ -103,7 +103,9 @@ export default function Services() {
                 ))}
               </div>
 
-              <div className={`grid w-full gap-5 ${service.groups.length > 1 ? 'xl:grid-cols-2' : ''}`}>
+              <div
+                className={`grid w-full gap-5 ${service.groups.length > 1 ? 'xl:grid-cols-2' : ''}`}
+              >
                 {service.groups.map((group) => (
                   <div key={group.title} className="card flex flex-col gap-4 p-5">
                     <h3 className="border-b border-line pb-3 text-base">{group.title}</h3>
@@ -122,7 +124,10 @@ export default function Services() {
               </div>
 
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                <Link to={`/contact?topic=${service.cta.topic}#request`} className="btn btn-md btn-primary">
+                <Link
+                  to={`/contact?topic=${service.cta.topic}#request`}
+                  className="btn btn-md btn-primary"
+                >
                   {service.cta.label}
                 </Link>
                 {service.download && (

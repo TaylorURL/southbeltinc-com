@@ -24,7 +24,11 @@ const trail = [
   { name: 'Used Equipment', path: '/equipment/used' },
 ];
 
-const jsonLd = [breadcrumbSchema(trail), faqSchema(usedFaqs), ...usedEquipment.map(usedListingSchema)];
+const jsonLd = [
+  breadcrumbSchema(trail),
+  faqSchema(usedFaqs),
+  ...usedEquipment.map(usedListingSchema),
+];
 
 /** The email a listing's button opens: the sales desk, with the listing named. */
 const askHref = (listing) => {
@@ -82,7 +86,10 @@ export default function UsedEquipment() {
                 <ul className="grid gap-x-6 gap-y-2 text-sm text-ink-body sm:grid-cols-2">
                   {listing.features.map((feature) => (
                     <li key={feature} className="flex gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-[color:var(--tan)]" aria-hidden="true" />
+                      <span
+                        className="mt-2 h-1.5 w-1.5 shrink-0 bg-[color:var(--tan)]"
+                        aria-hidden="true"
+                      />
                       {feature}
                     </li>
                   ))}

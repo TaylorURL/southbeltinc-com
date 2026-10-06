@@ -22,8 +22,7 @@ export default function Logo({
   plate = 'theme',
   className = '',
 }) {
-  const plateClass =
-    plate === 'white' ? 'rounded-full bg-white px-4 py-2' : 'logo-plate';
+  const plateClass = plate === 'white' ? 'rounded-full bg-white px-4 py-2' : 'logo-plate';
   return (
     <span className={`inline-flex shrink-0 items-center ${plateClass} ${className}`.trim()}>
       <img

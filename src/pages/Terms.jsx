@@ -143,8 +143,9 @@ export default function Terms() {
         <section className="section-defer [--section-intrinsic:11rem] flex flex-col gap-3">
           <h2 className="text-xl">The text and images on these pages</h2>
           <p className="leading-relaxed text-ink-muted">
-            The wording, the photographs, the brochures, and the company mark belong to {company.legalName}. You
-            are welcome to read them, print them, and send them to a colleague.
+            The wording, the photographs, the brochures, and the company mark belong to{' '}
+            {company.legalName}. You are welcome to read them, print them, and send them to a
+            colleague.
           </p>
           <p className="leading-relaxed text-ink-muted">
             Republishing them, or using the mark on anything that is not ours, needs our written
