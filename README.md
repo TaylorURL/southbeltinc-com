@@ -16,7 +16,8 @@ Southbelt Repair & Supply has been servicing concrete batch plants since 2002, f
 
 It's staged at southbelt.taylorurl.com and kept out of search engines until it moves to southbeltinc.com.
 
-## What's on the site
+<details>
+<summary>What's on the site</summary>
 
 - A page for each of the 11 machines, with specs and a PDF brochure
 - A parts catalog you can search or filter by category
@@ -28,7 +29,10 @@ It's staged at southbelt.taylorurl.com and kept out of search engines until it m
 
 There's no server or database. Requests open in the visitor's own mail program, and the quote list is kept in the browser.
 
-## Running it locally
+</details>
+
+<details>
+<summary>Running it locally</summary>
 
 ```bash
 npm install
@@ -46,12 +50,17 @@ The dev server runs at http://localhost:5173. Nothing needs to be configured to 
 
 Moving to southbeltinc.com means setting both on Vercel and redeploying.
 
+</details>
+
 ## Built with
 
 React 19, Vite 7, React Router 7, Tailwind CSS. Hosted on Vercel.
 
-## License
+<details>
+<summary>License</summary>
 
 Proprietary. See [LICENSE.md](LICENSE.md).
+
+</details>
 
 Built and maintained by [TaylorURL](https://www.taylorurl.com).
