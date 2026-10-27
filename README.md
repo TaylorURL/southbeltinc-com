@@ -9,7 +9,7 @@
 <p align="center"><a href="https://southbelt.taylorurl.com">southbelt.taylorurl.com</a></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-2026.41.0-272b67?style=for-the-badge" alt="Version 2026.41.0" />
+  <img src="https://img.shields.io/badge/version-2026.44.0-272b67?style=for-the-badge" alt="Version 2026.44.0" />
 </p>
 
 Southbelt Repair & Supply has been servicing concrete batch plants since 2002, from yards in Houston (Pasadena), San Marcos and Dallas. They build plants, pugmills and silos, sell parts, run repair crews and rent equipment. The site gives each machine and part its own page, and every request goes out as an email to the right desk.
