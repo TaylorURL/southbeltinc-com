@@ -6,7 +6,7 @@ Website for a Texas company that builds, supplies and repairs concrete batch pla
 
 [southbelt.taylorurl.com](https://southbelt.taylorurl.com)
 
-<img src="https://img.shields.io/badge/version-2026.44.1-272b67?style=for-the-badge" alt="Version 2026.44.1" />
+<img src="https://img.shields.io/badge/version-2026.44.2-272b67?style=for-the-badge" alt="Version 2026.44.2" />
 
 Every machine, part, used unit and rental gets its own page. No backend. A request is an email built in the browser and sent to the desk that handles it.
 
@@ -32,7 +32,8 @@ Staged at southbelt.taylorurl.com and kept out of search engines until it moves 
 
 </details>
 
-## Running it locally
+<details>
+<summary>Running it locally</summary>
 
 Needs Node 22.
 
@@ -43,6 +44,8 @@ npm run build   # crawl files, vite build, then the stylesheet inline
 npm run lint
 npm run format:check
 ```
+
+</details>
 
 <details>
 <summary>Configuration</summary>
