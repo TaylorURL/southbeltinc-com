@@ -2,7 +2,7 @@
   "name": "southbeltinc-com",
   "private": true,
   "license": "UNLICENSED",
-  "version": "2026.44.0",
+  "version": "2026.44.1",
   "description": "Website for Southbelt Repair and Supply, which builds, supplies and repairs concrete batch plants in Texas",
   "type": "module",
   "scripts": {

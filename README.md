@@ -6,7 +6,7 @@ Website for a Texas company that builds, supplies and repairs concrete batch pla
 
 [southbelt.taylorurl.com](https://southbelt.taylorurl.com)
 
-<img src="https://img.shields.io/badge/version-2026.44.0-272b67?style=for-the-badge" alt="Version 2026.44.0" />
+<img src="https://img.shields.io/badge/version-2026.44.1-272b67?style=for-the-badge" alt="Version 2026.44.1" />
 
 Every machine, part, used unit and rental gets its own page. No backend. A request is an email built in the browser and sent to the desk that handles it.
 
