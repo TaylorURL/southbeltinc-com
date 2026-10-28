@@ -3,7 +3,7 @@
   "private": true,
   "license": "UNLICENSED",
   "version": "2026.44.0",
-  "description": "Southbelt Repair and Supply Inc.: concrete batch plants, parts, service and rentals in Texas.",
+  "description": "Website for Southbelt Repair and Supply, which builds, supplies and repairs concrete batch plants in Texas",
   "type": "module",
   "scripts": {
     "dev": "vite",
