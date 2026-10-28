@@ -32,7 +32,8 @@ Staged at southbelt.taylorurl.com and kept out of search engines until it moves 
 
 </details>
 
-## Running it locally
+<details>
+<summary>Running it locally</summary>
 
 Needs Node 22.
 
@@ -43,6 +44,8 @@ npm run build   # crawl files, vite build, then the stylesheet inline
 npm run lint
 npm run format:check
 ```
+
+</details>
 
 <details>
 <summary>Configuration</summary>
