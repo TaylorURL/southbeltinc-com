@@ -131,7 +131,7 @@ export default function UsedEquipment() {
 
       <CallToAction
         title="Need it new instead?"
-        body="Southbelt builds batch plants, pugmills and silos, and sells new blowers, storage pigs, water tanks and conveyors."
+        body="Southbelt builds batch plants, pugmills and silos, and sells new blowers, water tanks and conveyors."
         action={{ to: '/equipment', label: 'See New Equipment' }}
       />
     </>

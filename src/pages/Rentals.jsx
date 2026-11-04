@@ -25,9 +25,9 @@ import { faqSchema } from '../lib/structured-data';
 import { iconSize } from '../lib/icon-size';
 
 export const metadata = {
-  title: 'Equipment Rentals: Storage Pigs, Blowers and Tanks',
+  title: 'Equipment Rentals: Blowers, Tanks, an Auger and a Crane',
   description:
-    'Rent storage pigs, diesel and electric blowers, a self-erecting water tank, a 1350 CF auger, a boom crane or an insulated frac tank from Southbelt in Texas.',
+    'Rent diesel and electric blowers, a self-erecting water tank, a 1350 CF auger, a boom crane or an insulated frac tank from Southbelt in Texas.',
   canonical: '/rentals',
   openGraph: { type: 'website' },
 };
@@ -75,10 +75,10 @@ export default function Rentals() {
       <PageHeader
         eyebrow="Equipment Rentals"
         title="Rent the equipment, keep the job moving"
-        intro="Storage pigs, blowers, a self-erecting water tank, an auger, a boom crane and an insulated frac tank, with pickup from a yard or delivery by Southbelt."
+        intro="Blowers, a self-erecting water tank, an auger, a boom crane and an insulated frac tank, with pickup from a yard or delivery by Southbelt."
         photo={{
-          name: 'storage-pig-side',
-          alt: 'A Southbelt portable storage pig with its ladder, parked on grass',
+          name: 'water-tank',
+          alt: 'A white Southbelt water tank rental unit on its trailer frame, set on a grass lot',
         }}
       >
         <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row">

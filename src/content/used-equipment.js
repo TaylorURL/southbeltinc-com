@@ -67,11 +67,11 @@ export const usedFaqs = [
   {
     question: 'What type of used equipment do you carry?',
     answer:
-      'A broad range of used equipment for the concrete industry, including blowers, storage pigs and conveyors. The inventory changes daily, so the best way to see what is available now is to contact us directly.',
+      'A broad range of used equipment for the concrete industry, including blowers, silos and conveyors. The inventory changes daily, so the best way to see what is available now is to contact us directly.',
   },
   {
     question: 'Do you offer new equipment options?',
     answer:
-      'Yes. Southbelt also offers new equipment for the concrete industry, from batch plants and pugmills to storage pigs, blowers and conveyors. Contact the sales team for help choosing.',
+      'Yes. Southbelt also offers new equipment for the concrete industry, from batch plants and pugmills to blowers, water tanks and conveyors. Contact the sales team for help choosing.',
   },
 ];

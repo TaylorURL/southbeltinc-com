@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/equipment/vertical-pigs",
+      "destination": "/equipment",
+      "permanent": true
+    },
+    {
+      "source": "/equipment/portable-storage-pigs",
+      "destination": "/equipment",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

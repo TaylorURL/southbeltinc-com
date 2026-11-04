@@ -43,6 +43,12 @@ export const requestTopics = [
     hint: 'The part, the brand and part number if you have them, and the plant it goes on.',
   },
   {
+    value: 'service',
+    label: 'Plant Service and Troubleshooting',
+    desk: 'sales',
+    hint: 'The plant, what it is doing or not doing, and where it is.',
+  },
+  {
     value: 'repair',
     label: 'Repair',
     desk: 'sales',
@@ -62,7 +68,7 @@ export const requestTopics = [
   },
   {
     value: 'belting',
-    label: 'Conveyor Belting',
+    label: 'Belt Installation',
     desk: 'sales',
     hint: 'Belt width and length, the conveyor it runs on, and whether it needs installing.',
   },

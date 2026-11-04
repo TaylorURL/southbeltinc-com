@@ -10,10 +10,10 @@
 
 ## Pages
 
-- [Equipment](https://southbelt.taylorurl.com/equipment): Batch Plants, Pugmills, Silos and Storage Pigs, Blowers, Tanks and Conveyors
+- [Equipment](https://southbelt.taylorurl.com/equipment): Batch Plants, Pugmills, Blowers, Tanks and Conveyors
 - [Used equipment](https://southbelt.taylorurl.com/equipment/used): 750 TPH Pugmill, Feeder Hopper, Renewed 350 BBL Vertical Silo, sold as-is, where-is
-- [Rentals](https://southbelt.taylorurl.com/rentals): Storage Pig, Auger 1350 CF, Self-Erecting Water Tank, Diesel Blower, Electric Blower, 4 Axle Boom Crane, Insulated Frac Tank; requests to rentals@southbeltinc.com
-- [Services](https://southbelt.taylorurl.com/services): Plant Manufacturing, Fabrication, Repairs, Preventative Maintenance, Conveyor Services and Belting
+- [Rentals](https://southbelt.taylorurl.com/rentals): Auger 1350 CF, Self-Erecting Water Tank, Diesel Blower, Electric Blower, 4 Axle Boom Crane, Insulated Frac Tank; requests to rentals@southbeltinc.com
+- [Services](https://southbelt.taylorurl.com/services): Plant Servicing and Troubleshooting, Parts Ordering, Vulcanized Belt Installation, Repairs, Preventative Maintenance, Plant Manufacturing, Fabrication
 - [Parts catalog](https://southbelt.taylorurl.com/parts): Motors and Gearboxes, Bearings, Dust Collection, Material Handling, Pneumatics, Pumps, Valves, Conveyor Components, Controls and Instruments, Blowers and Service Kits, Vibrators, Plant Equipment and Liners
 - [Quote list](https://southbelt.taylorurl.com/quote): collect parts into one list and send it to sales@southbeltinc.com
 - [About](https://southbelt.taylorurl.com/about): since 2002, the mission, and customer reviews
@@ -29,8 +29,6 @@
 - [SBM-12 Semi-Mobile Batch Plant](https://southbelt.taylorurl.com/equipment/sbm-12-semi-mobile-batch-plant): A semi-mobile plant whose mainframe carries the knee braces for an auxiliary silo, so a second cement silo can go on years later.
 - [Portable Pugmill](https://southbelt.taylorurl.com/equipment/portable-pugmill): A pugmill that moves between jobs, at 500, 750 or 1000 TPH, with silos from 400 to 1200 BBL and a conveyor belt scale.
 - [Stationary Pugmill](https://southbelt.taylorurl.com/equipment/stationary-pugmill): A fixed pugmill at 500, 750 or 1000 TPH, with silos from 400 to 1200 BBL and options for a surge hopper and shaker screen.
-- [Vertical Pigs](https://southbelt.taylorurl.com/equipment/vertical-pigs): Vertical silos that fill and discharge at the same time, on a smaller footprint than a horizontal pig.
-- [Portable Storage Pigs](https://southbelt.taylorurl.com/equipment/portable-storage-pigs): Made in the USA, with tilted bottom pods, a retractable ladder and your choice of diesel or electric blower. New, used or for rent.
 - [Dry Bulk Blowers](https://southbelt.taylorurl.com/equipment/dry-bulk-blowers): Paragon 1057, P858 and P657 blowers, comparable to Gardner Denver and Tuthill, plus the service kits that keep them running.
 - [Self-Erecting Water Tank](https://southbelt.taylorurl.com/equipment/self-erecting-water-tank): A Mega portable tank with 12,000 gallons of nominal capacity, a hydraulic hoist and a 10-inch discharge pipe.
 - [RM-Series Industrial Conveyor](https://southbelt.taylorurl.com/equipment/rm-series-conveyor): A towable 23 or 28 ft conveyor with an 18-inch belt that doses fiber, ice, bags, aggregate, rock and sand.

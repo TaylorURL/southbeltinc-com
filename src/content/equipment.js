@@ -34,11 +34,6 @@ export const equipmentGroups = [
     blurb: 'Portable and stationary pugmills at 500, 750 or 1000 TPH.',
   },
   {
-    slug: 'storage',
-    name: 'Silos and Storage Pigs',
-    blurb: 'Vertical pigs and portable storage pigs, new, used or for rent.',
-  },
-  {
     slug: 'support',
     name: 'Blowers, Tanks and Conveyors',
     blurb: 'Paragon dry bulk blowers, a self-erecting water tank and the RM-Series conveyor.',
@@ -128,33 +123,6 @@ export const equipment = [
     photoAlt: 'A stationary pugmill with its feed hopper, conveyors and silo on a gravel pad',
     brochure: '/brochures/southbelt-stationary-pugmill.pdf',
     brand: 'Southbelt',
-  },
-  {
-    slug: 'vertical-pigs',
-    name: 'Vertical Pigs',
-    shortName: 'Vertical Pigs',
-    group: 'storage',
-    eyebrow: 'Storage',
-    summary:
-      'Vertical silos that fill and discharge at the same time, on a smaller footprint than a horizontal pig.',
-    photo: 'vertical-pigs',
-    photoAlt: 'Two tall gray Southbelt vertical pigs standing side by side against a blue sky',
-    brochure: '/brochures/southbelt-vertical-pigs.pdf',
-    brand: 'Southbelt',
-  },
-  {
-    slug: 'portable-storage-pigs',
-    name: 'Portable Storage Pigs',
-    shortName: 'Portable Storage Pigs',
-    group: 'storage',
-    eyebrow: 'Storage',
-    summary:
-      'Made in the USA, with tilted bottom pods, a retractable ladder and your choice of diesel or electric blower. New, used or for rent.',
-    photo: 'storage-pig',
-    photoAlt: 'A gray Southbelt portable storage pig on its trailer, parked on grass',
-    brochure: '/brochures/southbelt-portable-storage-pigs.pdf',
-    brand: 'Southbelt',
-    rentable: true,
   },
   {
     slug: 'dry-bulk-blowers',

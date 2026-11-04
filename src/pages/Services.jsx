@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Check, Download } from 'lucide-react';
+import { ArrowRight, Check, Download } from 'lucide-react';
 import CallToAction from '../components/sections/CallToAction';
 import PageHeader from '../components/sections/PageHeader';
 import Photo from '../components/media/Photo';
@@ -9,9 +9,9 @@ import { serviceSchema } from '../lib/structured-data';
 import { iconSize } from '../lib/icon-size';
 
 export const metadata = {
-  title: 'Batch Plant Manufacturing, Fabrication and Repair in Texas',
+  title: 'Batch Plant Service, Parts and Belt Installation in Texas',
   description:
-    'Plant manufacturing, fabrication, 24/7 repairs, preventative maintenance plans, and conveyor belting with full vulcanization, from Southbelt yards in Houston, San Marcos and Dallas.',
+    'Plant servicing and troubleshooting, parts ordering, vulcanized belt installation, 24/7 repairs, maintenance plans, plant manufacturing and fabrication in Texas.',
   canonical: '/services',
   openGraph: { type: 'website' },
 };
@@ -23,25 +23,25 @@ export default function Services() {
     <>
       <PageHeader
         eyebrow="Industrial Service"
-        title="Building, fixing and maintaining the plant"
-        intro="Southbelt manufactures plants, fabricates the steel around them, repairs equipment with technicians available 24/7, and keeps plants on a maintenance schedule."
+        title="Servicing, supplying and building the plant"
+        intro="Southbelt troubleshoots and services the plant you run, orders the parts it needs, and installs vulcanized conveyor belting, alongside 24/7 repairs, maintenance plans, plant manufacturing and fabrication."
         photo={{
           name: 'structural-fabrication',
           alt: 'Welded steel structure taking shape on the floor of the Southbelt shop',
         }}
       >
         <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row">
-          <Link to="/contact?topic=repair#request" className="btn btn-lg btn-tan">
+          <Link to="/contact?topic=service#request" className="btn btn-lg btn-tan">
             Request Service
           </Link>
-          <Link to="/contact?topic=plant#request" className="btn btn-lg btn-sky-outline">
-            Talk About a Plant
+          <Link to="/parts" className="btn btn-lg btn-sky-outline">
+            Order Parts
           </Link>
         </div>
       </PageHeader>
 
       {/* Sticks under the header so the jump list is still reachable from the
-          bottom of a page five sections long, which is the only place a reader
+          bottom of a page seven sections long, which is the only place a reader
           is likely to want it. It sits a layer below the header and clears the
           header's own height, so the two stack rather than overlap. */}
       <nav
@@ -49,7 +49,7 @@ export default function Services() {
         aria-label="Services"
       >
         <div className="container-page">
-          {/* The rail keeps the five names on one line at every width; on a phone
+          {/* The rail keeps the seven names on one line at every width; on a phone
               it scrolls instead of stacking into a block that would push the
               first service off the screen. */}
           <div className="chip-rail py-3">
@@ -130,6 +130,15 @@ export default function Services() {
                 >
                   {service.cta.label}
                 </Link>
+                {service.link && (
+                  <Link
+                    to={service.link.to}
+                    className="inline-flex items-center gap-2 font-display text-sm font-bold text-accent-text"
+                  >
+                    {service.link.label}
+                    <ArrowRight size={iconSize.chrome} aria-hidden="true" />
+                  </Link>
+                )}
                 {service.download && (
                   <a
                     href={service.download.href}
