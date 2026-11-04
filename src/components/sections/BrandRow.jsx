@@ -4,7 +4,7 @@ import { brandLogo } from '../../content/brands';
  * The makers' logos, grey until the pointer reaches them, so a row of sixteen
  * other companies' colours does not outshout the page it sits on. Each logo is
  * cut to the same 3:1 white canvas, trimmed to the mark, so sixteen marks drawn
- * at different sizes read at one size, on a white plate in both themes.
+ * at different sizes read at one size, on a white plate.
  */
 export default function BrandRow({ brands, className = '' }) {
   return (

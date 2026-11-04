@@ -13,7 +13,9 @@ import { iconSize } from '../../lib/icon-size';
  *
  * The message slot is reserved whether or not there is a message. Collapsing it
  * would move every field below the one that failed at the moment the reader is
- * reading it.
+ * reading it. Because the slot is always there, the forms around a field keep
+ * their own gaps small: the slot is already most of the space between one
+ * field and the next.
  */
 export default function FormField({
   id,

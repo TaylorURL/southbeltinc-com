@@ -4,10 +4,15 @@
  *
  * Equipment is the one destination that is a set rather than a page - nine
  * machines in three groups, plus the used list - so it is the one trigger that
- * opens a panel. The panel is the width of the bar and lays the three groups
- * side by side, because a visitor choosing a plant reads across the groups to
- * find the right one, and a single column of nine names is a list to scroll
- * rather than a set to compare.
+ * opens a panel. The panel runs the full width of the screen under the bar and
+ * lays the three groups side by side, each machine with its photo and one
+ * line, because a visitor choosing a plant reads across the groups to find the
+ * right one, and a single column of nine names is a list to scroll rather than
+ * a set to compare.
+ *
+ * The dim behind an open panel or menu starts at the bar's bottom edge. It is
+ * drawn inside the header, so laid over the whole screen it would also sit on
+ * the bar's own white ground and grey the bar out from under its links.
  *
  * The strip carries the numbers because a plant that is down is a phone call
  * before it is a page visit, and the yard a caller wants is the nearest one. It
@@ -20,7 +25,9 @@ import { ArrowRight, ChevronDown, ClipboardList, Phone } from 'lucide-react';
 import { company, telHref } from '../../content/company';
 import { equipmentGroups, equipmentIn } from '../../content/equipment';
 import { useQuote } from '../../lib/quote-context';
+import { keepModelsWhole } from '../../lib/keep-models-whole';
 import Logo from './Logo';
+import Photo from '../media/Photo';
 import { iconSize } from '../../lib/icon-size';
 
 const flat = [
@@ -161,22 +168,21 @@ export default function Header() {
               </span>
             </button>
           </div>
-
-          {panelOpen && (
-            <div className="drop-in absolute inset-x-5 top-full z-dropdown hidden pt-px sm:inset-x-8 lg:block">
-              <EquipmentPanel onNavigate={closePanel} />
-            </div>
-          )}
         </div>
 
+        {/* The dim lets the pointer through: the panel opens on a hover, so
+            moving off it onto the page is what closes it, and a click there
+            lands on the page rather than on a sheet over it. */}
         {panelOpen && (
-          <button
-            type="button"
-            tabIndex={-1}
-            onClick={closePanel}
-            aria-hidden="true"
-            className="fade-in fixed inset-0 top-header z-behind hidden bg-overlay active:transform-none lg:block"
-          />
+          <>
+            <div
+              aria-hidden="true"
+              className="fade-in pointer-events-none absolute inset-x-0 top-full z-behind hidden h-[100dvh] bg-[color:var(--overlay-soft)] lg:block"
+            />
+            <div className="drop-in absolute inset-x-0 top-full z-dropdown hidden lg:block">
+              <EquipmentPanel onNavigate={closePanel} />
+            </div>
+          </>
         )}
 
         {mobileOpen && (
@@ -186,7 +192,7 @@ export default function Header() {
               tabIndex={-1}
               onClick={closeMobile}
               aria-hidden="true"
-              className="fade-in fixed inset-0 z-behind bg-overlay active:transform-none lg:hidden"
+              className="fade-in absolute inset-x-0 top-full z-behind h-[100dvh] bg-overlay active:transform-none lg:hidden"
             />
             {/* The menu is measured against the visible viewport and scrolls
                 inside itself, so every destination stays reachable on a short
@@ -286,26 +292,31 @@ function EquipmentTrigger({ open, onOpen, onClose }) {
 }
 
 /**
- * The equipment panel: the three groups as columns, each naming its machines,
- * and a foot row for the two other ways to get equipment - used, and rented -
- * beside the way into the full list.
+ * The equipment panel: the three groups as columns, each machine with its photo
+ * and the one fact that tells it from its neighbours, then a navy card for the
+ * two other ways to get equipment - used, and rented. The foot row is the way
+ * into the full list.
+ *
+ * The photos are decorative here, because the name beside each one says what
+ * it is, so they carry no alt text of their own and are only fetched once the
+ * panel first opens.
  */
 function EquipmentPanel({ onNavigate }) {
   return (
     <div
-      className="overflow-hidden rounded-b-md border border-t-0 border-line bg-surface-raised shadow-card-hover"
+      className="border-t border-line bg-surface-raised shadow-card-hover"
       onBlur={(event) => {
         const header = event.currentTarget.closest('header');
         if (!header || !header.contains(event.relatedTarget)) onNavigate();
       }}
     >
-      <div className="grid grid-cols-3 gap-6 p-6">
+      <div className="container-page grid grid-cols-[repeat(3,minmax(0,1fr))_17rem] gap-8 py-8 xl:grid-cols-[repeat(3,minmax(0,1fr))_19rem] xl:gap-10">
         {equipmentGroups.map((group) => (
-          <div key={group.slug} className="flex flex-col gap-3">
+          <div key={group.slug} className="flex flex-col gap-4">
             <Link
               to={`/equipment#${group.slug}`}
               onClick={onNavigate}
-              className="font-display text-micro font-bold uppercase tracking-eyebrow text-accent-text"
+              className="border-b border-line pb-3 font-display text-xs font-bold uppercase tracking-eyebrow text-accent-text transition-colors duration-fast hover:text-ink"
             >
               {group.name}
             </Link>
@@ -315,41 +326,90 @@ function EquipmentPanel({ onNavigate }) {
                   <Link
                     to={`/equipment/${item.slug}`}
                     onClick={onNavigate}
-                    className="-mx-2 block rounded px-2 py-1.5 font-display text-sm font-bold text-ink transition-colors duration-fast hover:bg-surface-sunken"
+                    className="group -mx-2 flex items-center gap-3 rounded-md p-2 transition-colors duration-fast hover:bg-surface-sunken"
                   >
-                    {item.shortName}
+                    <span className="media-frame h-12 w-16 shrink-0 rounded">
+                      <Photo
+                        name={item.photo}
+                        alt=""
+                        sizes="64px"
+                        position={item.photoPosition}
+                        className="h-full w-full object-cover"
+                      />
+                    </span>
+                    <span className="flex min-w-0 flex-col gap-0.5">
+                      <span className="font-display text-sm font-bold text-ink transition-colors duration-fast group-hover:text-accent-text">
+                        {keepModelsWhole(item.shortName)}
+                      </span>
+                      <span className="text-xs leading-snug text-ink-muted">{item.menuLine}</span>
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
         ))}
+
+        <div className="band-dark flex flex-col self-start overflow-hidden rounded-md bg-band-navy">
+          <div className="media-frame aspect-[16/9]">
+            <Photo
+              name="used-pugmill-hoppers"
+              alt=""
+              sizes="19rem"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="flex flex-col gap-4 p-5">
+            <div className="flex flex-col gap-2">
+              <p className="eyebrow-rule font-display text-xs font-bold uppercase tracking-eyebrow text-accent-inverse">
+                Used and Rental
+              </p>
+              <p className="font-display text-lg font-bold leading-tight text-ink-inverse">
+                Buy used, or rent by the job
+              </p>
+            </div>
+            <div className="flex flex-col gap-2.5">
+              {[
+                { to: '/equipment/used', label: 'Used Equipment' },
+                { to: '/rentals', label: 'Equipment Rentals' },
+              ].map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  onClick={onNavigate}
+                  className="group inline-flex items-center gap-2 font-display text-sm font-bold text-ink-inverse transition-colors duration-fast hover:text-[color:var(--tan)]"
+                >
+                  {link.label}
+                  <ArrowRight
+                    size={iconSize.chrome}
+                    aria-hidden="true"
+                    className="text-[color:var(--tan)] transition-transform duration-fast group-hover:translate-x-0.5"
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="flex items-center justify-between gap-6 border-t border-line bg-surface-sunken px-6 py-4">
-        <div className="flex flex-wrap items-center gap-6">
+
+      <div className="border-t border-line bg-surface-sunken">
+        <div className="container-page flex items-center justify-between gap-6 py-3.5">
+          <p className="text-sm text-ink-muted">
+            Batch plants and pugmills built in-house, and serviced from three Texas yards.
+          </p>
           <Link
-            to="/equipment/used"
+            to="/equipment"
             onClick={onNavigate}
-            className="font-display text-sm font-bold text-ink-body hover:text-accent-text"
+            className="group inline-flex items-center gap-2 font-display text-sm font-bold text-accent-text"
           >
-            Used Equipment
-          </Link>
-          <Link
-            to="/rentals"
-            onClick={onNavigate}
-            className="font-display text-sm font-bold text-ink-body hover:text-accent-text"
-          >
-            Equipment Rentals
+            All Equipment
+            <ArrowRight
+              size={iconSize.chrome}
+              aria-hidden="true"
+              className="transition-transform duration-fast group-hover:translate-x-0.5"
+            />
           </Link>
         </div>
-        <Link
-          to="/equipment"
-          onClick={onNavigate}
-          className="inline-flex items-center gap-2 font-display text-sm font-bold text-accent-text"
-        >
-          All Equipment
-          <ArrowRight size={iconSize.chrome} aria-hidden="true" />
-        </Link>
       </div>
     </div>
   );

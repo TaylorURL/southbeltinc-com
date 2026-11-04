@@ -115,7 +115,7 @@ export default function UsedEquipment() {
 
       <section className="section-defer [--section-intrinsic:24rem] border-t border-line bg-surface-sunken">
         <div className="container-page grid gap-10 py-16 lg:grid-cols-[1fr_1.4fr] lg:py-20">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 lg:sticky lg:top-28 lg:self-start">
             <div className="flex flex-col gap-2">
               <p className="eyebrow">Questions</p>
               <h2 className="text-3xl leading-tight">Looking for used equipment?</h2>
