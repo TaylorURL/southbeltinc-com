@@ -8,7 +8,9 @@
  * chunks of their own.
  *
  * The first six are the counter the company shows on its own site, each with
- * its product photo; `photo` names a cut in photos.js, shot on white. The rest
+ * its product photo; `photo` names a cut in photos.js, shot on white. A shot
+ * that is a photograph with its own background rather than a cut-out sets
+ * `photoFill`, so it fills its plate instead of floating inside it. The rest
  * come from the brands the company lists on its line card, and carry no photo.
  *
  * `slug` is a permanent URL: it is what /parts filters on. `name` is Title
@@ -24,6 +26,7 @@ export const partCategories = [
       'Electric motors and gear reducers from WEG, Baldor, North American, Dodge, Rexnord and SEW.',
     photo: 'part-motors',
     photoAlt: 'A gray electric gear motor on a test bench',
+    photoFill: true,
   },
   {
     slug: 'bearings',

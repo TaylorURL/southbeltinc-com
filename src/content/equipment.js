@@ -15,9 +15,10 @@
  * `slug` is a permanent URL. Add and retire them; renaming one breaks every
  * link already pointing at it. `name` is Title Case, because it renders as a
  * card heading, an `h1`, and the subject line of a quote email. `summary` is a
- * sentence.
+ * sentence. `menuLine` is the few words the header's equipment panel sets under
+ * the name, which has room for a fact rather than a sentence.
  *
- * Every figure in a summary is one the company publishes on its own pages or
+ * Every figure in a summary or a menu line is one the company publishes on its own pages or
  * in the brochure linked beside it. A figure the sources disagree on is left
  * out rather than picked.
  */
@@ -47,6 +48,7 @@ export const equipment = [
     shortName: 'BP-14 Batch Plant',
     group: 'batch-plants',
     eyebrow: 'Batch Plant',
+    menuLine: '14-yard batcher, 400 to 1900 BBL silo',
     summary:
       'A 14-yard cement batcher under a 400 to 1900 BBL batching silo, with overhead bins, an aggregate batcher and a radial stacker.',
     photo: 'bp-14-plant',
@@ -61,6 +63,7 @@ export const equipment = [
     shortName: 'BP-14 Augerless',
     group: 'batch-plants',
     eyebrow: 'Batch Plant',
+    menuLine: 'The BP-14 without the auxiliary auger',
     summary:
       'The BP-14 specification without the 10-inch WAM auger on the auxiliary silo, with the same 14-yard batcher and 400 to 1900 BBL silo.',
     photo: 'bp-14-augerless-plant',
@@ -75,6 +78,7 @@ export const equipment = [
     shortName: 'DP-12 Decumulating Plant',
     group: 'batch-plants',
     eyebrow: 'Batch Plant',
+    menuLine: 'Low-profile, loaded by a front-end loader',
     summary:
       'A low-profile decum plant loaded directly by a front-end loader, with a 400 to 1200 BBL silo and gravity discharge.',
     photo: 'dp-12-plant',
@@ -89,6 +93,7 @@ export const equipment = [
     shortName: 'SBM-12 Semi-Mobile',
     group: 'batch-plants',
     eyebrow: 'Batch Plant',
+    menuLine: 'Semi-mobile, ready for a second silo',
     summary:
       'A semi-mobile plant whose mainframe carries the knee braces for an auxiliary silo, so a second cement silo can go on years later.',
     photo: 'sbm-12-plant',
@@ -104,6 +109,7 @@ export const equipment = [
     shortName: 'Portable Pugmill',
     group: 'pugmills',
     eyebrow: 'Pugmill',
+    menuLine: '500 to 1000 TPH, moves between jobs',
     summary:
       'A pugmill that moves between jobs, at 500, 750 or 1000 TPH, with silos from 400 to 1200 BBL and a conveyor belt scale.',
     photo: 'portable-pugmill',
@@ -117,6 +123,7 @@ export const equipment = [
     shortName: 'Stationary Pugmill',
     group: 'pugmills',
     eyebrow: 'Pugmill',
+    menuLine: '500 to 1000 TPH, a fixed install',
     summary:
       'A fixed pugmill at 500, 750 or 1000 TPH, with silos from 400 to 1200 BBL and options for a surge hopper and shaker screen.',
     photo: 'stationary-pugmill',
@@ -130,6 +137,7 @@ export const equipment = [
     shortName: 'Dry Bulk Blowers',
     group: 'support',
     eyebrow: 'Blowers',
+    menuLine: 'Paragon 1057, P858 and P657',
     summary:
       'Paragon 1057, P858 and P657 blowers, comparable to Gardner Denver and Tuthill, plus the service kits that keep them running.',
     photo: 'paragon-blowers',
@@ -144,6 +152,7 @@ export const equipment = [
     shortName: 'Self-Erecting Water Tank',
     group: 'support',
     eyebrow: 'Water Tank',
+    menuLine: '12,000 gallons, hydraulic hoist',
     summary:
       'A Mega portable tank with 12,000 gallons of nominal capacity, a hydraulic hoist and a 10-inch discharge pipe.',
     photo: 'water-tank',
@@ -158,6 +167,7 @@ export const equipment = [
     shortName: 'RM-Series Conveyor',
     group: 'support',
     eyebrow: 'Conveyor',
+    menuLine: 'Towable, 23 or 28 ft, 18-inch belt',
     summary:
       'A towable 23 or 28 ft conveyor with an 18-inch belt that doses fiber, ice, bags, aggregate, rock and sand.',
     photo: 'rm-conveyor',

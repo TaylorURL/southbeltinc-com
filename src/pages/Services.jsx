@@ -16,6 +16,10 @@ export const metadata = {
   openGraph: { type: 'website' },
 };
 
+/** A list goes two across when it is long enough to need it and short-lined
+    enough that two columns do not wrap. */
+const splits = (items) => items.length >= 4 && items.every((item) => item.length <= 32);
+
 export default function Services() {
   useSeo(metadata, services.map(serviceSchema));
 
@@ -52,13 +56,9 @@ export default function Services() {
           {/* The rail keeps the seven names on one line at every width; on a phone
               it scrolls instead of stacking into a block that would push the
               first service off the screen. */}
-          <div className="chip-rail py-3">
+          <div className="chip-rail jump-rail py-3">
             {services.map((service) => (
-              <a
-                key={service.slug}
-                href={`#${service.slug}`}
-                className="shrink-0 whitespace-nowrap rounded px-3 py-2 font-display text-sm font-bold text-ink-muted transition-colors duration-fast hover:bg-surface-sunken hover:text-ink"
-              >
+              <a key={service.slug} href={`#${service.slug}`} className="jump-link">
                 {service.name}
               </a>
             ))}
@@ -103,13 +103,19 @@ export default function Services() {
                 ))}
               </div>
 
-              <div
-                className={`grid w-full gap-5 ${service.groups.length > 1 ? 'xl:grid-cols-2' : ''}`}
-              >
+              {/* One card under another, at the column's full width. Side by side
+                  they were a quarter of the page each, and the longer lists ran
+                  to two and three lines an item. A list of short items splits
+                  into two columns inside its card instead. */}
+              <div className="flex w-full flex-col gap-5">
                 {service.groups.map((group) => (
                   <div key={group.title} className="card flex flex-col gap-4 p-5">
                     <h3 className="border-b border-line pb-3 text-base">{group.title}</h3>
-                    <ul className="flex flex-col gap-2.5">
+                    <ul
+                      className={`flex flex-col gap-2.5 ${
+                        splits(group.items) ? 'sm:grid sm:grid-cols-2 sm:gap-x-6' : ''
+                      }`}
+                    >
                       {group.items.map((item) => (
                         <li key={item} className="flex gap-3 text-sm leading-relaxed text-ink-body">
                           <span className="icon-lead text-accent-text">

@@ -1,12 +1,13 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import ClickSpark from './components/app/ClickSpark';
 import Layout from './components/layout/Layout';
 import RouteFallback from './components/app/RouteFallback';
+import RoutePreloader from './components/app/RoutePreloader';
 import ScrollToTop from './components/app/ScrollToTop';
 import { QuoteProvider } from './components/app/QuoteProvider';
 import Home from './pages/Home';
-import { withBuildRefresh } from './lib/chunk-recovery';
+import { lazyRoute } from './lib/lazy-route';
 
 /**
  * Every route but the home page is its own chunk. Imported statically, the
@@ -21,23 +22,55 @@ import { withBuildRefresh } from './lib/chunk-recovery';
  * footer down the screen and counts against the layout shift score. Resolved
  * synchronously, React's first commit is the finished page.
  *
- * Each loader goes through withBuildRefresh, so a tab still holding the
- * previous build asks for a chunk filename the host has replaced, reloads onto
- * the current document, and lands on the page rather than on an error screen.
+ * Each loader goes through lazyRoute, which keeps the build refresh - a tab
+ * still holding the previous build asks for a chunk filename the host has
+ * replaced, reloads onto the current document, and lands on the page rather
+ * than on an error screen - and lets the chunk be fetched ahead of the click.
  */
-const Equipment = lazy(withBuildRefresh(() => import('./pages/Equipment')));
-const EquipmentDetail = lazy(withBuildRefresh(() => import('./pages/EquipmentDetail')));
-const UsedEquipment = lazy(withBuildRefresh(() => import('./pages/UsedEquipment')));
-const Rentals = lazy(withBuildRefresh(() => import('./pages/Rentals')));
-const Services = lazy(withBuildRefresh(() => import('./pages/Services')));
-const Parts = lazy(withBuildRefresh(() => import('./pages/Parts')));
-const PartDetail = lazy(withBuildRefresh(() => import('./pages/PartDetail')));
-const QuoteRequest = lazy(withBuildRefresh(() => import('./pages/QuoteRequest')));
-const About = lazy(withBuildRefresh(() => import('./pages/About')));
-const Contact = lazy(withBuildRefresh(() => import('./pages/Contact')));
-const Privacy = lazy(withBuildRefresh(() => import('./pages/Privacy')));
-const Terms = lazy(withBuildRefresh(() => import('./pages/Terms')));
-const NotFound = lazy(withBuildRefresh(() => import('./pages/NotFound')));
+const Equipment = lazyRoute(() => import('./pages/Equipment'));
+const EquipmentDetail = lazyRoute(() => import('./pages/EquipmentDetail'));
+const UsedEquipment = lazyRoute(() => import('./pages/UsedEquipment'));
+const Rentals = lazyRoute(() => import('./pages/Rentals'));
+const Services = lazyRoute(() => import('./pages/Services'));
+const Parts = lazyRoute(() => import('./pages/Parts'));
+const PartDetail = lazyRoute(() => import('./pages/PartDetail'));
+const QuoteRequest = lazyRoute(() => import('./pages/QuoteRequest'));
+const About = lazyRoute(() => import('./pages/About'));
+const Contact = lazyRoute(() => import('./pages/Contact'));
+const Privacy = lazyRoute(() => import('./pages/Privacy'));
+const Terms = lazyRoute(() => import('./pages/Terms'));
+const NotFound = lazyRoute(() => import('./pages/NotFound'));
+
+/**
+ * Which chunk a path will need, in the order the router ranks them: the used
+ * list ahead of the machine pages it shares a prefix with. A path that matches
+ * none is the home page, which is in the entry bundle, or a page that does not
+ * exist, which is not worth fetching ahead.
+ */
+const chunks = [
+  [/^\/equipment\/?$/, Equipment],
+  [/^\/equipment\/used\/?$/, UsedEquipment],
+  [/^\/equipment\/[^/]+\/?$/, EquipmentDetail],
+  [/^\/rentals\/?$/, Rentals],
+  [/^\/services\/?$/, Services],
+  [/^\/parts\/?$/, Parts],
+  [/^\/parts\/[^/]+\/?$/, PartDetail],
+  [/^\/quote\/?$/, QuoteRequest],
+  [/^\/about\/?$/, About],
+  [/^\/contact\/?$/, Contact],
+  [/^\/privacy\/?$/, Privacy],
+  [/^\/terms\/?$/, Terms],
+];
+
+const preloadPath = (pathname) => {
+  const match = chunks.find(([pattern]) => pattern.test(pathname));
+  if (match) match[1].preload();
+};
+
+const preloadAll = () => {
+  chunks.forEach(([, route]) => route.preload());
+  NotFound.preload();
+};
 
 /**
  * Whether the app has committed once. The entrance below is for a page that is
@@ -48,8 +81,8 @@ const NotFound = lazy(withBuildRefresh(() => import('./pages/NotFound')));
 let committed = false;
 
 /**
- * The route's entrance. It carries the fade for a page that replaces something
- * else on screen - the next route on a navigation, and the placeholder on a
+ * The route's entrance. It carries the fade and short rise for a page that
+ * replaces something else on screen - the next route on a navigation, and the placeholder on a
  * chunk that has just landed - and no fade for the one route that is already
  * drawn when React reaches it, where the animation would blink the page out and
  * then hold it, and the photo behind it, at zero opacity until the bundle had
@@ -61,7 +94,7 @@ let committed = false;
  */
 function RouteEntrance({ children }) {
   const [entering] = useState(() => committed);
-  return <div className={entering ? 'fade-in' : undefined}>{children}</div>;
+  return <div className={entering ? 'page-in' : undefined}>{children}</div>;
 }
 
 export default function App() {
@@ -73,6 +106,7 @@ export default function App() {
   return (
     <QuoteProvider>
       <ScrollToTop />
+      <RoutePreloader preload={preloadPath} preloadAll={preloadAll} />
       <ClickSpark />
       <Layout>
         {/* The boundary is keyed on the path so each route mounts its own. A

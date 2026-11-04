@@ -124,7 +124,7 @@ function ContactPage({ initialTopic }) {
             <form
               onSubmit={handleSubmit}
               noValidate
-              className="card flex flex-col gap-6 p-6 lg:p-8"
+              className="card flex flex-col gap-4 p-6 lg:p-8"
             >
               <FormErrorSummary
                 errors={{ ...errors, message: messageError }}
@@ -132,7 +132,7 @@ function ContactPage({ initialTopic }) {
               />
               <ContactFields contact={contact} errors={errors} onChange={change} onBlur={blur} />
 
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-x-4 gap-y-3 sm:grid-cols-2">
                 <FormField
                   id="topic"
                   label="What It's About"

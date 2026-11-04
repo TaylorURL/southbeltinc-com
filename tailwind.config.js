@@ -2,8 +2,8 @@
  * The palette lives in src/index.css as custom properties, in three layers:
  * primitive ramps, semantic aliases, and the component classes that consume
  * them. This file is the Tailwind view of that same source rather than a second
- * copy of it, so every utility below resolves to a token that a theme can
- * rewrite. Nothing here holds a colour value of its own.
+ * copy of it, so every utility below resolves to a token defined there.
+ * Nothing here holds a colour value of its own.
  */
 const token = (name) => `var(--${name})`;
 

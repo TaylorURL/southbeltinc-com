@@ -30,9 +30,9 @@ export const metadata = {
 const stats = [
   { value: `Since ${company.foundedYear}`, label: 'Servicing concrete batch plants' },
   { value: '3 Texas Yards', label: 'Houston, San Marcos and Dallas' },
-  // Non-breaking hyphens, so a narrow column wraps between the models rather
-  // than inside one.
-  { value: 'BP\u201114 · DP\u201112 · SBM\u201112', label: 'Batch plants built in-house' },
+  // The count rather than the three names, which ran to three lines in a
+  // quarter-width column and pushed its label out of line with the others.
+  { value: '3 Plant Models', label: 'BP-14, DP-12 and SBM-12, built in-house' },
   { value: '24/7', label: 'Repair availability' },
 ];
 
@@ -99,10 +99,16 @@ export default function Home() {
       {/* The hero splits the way the design does: the type on the logo's navy,
           the crew under a plant filling the right side to the screen's edge.
           On a phone the photo follows the type rather than sitting behind it,
-          so the headline never has to fight a photograph for contrast. */}
-      <section className="band-dark relative overflow-hidden bg-band-navy">
+          so the headline never has to fight a photograph for contrast.
+
+          The split is not down the middle, so the type cannot line up with the
+          page by sitting at the right of a half-width container the way the
+          page headers do. Its left padding is worked out from the section's
+          own width instead: half of it less half the container, plus the
+          container's gutter, which is where every heading below it starts. */}
+      <section className="band-dark relative overflow-hidden bg-band-navy [container-type:inline-size]">
         <div className="lg:grid lg:min-h-[40rem] lg:grid-cols-[57fr_43fr]">
-          <div className="container-page flex items-center py-14 sm:py-16 lg:ml-auto lg:mr-0 lg:max-w-[52rem] lg:py-24 lg:pr-16">
+          <div className="container-page flex items-center py-14 sm:py-16 lg:mx-0 lg:max-w-none lg:py-24 lg:pl-[max(2rem,calc(50cqw_-_40rem))] lg:pr-16">
             {/* Three steps of space, each on a container: label to title is the
                 tightest, title to lede is one step wider, and the actions sit a
                 step wider again. */}
@@ -155,7 +161,7 @@ export default function Home() {
           {stats.map((stat) => (
             <div key={stat.value} className="flex flex-col gap-1.5">
               <dt className="order-2 text-sm leading-snug">{stat.label}</dt>
-              <dd className="order-1 font-display text-2xl font-extrabold leading-tight text-band-sky-ink sm:text-[1.75rem]">
+              <dd className="order-1 font-display text-[1.375rem] font-extrabold leading-tight text-band-sky-ink sm:text-[1.75rem]">
                 {stat.value}
               </dd>
             </div>
@@ -268,7 +274,7 @@ export default function Home() {
               Browse All Parts
             </Link>
           </SectionHeading>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
             {featuredCategories.map((category) => (
               <PartTile key={category.slug} category={category} />
             ))}
@@ -303,7 +309,7 @@ export default function Home() {
 
       <section className="section-defer [--section-intrinsic:36rem] border-t border-line bg-surface-sunken">
         <div className="container-page grid gap-10 py-16 lg:grid-cols-[1fr_1.4fr] lg:py-24">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 lg:sticky lg:top-28 lg:self-start">
             <div className="flex flex-col gap-2">
               <p className="eyebrow">Questions</p>
               <h2 className="text-3xl leading-tight sm:text-4xl">You ask, we answer</h2>

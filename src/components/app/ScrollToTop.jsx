@@ -14,12 +14,17 @@ import { useLocation, useNavigationType } from 'react-router-dom';
  * Focus follows the scroll. A screen reader left on the footer link that started
  * the navigation would otherwise have to walk the whole new page to find out
  * where it is.
+ *
+ * The jumps between pages are instant. The document scrolls smoothly for an
+ * anchor on the same page, and left to that, a new page would open by gliding
+ * up from wherever the last one was read to.
  */
 export default function ScrollToTop() {
   const { pathname, hash, key } = useLocation();
   const navigationType = useNavigationType();
   const positions = useRef(new Map());
   const previous = useRef(key);
+  const lastPath = useRef(pathname);
 
   useEffect(() => {
     const store = positions.current;
@@ -29,6 +34,8 @@ export default function ScrollToTop() {
   }, [key]);
 
   useEffect(() => {
+    const samePage = lastPath.current === pathname;
+    lastPath.current = pathname;
     if (hash && navigationType !== 'POP') {
       // The router does not scroll to a fragment, and the target is often on a
       // page whose chunk is still loading, so the element is looked for over a
@@ -40,7 +47,7 @@ export default function ScrollToTop() {
       const seek = () => {
         const target = document.getElementById(id);
         if (target) {
-          target.scrollIntoView({ block: 'start' });
+          target.scrollIntoView({ block: 'start', behavior: samePage ? 'smooth' : 'instant' });
           return;
         }
         if (tries++ < 90) frame = window.requestAnimationFrame(seek);
@@ -50,10 +57,10 @@ export default function ScrollToTop() {
     }
     if (hash) return undefined;
     if (navigationType === 'POP') {
-      window.scrollTo(0, positions.current.get(key) ?? 0);
+      window.scrollTo({ top: positions.current.get(key) ?? 0, behavior: 'instant' });
       return undefined;
     }
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'instant' });
     const main = document.getElementById('main');
     if (main) main.focus({ preventScroll: true });
     return undefined;

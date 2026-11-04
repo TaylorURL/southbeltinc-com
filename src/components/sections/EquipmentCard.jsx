@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Photo from '../media/Photo';
+import { keepModelsWhole } from '../../lib/keep-models-whole';
 
 /**
  * A photo card for a machine or a group of them: the photograph on top, a navy
@@ -8,7 +9,9 @@ import Photo from '../media/Photo';
  * card can honor.
  *
  * `plate` draws the photo on white and contains it rather than cropping it, for
- * a cut-out shot on white.
+ * a cut-out shot on white. `wide` is for a card sitting two across the page,
+ * where the usual photo would stand taller than the row needs; it crops the
+ * photo to a wider frame and asks for a larger cut.
  */
 export default function EquipmentCard({
   to,
@@ -20,13 +23,16 @@ export default function EquipmentCard({
   photoPosition,
   plate = false,
   headingLevel = 3,
-  sizes = '(min-width: 1024px) 26rem, (min-width: 640px) 50vw, 100vw',
+  wide = false,
+  sizes = wide
+    ? '(min-width: 1024px) 40rem, (min-width: 640px) 50vw, 100vw'
+    : '(min-width: 1024px) 26rem, (min-width: 640px) 50vw, 100vw',
 }) {
   const Heading = `h${headingLevel}`;
   return (
     <article className="card card-lift group relative flex flex-col overflow-hidden">
       <div
-        className={`aspect-[16/10] border-b border-line ${plate ? 'product-plate p-4' : 'media-frame'}`}
+        className={`${wide ? 'aspect-[16/10] lg:aspect-[2/1]' : 'aspect-[16/10]'} border-b border-line ${plate ? 'product-plate p-4' : 'media-frame'}`}
       >
         <Photo
           name={photo}
@@ -43,10 +49,12 @@ export default function EquipmentCard({
             to={to}
             className="transition-colors duration-fast after:absolute after:inset-0 group-hover:text-accent-text"
           >
-            {title}
+            {keepModelsWhole(title)}
           </Link>
         </Heading>
-        {summary && <p className="text-sm leading-relaxed text-ink-muted">{summary}</p>}
+        {summary && (
+          <p className="text-sm leading-relaxed text-ink-muted">{keepModelsWhole(summary)}</p>
+        )}
       </div>
     </article>
   );

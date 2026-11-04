@@ -25,6 +25,18 @@ const trail = [
 
 const jsonLd = [breadcrumbSchema(trail), ...equipment.map(equipmentSchema)];
 
+/**
+ * The columns a group's cards sit in. Three across leaves a lone card under a
+ * row of three when a group holds four, and an empty third of the row when it
+ * holds two. So four sit four across where there is room, two by two where
+ * there is not, and two sit side by side as wider cards with a wider photo.
+ */
+const gridFor = (count) => {
+  if (count % 3 === 0) return 'sm:grid-cols-2 lg:grid-cols-3';
+  if (count % 4 === 0) return 'sm:grid-cols-2 xl:grid-cols-4';
+  return 'sm:grid-cols-2';
+};
+
 export default function Equipment() {
   useSeo(metadata, jsonLd);
 
@@ -57,20 +69,13 @@ export default function Equipment() {
         aria-label="Equipment Groups"
       >
         <div className="container-page">
-          <div className="chip-rail py-3">
+          <div className="chip-rail jump-rail py-3">
             {equipmentGroups.map((group) => (
-              <a
-                key={group.slug}
-                href={`#${group.slug}`}
-                className="shrink-0 whitespace-nowrap rounded px-3 py-2 font-display text-sm font-bold text-ink-muted transition-colors duration-fast hover:bg-surface-sunken hover:text-ink"
-              >
+              <a key={group.slug} href={`#${group.slug}`} className="jump-link">
                 {group.name}
               </a>
             ))}
-            <Link
-              to="/equipment/used"
-              className="shrink-0 whitespace-nowrap rounded px-3 py-2 font-display text-sm font-bold text-ink-muted transition-colors duration-fast hover:bg-surface-sunken hover:text-ink"
-            >
+            <Link to="/equipment/used" className="jump-link">
               Used Equipment
             </Link>
           </div>
@@ -93,7 +98,7 @@ export default function Equipment() {
               title={group.name}
               intro={group.blurb}
             />
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className={`grid gap-6 ${gridFor(equipmentIn(group.slug).length)}`}>
               {equipmentIn(group.slug).map((item) => (
                 <EquipmentCard
                   key={item.slug}
@@ -104,6 +109,7 @@ export default function Equipment() {
                   photo={item.photo}
                   photoAlt={item.photoAlt}
                   photoPosition={item.photoPosition}
+                  wide={equipmentIn(group.slug).length === 2}
                 />
               ))}
             </div>

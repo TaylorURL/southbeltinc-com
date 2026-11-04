@@ -7,20 +7,7 @@
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#272b67" />
-    <script>
-      // Reads the stored theme before the first paint, so a visitor who chose
-      // dark does not get a white flash on every navigation. Nothing here knows
-      // a colour: it sets the attribute, and the stylesheet does the rest. With
-      // no stored choice the attribute stays off and the system preference wins.
-      (function () {
-        try {
-          var stored = window.localStorage.getItem('southbelt.theme.v1');
-          if (stored === 'light' || stored === 'dark') {
-            document.documentElement.setAttribute('data-theme', stored);
-          }
-        } catch (ignored) {}
-      })();
-    </script>
+    <meta name="color-scheme" content="light" />
     <meta
       name="description"
       content="Southbelt builds batch plants, services and troubleshoots them, orders their parts and installs vulcanized belting, from yards in Houston, San Marcos and Dallas."
@@ -717,7 +704,7 @@
         <header class="sticky top-0 z-sticky-nav h-header border-b border-line bg-header">
           <div class="container-page relative flex h-full items-center justify-between gap-6">
             <a href="/" class="min-w-0" aria-label="Southbelt Repair and Supply Inc. Home">
-              <span class="logo-plate inline-flex shrink-0 items-center">
+              <span class="inline-flex shrink-0 items-center">
                 <img
                   src="/brand/logo-400.webp"
                   srcset="/brand/logo-200.webp 200w, /brand/logo-400.webp 400w, /brand/logo-600.webp 600w"
@@ -792,10 +779,10 @@
         </header>
 
         <main class="flex-1">
-          <section class="band-dark relative overflow-hidden bg-band-navy">
+          <section class="band-dark relative overflow-hidden bg-band-navy [container-type:inline-size]">
             <div class="lg:grid lg:min-h-[40rem] lg:grid-cols-[57fr_43fr]">
               <div
-                class="container-page flex items-center py-14 sm:py-16 lg:ml-auto lg:mr-0 lg:max-w-[52rem] lg:py-24 lg:pr-16"
+                class="container-page flex items-center py-14 sm:py-16 lg:mx-0 lg:max-w-none lg:py-24 lg:pl-[max(2rem,calc(50cqw_-_40rem))] lg:pr-16"
               >
                 <div class="flex flex-col items-start gap-10">
                   <div class="flex flex-col items-start gap-6">
