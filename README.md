@@ -32,7 +32,7 @@ npm run dev     # http://localhost:5173
 npm run build   # crawl files, vite build, then the stylesheet inline
 ```
 
-Node 22. The build inlines the full stylesheet (45 kB, about 9 kB over the wire) so there's no blocking CSS request.
+Node 22. The build inlines the full stylesheet into the document, so the first screen never waits on a CSS request.
 
 React 19, React Router 7, Vite 7, Tailwind CSS 3, on Vercel. Proprietary, see [LICENSE.md](LICENSE.md).
 
