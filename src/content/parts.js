@@ -103,8 +103,7 @@ export const parts = [
     category: 'dust-collection',
     brands: ['C&W Manufacturing'],
     summary: 'C&W Manufacturing anti-overfill systems and pinch valve kits for silos.',
-    description:
-      'An anti-overfill system closes the fill line before a silo is overfilled. The vertical pigs Southbelt builds carry a C&W pinch valve anti-overfill kit as standard.',
+    description: 'An anti-overfill system closes the fill line before a silo is overfilled.',
     askFor: ['Silo size and fill line size', ...plantDetails, ...partDetails],
     keywords: ['anti overfill', 'pinch valve', 'overfill', 'c&w', 'silo'],
   },
@@ -130,8 +129,7 @@ export const parts = [
     category: 'material-handling',
     brands: ['Smoot', 'WAM'],
     summary: 'Rotary vane feeders and airlocks from Smoot and WAM.',
-    description:
-      'A rotary vane feeder meters dry material into a pneumatic line or a screw. The transfer systems on Southbelt vertical pigs pair a vane feeder with an electrical panel.',
+    description: 'A rotary vane feeder meters dry material into a pneumatic line or a screw.',
     askFor: ['Feeder make, model and size', ...plantDetails, ...partDetails],
     keywords: ['rotary valve', 'vane feeder', 'airlock', 'smoot', 'wam'],
   },
@@ -194,8 +192,7 @@ export const parts = [
     category: 'pneumatics',
     brands: ['Sealfast'],
     summary: 'Sealfast cement hose, air hose and fittings.',
-    description:
-      'Hose and fittings for moving cement and air between trucks, pigs, blowers and silos.',
+    description: 'Hose and fittings for moving cement and air between trucks, blowers and silos.',
     askFor: ['Hose inside diameter and length', 'Fitting type and size', ...partDetails],
     keywords: ['cement hose', 'air hose', 'fittings', 'sealfast', 'coupling'],
   },
@@ -369,7 +366,7 @@ export const parts = [
     brands: ['Tuthill', 'Paragon'],
     summary: 'Tuthill and Paragon pneumatic blowers, new and used.',
     description:
-      'Blowers move cement out of storage pigs and trailers. Southbelt carries the Paragon 1057, P858 and P657, comparable to Gardner Denver and Tuthill, and repairs the blower you have.',
+      'Blowers move cement from trailers into silos. Southbelt carries the Paragon 1057, P858 and P657, comparable to Gardner Denver and Tuthill, and repairs the blower you have.',
     askFor: ['Blower make and model', 'Electric or diesel drive', ...partDetails],
     keywords: [
       'blower',

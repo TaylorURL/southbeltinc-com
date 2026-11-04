@@ -13,6 +13,7 @@ import { company } from '../content/company';
 import { equipmentBySlug } from '../content/equipment';
 import { faqs } from '../content/faq';
 import { featuredCategories } from '../content/part-categories';
+import { featuredServices } from '../content/services';
 import { useSeo } from '../lib/seo';
 import { faqSchema, localBusinessSchema } from '../lib/structured-data';
 import { iconSize } from '../lib/icon-size';
@@ -20,7 +21,7 @@ import { iconSize } from '../lib/icon-size';
 export const metadata = {
   title: 'Concrete Batch Plants, Parts and Repair in Texas',
   description:
-    'Southbelt builds the BP-14, DP-12 and SBM-12 batch plants, stocks batch plant parts, and repairs equipment 24/7 from yards in Houston, San Marcos and Dallas.',
+    'Southbelt builds batch plants, services and troubleshoots them, orders their parts and installs vulcanized belting, from yards in Houston, San Marcos and Dallas.',
   canonical: '/',
   openGraph: { type: 'website' },
 };
@@ -48,11 +49,12 @@ const plant = (slug) => {
   };
 };
 
-/** The six cards: three plants by name, then the three groups around them. */
+/** The six cards: four plants by name, then the two groups around them. */
 const equipmentCards = [
   plant('bp-14-batch-plant'),
   plant('bp-14-augerless-batch-plant'),
   plant('dp-12-decumulating-plant'),
+  plant('sbm-12-semi-mobile-batch-plant'),
   {
     to: '/equipment#pugmills',
     eyebrow: 'Mixing',
@@ -61,15 +63,6 @@ const equipmentCards = [
       'Portable and stationary pugmills at 500, 750 or 1000 TPH, with silos from 400 to 1200 BBL.',
     photo: 'portable-pugmill',
     photoAlt: 'A portable pugmill with its feeders, conveyors and cement silo on a job site',
-  },
-  {
-    to: '/equipment#storage',
-    eyebrow: 'Storage',
-    title: 'Vertical and Portable Pigs',
-    summary:
-      'Vertical silos that fill and discharge at once, and storage pigs to buy new, buy used or rent.',
-    photo: 'storage-pig',
-    photoAlt: 'A gray Southbelt portable storage pig on its trailer, parked on grass',
   },
   {
     to: '/equipment#support',
@@ -82,7 +75,7 @@ const equipmentCards = [
   },
 ];
 
-/** The service band's rows: the work, and the one fact that sells it. */
+/** The service band's rows: the rest of the work, and the one fact that sells it. */
 const serviceRows = [
   { to: '/services#repairs', name: 'Emergency Repairs', note: 'Qualified technicians, 24/7' },
   {
@@ -95,7 +88,7 @@ const serviceRows = [
     name: 'Custom Fabrication',
     note: 'Plant, silo, tank and structural',
   },
-  { to: '/rentals', name: 'Equipment Rentals', note: 'Pigs, blowers, tanks and a crane' },
+  { to: '/rentals', name: 'Equipment Rentals', note: 'Blowers, tanks, an auger and a crane' },
 ];
 
 export default function Home() {
@@ -124,15 +117,16 @@ export default function Home() {
                   </h1>
                 </div>
                 <p className="max-w-[34rem] text-lg leading-relaxed text-ink-inverse-muted">
-                  Southbelt builds the BP-14, DP-12 and SBM-12 batch plants, stocks parts for the
-                  plant you already run, and repairs equipment with technicians available 24/7.
+                  Southbelt builds the BP-14, DP-12 and SBM-12 batch plants, services and
+                  troubleshoots the plant you already run, orders its parts, and installs vulcanized
+                  conveyor belting.
                 </p>
               </div>
               {/* Stacked full width on a phone, where two buttons sized to their
                   own labels sit at ragged widths and neither reads as the
                   primary one. */}
               <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
-                <Link to="/contact?topic=repair#request" className="btn btn-lg btn-tan">
+                <Link to="/contact?topic=service#request" className="btn btn-lg btn-tan">
                   Request Service
                 </Link>
                 <Link to="/parts" className="btn btn-lg btn-sky-outline">
@@ -169,11 +163,42 @@ export default function Home() {
         </dl>
       </section>
 
+      {/* The three services the company leads with, straight under the
+          figures, so they are the first thing past the hero. The cards come
+          from the services list, so a change there lands here too. */}
+      <section className="border-b border-line">
+        <div className="container-page flex flex-col gap-10 py-16 lg:py-24">
+          <SectionHeading
+            eyebrow="Plant Services"
+            title="Service calls, parts orders and belt installs"
+            intro="Technicians who troubleshoot the plant where it stands, a parts counter that orders what it runs on, and conveyor belting vulcanized and installed."
+          >
+            <Link to="/services" className="btn btn-md btn-outline">
+              All Services
+            </Link>
+          </SectionHeading>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredServices.map((service) => (
+              <EquipmentCard
+                key={service.slug}
+                to={`/services#${service.slug}`}
+                eyebrow={service.eyebrow}
+                title={service.name}
+                summary={service.summary}
+                photo={service.photo}
+                photoAlt={service.photoAlt}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="container-page flex flex-col gap-10 py-16 lg:py-24">
         <SectionHeading
           eyebrow="Built In-House"
           title="Plants and plant equipment"
-          intro="Batch plants and pugmills, plus the silos, storage pigs, blowers, tanks and conveyors that go around them."
+          intro="Batch plants and pugmills, plus the blowers, tanks and conveyors that go around them."
         >
           <Link to="/equipment" className="btn btn-md btn-outline">
             All Equipment
