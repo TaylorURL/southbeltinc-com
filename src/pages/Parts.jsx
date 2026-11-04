@@ -116,7 +116,7 @@ export default function Parts() {
             type="button"
             aria-pressed={!activeCategory}
             onClick={() => selectCategory(null)}
-            className={`btn btn-md shrink-0 whitespace-nowrap ${activeCategory ? 'btn-outline' : 'btn-action'}`}
+            className="chip"
           >
             All Parts
           </button>
@@ -126,9 +126,7 @@ export default function Parts() {
               type="button"
               aria-pressed={activeCategory === item.slug}
               onClick={() => selectCategory(item.slug)}
-              className={`btn btn-md shrink-0 whitespace-nowrap ${
-                activeCategory === item.slug ? 'btn-action' : 'btn-outline'
-              }`}
+              className="chip"
             >
               {item.name}
             </button>
@@ -201,7 +199,7 @@ export default function Parts() {
 
       <section className="section-defer [--section-intrinsic:24rem]">
         <div className="container-page grid gap-10 py-16 lg:grid-cols-[1fr_1.4fr] lg:py-20">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 lg:sticky lg:top-28 lg:self-start">
             <p className="eyebrow">Questions</p>
             <h2 className="text-3xl leading-tight">You ask, we answer</h2>
           </div>

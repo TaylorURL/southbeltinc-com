@@ -1,4 +1,5 @@
 import Photo from '../media/Photo';
+import { keepModelsWhole } from '../../lib/keep-models-whole';
 
 /**
  * The navy band at the top of every page below the home page. It is the home
@@ -28,7 +29,7 @@ export default function PageHeader({ eyebrow, title, intro, photo, children }) {
             </p>
           )}
           <h1 className="display max-w-3xl text-4xl text-ink-inverse sm:text-5xl lg:text-[3.5rem]">
-            {title}
+            {keepModelsWhole(title)}
           </h1>
         </div>
         {intro && (
@@ -36,7 +37,7 @@ export default function PageHeader({ eyebrow, title, intro, photo, children }) {
             data-hero="intro"
             className="max-w-prose text-lg leading-relaxed text-ink-inverse-muted"
           >
-            {intro}
+            {keepModelsWhole(intro)}
           </p>
         )}
       </div>

@@ -99,10 +99,9 @@
 /**
  * Three layers, in the order a value travels: primitives hold the raw ramps and
  * the shapes built from them, and never change; semantics name what a value is
- * for and are the only layer a theme rewrites; the component classes further
- * down reference the semantics and never a primitive. That middle layer is what
- * makes the two themes possible, so a component reaching past it to --navy-700
- * is a bug.
+ * for; the component classes further down reference the semantics and never a
+ * primitive. That middle layer is what lets a colour change in one place, so a
+ * component reaching past it to --navy-700 is a bug.
  *
  * The ramps come from the company's own marks. Navy and sky are the two halves
  * of the diamond in the logo, anchored at navy-800 (#272b67) and sky-200
@@ -201,8 +200,8 @@
      One curve, referenced everywhere, is the whole motion vocabulary. */
   --ease-quart-out: cubic-bezier(0.23, 1, 0.32, 1);
 
-  /* The shapes are drawn once here and colored per theme by the stops below,
-     so a gradient's geometry cannot drift between themes. */
+  /* The shapes are drawn once here and colored by the stops below, so a
+     gradient's geometry and its colors are set in one place each. */
   --surface-inverse-wash: linear-gradient(
     140deg,
     var(--wash-1) 0%,
@@ -230,9 +229,8 @@
 
   /* The brand bands. Navy is the hero, the page headers and the parts counter;
      black is the utility strip and the footer; sky is the stat strip and the
-     closing band. None of them is a theme surface: navy and black stay what
-     they are in both themes and carry their own ink, and sky is restated per
-     theme because a pale band is a light ground in a dark page. */
+     closing band. Each carries its own ink, so the type on a band is set
+     against the band rather than against the page. */
   --band-navy: var(--navy-800);
   --band-black: #000000;
 }
@@ -245,20 +243,23 @@
 }
 
 /**
- * Light. White paper, near-black type, a navy action, and the logo's two blues
- * and the brochure tan as the bands that break the page up. The navy hero and
- * the black footer are brand surfaces rather than theme surfaces: they stay
- * dark in both themes and carry their own ink tokens, so the same markup reads
- * correctly whichever theme is on.
+ * White paper, near-black type, a navy action, and the logo's two blues and the
+ * brochure tan as the bands that break the page up. The navy hero and the black
+ * footer are brand surfaces: they carry their own ink tokens, so type on them
+ * reads correctly without the page around them changing.
+ *
+ * The site has one palette. `color-scheme` says so to the browser, so a
+ * visitor whose machine is set to dark still gets light form controls and
+ * scrollbars to match the page rather than dark ones on a white form.
  */
-:root,
-:root[data-theme='light'] {
+:root {
+  color-scheme: light;
   --surface: #ffffff;
   --surface-raised: #ffffff;
   --surface-sunken: var(--iron-50);
   --surface-field: #ffffff;
   /* The sticky header lets the page show through; a flat surface token cannot
-     do that, so the veil is its own value in every theme. */
+     do that, so the veil is its own value. */
   --surface-veil: rgba(255, 255, 255, 0.88);
   --surface-inverse: var(--navy-800);
   --header-bg: #ffffff;
@@ -324,159 +325,14 @@
   --selection: rgba(167, 213, 233, 0.7);
   --placeholder-fill: var(--iron-100);
   --brand-plate: #ffffff;
-  /* The logo is drawn for a light ground. On the white header it needs
-     nothing behind it; the dark theme gives it a plate. */
-  --logo-plate: transparent;
   /* The dim the page takes while a menu sits open over it. */
   --overlay: rgba(17, 19, 47, 0.4);
+  /* The lighter dim under the equipment panel. The panel opens on a hover, so
+     the page behind it is only set back, not taken away. */
+  --overlay-soft: rgba(17, 19, 47, 0.16);
 
   --shadow-card: 0 1px 2px rgba(11, 13, 18, 0.04), 0 8px 24px -14px rgba(11, 13, 18, 0.18);
   --shadow-card-hover: 0 4px 8px rgba(11, 13, 18, 0.06), 0 18px 40px -16px rgba(11, 13, 18, 0.28);
-}
-
-/**
- * Dark is designed rather than inverted, and it is navy rather than grey: the
- * page ground is the logo's navy taken down to its deepest step, the surfaces
- * step up from it instead of down, and the action moves to the logo's sky
- * because navy on navy is no action at all. The navy hero stays the logo's own
- * navy, so it reads as a lit band against the deeper page. The sky band turns
- * to the sky ramp's deep end with white type, because a pale band in a dark
- * page is a light left on.
- */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --surface: var(--navy-950);
-    --surface-raised: #191c44;
-    --surface-sunken: #0c0e26;
-    --surface-field: #1b1e48;
-    --surface-veil: rgba(17, 19, 47, 0.88);
-    --surface-inverse: var(--navy-800);
-    --header-bg: var(--navy-950);
-    --wash-1: #0c0e26;
-    --wash-2: var(--navy-900);
-    --wash-3: var(--navy-800);
-    --scrim-1: rgba(8, 9, 24, 0.94);
-    --scrim-2: rgba(17, 19, 47, 0.84);
-    --scrim-3: rgba(29, 32, 80, 0.5);
-    --grid-line: rgba(255, 255, 255, 0.04);
-
-    --band-sky: var(--sky-700);
-    --band-sky-ink: #ffffff;
-    --band-sky-body: var(--sky-50);
-    --band-sky-line: rgba(255, 255, 255, 0.35);
-
-    --ink: var(--navy-50);
-    --ink-body: #dde0f0;
-    --ink-muted: #b9bedf;
-    --ink-faint: #969cc9;
-    --ink-inverse: #ffffff;
-    --ink-inverse-muted: var(--navy-100);
-    --ink-inverse-faint: var(--navy-300);
-
-    --line: #272b5e;
-    --line-strong: #363b78;
-    --line-field: #6870b0;
-    --line-inverse: rgba(255, 255, 255, 0.12);
-    --line-inverse-strong: rgba(255, 255, 255, 0.4);
-
-    --accent: var(--sky-200);
-    --accent-hover: var(--sky-100);
-    --accent-ink: var(--navy-950);
-    --accent-text: var(--sky-200);
-    --accent-inverse: var(--tan-300);
-
-    --action: var(--navy-600);
-    --action-hover: var(--navy-500);
-    --action-ink: #ffffff;
-
-    --tan: var(--tan-300);
-    --tan-hover: var(--tan-200);
-    --tan-ink: #000000;
-    --star: var(--tan-300);
-
-    --danger: var(--red-300);
-    --danger-surface: var(--red-950);
-    --danger-ring: rgba(252, 165, 165, 0.24);
-
-    --focus: var(--sky-300);
-    --focus-inverse: var(--sky-200);
-    --field-ring: rgba(127, 194, 223, 0.24);
-    --selection: rgba(127, 194, 223, 0.35);
-    --placeholder-fill: #20234f;
-    --brand-plate: #ffffff;
-    --logo-plate: #ffffff;
-    --overlay: rgba(4, 5, 16, 0.6);
-
-    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
-    --shadow-card-hover: 0 4px 6px rgba(0, 0, 0, 0.45), 0 18px 40px -16px rgba(0, 0, 0, 0.8);
-  }
-}
-
-:root[data-theme='dark'] {
-  --surface: var(--navy-950);
-  --surface-raised: #191c44;
-  --surface-sunken: #0c0e26;
-  --surface-field: #1b1e48;
-  --surface-veil: rgba(17, 19, 47, 0.88);
-  --surface-inverse: var(--navy-800);
-  --header-bg: var(--navy-950);
-  --wash-1: #0c0e26;
-  --wash-2: var(--navy-900);
-  --wash-3: var(--navy-800);
-  --scrim-1: rgba(8, 9, 24, 0.94);
-  --scrim-2: rgba(17, 19, 47, 0.84);
-  --scrim-3: rgba(29, 32, 80, 0.5);
-  --grid-line: rgba(255, 255, 255, 0.04);
-
-  --band-sky: var(--sky-700);
-  --band-sky-ink: #ffffff;
-  --band-sky-body: var(--sky-50);
-  --band-sky-line: rgba(255, 255, 255, 0.35);
-
-  --ink: var(--navy-50);
-  --ink-body: #dde0f0;
-  --ink-muted: #b9bedf;
-  --ink-faint: #969cc9;
-  --ink-inverse: #ffffff;
-  --ink-inverse-muted: var(--navy-100);
-  --ink-inverse-faint: var(--navy-300);
-
-  --line: #272b5e;
-  --line-strong: #363b78;
-  --line-field: #6870b0;
-  --line-inverse: rgba(255, 255, 255, 0.12);
-  --line-inverse-strong: rgba(255, 255, 255, 0.4);
-
-  --accent: var(--sky-200);
-  --accent-hover: var(--sky-100);
-  --accent-ink: var(--navy-950);
-  --accent-text: var(--sky-200);
-  --accent-inverse: var(--tan-300);
-
-  --action: var(--navy-600);
-  --action-hover: var(--navy-500);
-  --action-ink: #ffffff;
-
-  --tan: var(--tan-300);
-  --tan-hover: var(--tan-200);
-  --tan-ink: #000000;
-  --star: var(--tan-300);
-
-  --danger: var(--red-300);
-  --danger-surface: var(--red-950);
-  --danger-ring: rgba(252, 165, 165, 0.24);
-
-  --focus: var(--sky-300);
-  --focus-inverse: var(--sky-200);
-  --field-ring: rgba(127, 194, 223, 0.24);
-  --selection: rgba(127, 194, 223, 0.35);
-  --placeholder-fill: #20234f;
-  --brand-plate: #ffffff;
-  --logo-plate: #ffffff;
-  --overlay: rgba(4, 5, 16, 0.6);
-
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
-  --shadow-card-hover: 0 4px 6px rgba(0, 0, 0, 0.45), 0 18px 40px -16px rgba(0, 0, 0, 0.8);
 }
 
 /**
@@ -945,6 +801,28 @@
     display: none;
   }
 
+  /* A rail of jump links. Each link carries its own padding for the hover
+     fill, so the rail pulls out by that padding: the words line up with the
+     page edge, as every heading below them does, rather than the fills. */
+  .jump-rail {
+    @apply px-2 sm:-mx-3 sm:px-0;
+  }
+
+  .jump-link {
+    @apply shrink-0 whitespace-nowrap rounded px-3 py-2 font-display text-sm font-bold text-ink-muted transition-colors duration-fast hover:bg-surface-sunken hover:text-ink;
+  }
+
+  /* A filter. Mixed case at the body size on the quiet frame, so a row of
+     thirteen reads as a list of choices rather than a wall of calls to action;
+     the one chosen takes the action fill. */
+  .chip {
+    @apply inline-flex min-h-[2.5rem] shrink-0 select-none items-center whitespace-nowrap rounded border border-line-field bg-surface-raised px-4 font-display text-sm font-bold text-ink-body transition-colors duration-fast hover:border-ink-faint hover:bg-surface-sunken;
+  }
+
+  .chip[aria-pressed='true'] {
+    @apply border-transparent bg-action text-action-ink hover:bg-action-hover;
+  }
+
   /* A section below the first screen costs style, layout, and paint at load
      whether or not anybody scrolls to it, and this hands all three back to the
      browser to spend when the reader is approaching the section instead.
@@ -969,23 +847,15 @@
     @apply overflow-hidden bg-placeholder;
   }
 
-  /* The full lockup is drawn for a light ground, so it is given one in every
-     theme rather than recolored or dropped onto a dark card. The plate paints
-     before the file decodes, which is also what holds the box. */
+  /* The full lockup is drawn for a light ground, so it is given one rather than
+     recolored or dropped onto a tinted card. The plate paints before the file
+     decodes, which is also what holds the box. */
   .brand-plate {
     @apply flex items-center justify-center rounded bg-brand-plate p-5;
   }
 
-  /* The logo in the header. It is drawn for a light ground, so the dark theme
-     gives it the white field it was drawn on; the light theme gives it none. */
-  .logo-plate {
-    @apply rounded-full;
-    background-color: var(--logo-plate);
-    padding: 0.125rem 0.375rem;
-  }
-
-  /* A product shot photographed or cut out on white keeps its white in every
-     theme, so the tile reads as a catalog plate rather than a hole. */
+  /* A product shot photographed or cut out on white keeps its white, so the
+     tile reads as a catalog plate rather than a hole. */
   .product-plate {
     @apply flex items-center justify-center overflow-hidden bg-white;
   }
@@ -996,8 +866,8 @@
     color: var(--band-sky-body);
   }
 
-  /* The tan band: the closing call to action. A brand surface, so it stays tan
-     with dark type in both themes. */
+  /* The tan band: the closing call to action. A brand surface, tan with dark
+     type. */
   .band-tan {
     background-color: var(--tan-300);
     color: var(--iron-950);
@@ -1022,6 +892,26 @@
     animation: pop-in var(--duration-fast) var(--ease-quart-out) both;
   }
 
+  /* A page arriving on a navigation: the content settles up into place as it
+     fades in, a little slower than a control's entrance because it is the
+     whole screen changing. The header and footer stay put, so it reads as the
+     page turning under a frame that does not move. */
+  .page-in {
+    animation: page-in 280ms var(--ease-quart-out) both;
+  }
+
+  /* A photograph below the first screen fades in once it has decoded, rather
+     than snapping in over its placeholder a row at a time. */
+  .photo-reveal:not([data-loaded]) {
+    opacity: 0;
+  }
+
+  /* An animation rather than a transition, so it does not fight the zoom some
+     cards give their photo on hover, which owns the transition. */
+  .photo-reveal[data-loaded] {
+    animation: fade-in 320ms var(--ease-quart-out) both;
+  }
+
   /* For a covering layer - a dim, a scrim - which fades where an element
      would travel. */
   .fade-in {
@@ -1040,6 +930,13 @@
   from {
     opacity: 0;
     transform: translateY(8px);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
 }
 

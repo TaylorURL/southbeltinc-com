@@ -1,8 +1,8 @@
 /**
  * The policy states what the site does, so it is only correct while the code
- * matches it. Four things carry information today: the request forms and quote
- * buttons, which compose an email in the visitor's own mail program; the quote
- * list and the theme, which stay in their browser; and the one script in
+ * matches it. Three things carry information today: the request forms and
+ * quote buttons, which compose an email in the visitor's own mail program; the
+ * quote list, which stays in their browser; and the one script in
  * index.html that does send data off the page, the error reporter. There is no
  * analytics. Anything else wired in - a counter, a form backend, an embedded
  * map, a chat widget - is described here in the same edit.
@@ -35,11 +35,6 @@ const FLOWS = [
     what: 'Your quote list',
     goes: 'Nowhere: your browser, on your device',
     holds: 'Part names, quantities, and the plant details you added',
-  },
-  {
-    what: 'The theme you pick',
-    goes: 'Nowhere: your browser, on your device',
-    holds: 'Light or dark',
   },
   {
     what: 'The error reporter',
@@ -125,10 +120,7 @@ export default function Privacy() {
             survives closing the tab.
           </p>
           <p className="leading-relaxed text-ink-muted">
-            The theme you pick is stored the same way.
-          </p>
-          <p className="leading-relaxed text-ink-muted">
-            Clearing the list, or clearing your browser&apos;s site data, removes both. Neither is
+            Clearing the list, or clearing your browser&apos;s site data, removes it. It is not
             transmitted anywhere.
           </p>
         </section>

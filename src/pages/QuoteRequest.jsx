@@ -186,7 +186,7 @@ export default function QuoteRequest() {
               {/* noValidate hands the messages to the form rather than to the
                   browser, so every field explains itself the same way in every
                   browser. */}
-              <form onSubmit={handleSubmit} noValidate className="card flex flex-col gap-6 p-6">
+              <form onSubmit={handleSubmit} noValidate className="card flex flex-col gap-4 p-6">
                 <FormErrorSummary errors={errors} labels={{ name: 'Name', email: 'Email' }} />
                 <ContactFields contact={contact} errors={errors} onChange={change} onBlur={blur} />
 
