@@ -2,11 +2,11 @@
  * The frame's top: a black strip with the three yards' numbers, and a white bar
  * with the logo, six destinations and the one action.
  *
- * Equipment is the one destination that is a set rather than a page - eleven
- * machines in four groups, plus the used list - so it is the one trigger that
- * opens a panel. The panel is the width of the bar and lays the four groups
+ * Equipment is the one destination that is a set rather than a page - nine
+ * machines in three groups, plus the used list - so it is the one trigger that
+ * opens a panel. The panel is the width of the bar and lays the three groups
  * side by side, because a visitor choosing a plant reads across the groups to
- * find the right one, and a single column of eleven names is a list to scroll
+ * find the right one, and a single column of nine names is a list to scroll
  * rather than a set to compare.
  *
  * The strip carries the numbers because a plant that is down is a phone call
@@ -286,7 +286,7 @@ function EquipmentTrigger({ open, onOpen, onClose }) {
 }
 
 /**
- * The equipment panel: the four groups as columns, each naming its machines,
+ * The equipment panel: the three groups as columns, each naming its machines,
  * and a foot row for the two other ways to get equipment - used, and rented -
  * beside the way into the full list.
  */
@@ -299,7 +299,7 @@ function EquipmentPanel({ onNavigate }) {
         if (!header || !header.contains(event.relatedTarget)) onNavigate();
       }}
     >
-      <div className="grid grid-cols-4 gap-6 p-6">
+      <div className="grid grid-cols-3 gap-6 p-6">
         {equipmentGroups.map((group) => (
           <div key={group.slug} className="flex flex-col gap-3">
             <Link

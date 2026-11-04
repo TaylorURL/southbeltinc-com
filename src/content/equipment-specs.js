@@ -153,7 +153,11 @@ export const specsBySlug = {
         ],
       },
     ],
-    related: ['bp-14-augerless-batch-plant', 'dp-12-decumulating-plant', 'vertical-pigs'],
+    related: [
+      'bp-14-augerless-batch-plant',
+      'dp-12-decumulating-plant',
+      'sbm-12-semi-mobile-batch-plant',
+    ],
   },
 
   'bp-14-augerless-batch-plant': {
@@ -217,7 +221,7 @@ export const specsBySlug = {
         ],
       },
     ],
-    related: ['bp-14-batch-plant', 'sbm-12-semi-mobile-batch-plant', 'vertical-pigs'],
+    related: ['bp-14-batch-plant', 'sbm-12-semi-mobile-batch-plant', 'bp-14-augerless-batch-plant'],
   },
 
   'sbm-12-semi-mobile-batch-plant': {
@@ -264,7 +268,7 @@ export const specsBySlug = {
       { title: 'Options', items: ['Surge hopper', 'Additional feeders'] },
       { title: 'Capacity', items: ['500 TPH', '750 TPH', '1000 TPH'] },
     ],
-    related: ['stationary-pugmill', 'vertical-pigs', 'dry-bulk-blowers'],
+    related: ['stationary-pugmill', 'rm-series-conveyor', 'dry-bulk-blowers'],
   },
 
   'stationary-pugmill': {
@@ -288,89 +292,13 @@ export const specsBySlug = {
       { title: 'Options', items: ['Surge hopper', 'Additional feeders', 'Shaker screen'] },
       { title: 'Capacity', items: ['500 TPH', '750 TPH', '1000 TPH'] },
     ],
-    related: ['portable-pugmill', 'vertical-pigs', 'dry-bulk-blowers'],
-  },
-
-  'vertical-pigs': {
-    headline: 'Fill and discharge at the same time',
-    intro: [
-      'A vertical pig fills and discharges at the same time, and it stands on a smaller footprint than a horizontal pig. The standard silo is 12 ft in diameter, with a C&W pinch valve anti-overfill kit, an emergency manual butterfly valve and aeration pads.',
-      'A 14 ft diameter, 1900 BBL silo is available as an option, along with transfer systems from 50 to 75 HP.',
-    ],
-    figures: [
-      { value: '12 ft', label: 'Standard diameter' },
-      { value: '14 ft', label: 'Optional, 1900 BBL' },
-      { value: '5 in', label: 'Fill line' },
-    ],
-    sections: [
-      {
-        title: 'Standard Equipment',
-        items: [
-          '12 ft diameter silo',
-          '5-inch fill line',
-          'C&W pinch valve anti-overfill kit',
-          'Emergency manual butterfly valve',
-          'HI bindicator',
-          'Aeration pads',
-          'Ladder and safety cage',
-        ],
-      },
-      {
-        title: 'Benefits',
-        items: ['Fill and discharge at the same time', 'Smaller footprint than a horizontal pig'],
-      },
-      {
-        title: 'Optional Equipment',
-        items: [
-          'C&W silo LPR collector',
-          'Safety zip line for a portable silo',
-          '14 ft diameter silo, 1900 BBL',
-          'Transportation system',
-          '50 HP transfer system with vane feeder and electrical panel',
-          '60 HP transfer system with vane feeder and electrical panel',
-          '75 HP transfer system with vane feeder and electrical panel',
-        ],
-      },
-    ],
-    notes: ['Sales confirms the silo capacity for your order with the quote.'],
-    related: ['portable-storage-pigs', 'bp-14-batch-plant', 'dry-bulk-blowers'],
-  },
-
-  'portable-storage-pigs': {
-    headline: 'Storage pigs built to empty clean and travel easy',
-    intro: [
-      'Southbelt storage pigs are made in the USA. The bottom pods are tilted, with a special suction line for maximum product removal. The main supports are cut from a single piece of solid steel.',
-      'They ride higher off the ground than other manufacturers’ pigs, and the ladder retracts, so the pig travels without taking it off or adding width. Choose a diesel or an electric blower, and buy new, buy used or rent.',
-    ],
-    figures: [
-      { value: 'USA', label: 'Made in' },
-      { value: 'Diesel or Electric', label: 'Blower' },
-      { value: 'New, Used, Rental', label: 'Ways to get one' },
-    ],
-    sections: [
-      {
-        title: 'Design',
-        items: [
-          'Bottom pods tilted, with a special suction line for product removal',
-          'Main supports made from a single piece of solid steel',
-          'Higher ground clearance than other manufacturers',
-          'Retractable ladder that travels without being removed or adding width',
-          'A safer work platform',
-          'Side discharge pipes on adjustable tabs, not welded',
-        ],
-      },
-      {
-        title: 'Blower',
-        items: ['Diesel blower', 'Electric blower'],
-      },
-    ],
-    related: ['dry-bulk-blowers', 'vertical-pigs', 'self-erecting-water-tank'],
+    related: ['portable-pugmill', 'rm-series-conveyor', 'dry-bulk-blowers'],
   },
 
   'dry-bulk-blowers': {
     headline: 'Paragon blowers, and the parts to keep them running',
     intro: [
-      'Southbelt carries the Paragon 1057, P858 and P657, comparable to Gardner Denver and Tuthill, for blower systems, cement plants and storage pigs. Buy, rent or have one repaired, new or used.',
+      'Southbelt carries the Paragon 1057, P858 and P657, comparable to Gardner Denver and Tuthill, for blower systems and cement plants. Buy, rent or have one repaired, new or used.',
       'Two packages are kept for sale or rent: a 50 HP electric blower on a new bolt-together frame, with or without its stand, and a 74 HP diesel blower, a complete self-contained unit, with or without its trailer.',
     ],
     figures: [
@@ -416,7 +344,7 @@ export const specsBySlug = {
         ],
       },
     ],
-    related: ['portable-storage-pigs', 'self-erecting-water-tank', 'vertical-pigs'],
+    related: ['self-erecting-water-tank', 'rm-series-conveyor', 'bp-14-batch-plant'],
     partsLink: { to: '/parts/paragon-blower-service-kits', label: 'Order a Service Kit' },
   },
 
@@ -451,7 +379,7 @@ export const specsBySlug = {
         ],
       },
     ],
-    related: ['portable-storage-pigs', 'dry-bulk-blowers', 'rm-series-conveyor'],
+    related: ['dry-bulk-blowers', 'rm-series-conveyor', 'portable-pugmill'],
   },
 
   'rm-series-conveyor': {
@@ -513,6 +441,6 @@ export const specsBySlug = {
         ],
       },
     ],
-    related: ['dry-bulk-blowers', 'self-erecting-water-tank', 'portable-storage-pigs'],
+    related: ['dry-bulk-blowers', 'self-erecting-water-tank', 'portable-pugmill'],
   },
 };

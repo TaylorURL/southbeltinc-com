@@ -9,15 +9,6 @@
 
 export const rentalFleet = [
   {
-    slug: 'storage-pig',
-    name: 'Storage Pig',
-    note: 'Portable storage pig, with or without a blower',
-    photo: 'storage-pig-cutout',
-    cutout: true,
-    photoAlt: 'A gray Southbelt portable storage pig with its blower',
-    detail: '/equipment/portable-storage-pigs',
-  },
-  {
     slug: 'auger-1350-cf',
     name: 'Auger 1350 CF',
     note: 'Portable auger for conveying material',

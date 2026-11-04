@@ -11,9 +11,9 @@ import { breadcrumbSchema, equipmentSchema } from '../lib/structured-data';
 import { iconSize } from '../lib/icon-size';
 
 export const metadata = {
-  title: 'Concrete Batch Plants, Pugmills, Silos and Blowers',
+  title: 'Concrete Batch Plants, Pugmills, Blowers and Conveyors',
   description:
-    'The BP-14, BP-14 Augerless, DP-12 and SBM-12 batch plants, portable and stationary pugmills, vertical and storage pigs, Paragon blowers, water tanks and conveyors.',
+    'The BP-14, BP-14 Augerless, DP-12 and SBM-12 batch plants, portable and stationary pugmills, Paragon blowers, water tanks and conveyors.',
   canonical: '/equipment',
   openGraph: { type: 'website' },
 };
@@ -33,7 +33,7 @@ export default function Equipment() {
       <PageHeader
         eyebrow="Equipment"
         title="Batch plants, pugmills and the equipment around them"
-        intro="Southbelt designs and builds its own batch plants, pugmills and silos, and sells, rents and repairs the storage pigs, blowers, water tanks and conveyors that work beside them."
+        intro="Southbelt designs and builds its own batch plants, pugmills and silos, and sells, rents and repairs the blowers, water tanks and conveyors that work beside them."
         photo={{
           name: 'alliance-plant',
           alt: 'A completed batch plant with its silo, batchers and mixer trucks under a clear sky',
@@ -127,9 +127,9 @@ export default function Equipment() {
               <h2 className="text-3xl leading-tight sm:text-4xl">Buy used, or rent</h2>
             </div>
             <p className="max-w-xl leading-relaxed text-ink-muted">
-              Used equipment comes and goes from the yards daily: pugmills, hoppers, silos, blowers,
-              storage pigs and conveyors, sold as-is, where-is. Storage pigs, blowers, a water tank,
-              an auger, a boom crane and an insulated frac tank are also for rent.
+              Used equipment comes and goes from the yards daily: pugmills, hoppers, silos, blowers
+              and conveyors, sold as-is, where-is. Blowers, a water tank, an auger, a boom crane and
+              an insulated frac tank are also for rent.
             </p>
             <div className="flex flex-wrap gap-6">
               <Link
