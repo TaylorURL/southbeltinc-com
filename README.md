@@ -6,9 +6,9 @@ Website for a Texas company that builds, supplies and repairs concrete batch pla
 
 [southbelt.taylorurl.com](https://southbelt.taylorurl.com)
 
-<img src="https://img.shields.io/badge/version-2026.45.0-272b67?style=for-the-badge" alt="Version 2026.45.0" />
+<img src="https://img.shields.io/badge/version-2026.45.1-272b67?style=for-the-badge" alt="Version 2026.45.1" />
 
-Every machine, part, used unit and rental has its own page. It's staged at southbelt.taylorurl.com and kept out of search until it moves to southbeltinc.com.
+Every machine and part has its own page. Rentals and used equipment are one page each. It's staged at southbelt.taylorurl.com and kept out of search until it moves to southbeltinc.com.
 
 ## Where requests go
 
@@ -16,7 +16,7 @@ There's no backend. A request is an email the browser writes, addressed to whoev
 
 ## Content
 
-Machines, specs, parts, brands, rentals, used equipment and the FAQ are modules in `src/content/`. The spec tables in `equipment-specs.js` only load on the detail page. Every figure is one the company publishes, and when the website and a brochure disagree, the brochure wins.
+Machines, specs, services, parts, brands, rentals, used equipment and the FAQ are modules in `src/content/`. The spec tables in `equipment-specs.js` only load on the detail page. Every figure is one the company publishes, and when the website and a brochure disagree, the brochure wins.
 
 `scripts/generate-crawl-files.mjs` runs before each build and writes the sitemap, `robots.txt`, `llms.txt`, the LocalBusiness JSON-LD and the nav from those same modules.
 
