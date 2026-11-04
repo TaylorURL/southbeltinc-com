@@ -190,14 +190,14 @@ export default function Rentals() {
 
           {/* noValidate hands the messages to the form rather than to the
               browser, so every field explains itself the same way everywhere. */}
-          <form onSubmit={handleSubmit} noValidate className="card flex flex-col gap-6 p-6 lg:p-8">
+          <form onSubmit={handleSubmit} noValidate className="card flex flex-col gap-4 p-6 lg:p-8">
             <FormErrorSummary
               errors={{ ...errors, equipment: equipmentError }}
               labels={{ name: 'Name', email: 'Email', equipment: 'Rental Desired' }}
             />
             <ContactFields contact={contact} errors={errors} onChange={change} onBlur={blur} />
 
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-x-4 gap-y-3 sm:grid-cols-2">
               <FormField
                 id="equipment"
                 label="Rental Desired"
@@ -344,7 +344,7 @@ export default function Rentals() {
 
       <section className="section-defer [--section-intrinsic:24rem] border-t border-line bg-surface-sunken">
         <div className="container-page grid gap-10 py-16 lg:grid-cols-[1fr_1.4fr] lg:py-20">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 lg:sticky lg:top-28 lg:self-start">
             <p className="eyebrow">Questions</p>
             <h2 className="text-3xl leading-tight">Renting from Southbelt</h2>
           </div>

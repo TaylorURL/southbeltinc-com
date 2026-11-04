@@ -9,7 +9,6 @@
  */
 import { Link } from 'react-router-dom';
 import { Facebook } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
 import Logo from './Logo';
 import { addressOf, company, mainPhone, mapHref, phoneHref, telHref } from '../../content/company';
 import { iconSize } from '../../lib/icon-size';
@@ -22,6 +21,7 @@ const columns = [
       { to: '/equipment/bp-14-batch-plant', label: 'BP-14 Batch Plant' },
       { to: '/equipment/bp-14-augerless-batch-plant', label: 'BP-14 Augerless' },
       { to: '/equipment/dp-12-decumulating-plant', label: 'DP-12 Plant' },
+      { to: '/equipment/sbm-12-semi-mobile-batch-plant', label: 'SBM-12 Semi-Mobile' },
       { to: '/equipment#pugmills', label: 'Pugmills' },
       { to: '/equipment/used', label: 'Used Equipment' },
     ],
@@ -51,7 +51,7 @@ export default function Footer({ children }) {
             <Logo plate="white" imageClass="w-36" sizes="144px" />
           </Link>
           <p className="max-w-xs text-sm leading-relaxed">
-            Concrete batch plants, parts, repair and fabrication from three Texas yards.
+            Concrete batch plants, parts, service and fabrication from three Texas yards.
           </p>
         </div>
 
@@ -125,9 +125,6 @@ export default function Footer({ children }) {
           <p className="tabular-nums">
             &copy; {year} {company.legalName}
           </p>
-          {/* The theme control lives with the other site-wide settings rather
-              than in the header, where it would compete with the one action a
-              visitor came for. */}
           <div className="flex flex-wrap items-center gap-5">
             <Link to="/privacy" className={linkClass}>
               Privacy
@@ -135,7 +132,6 @@ export default function Footer({ children }) {
             <Link to="/terms" className={linkClass}>
               Terms
             </Link>
-            <ThemeToggle />
           </div>
         </div>
       </div>

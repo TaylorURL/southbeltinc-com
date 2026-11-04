@@ -27,9 +27,9 @@ import Beasties from 'beasties';
  * ordering. Nothing about the page arrives late afterwards, because there is
  * nothing left to arrive: the rules for every route are in the document before
  * the parser reaches the body, the two font faces are declared beside the files
- * the head preloads, and the states the page takes on later - the theme the
- * root is stamped with before the first paint, a details panel once it is open,
- * a link once it is current - are ordinary rules in the same sheet.
+ * the head preloads, and the states the page takes on later - a details panel
+ * once it is open, a link once it is current - are ordinary rules in the same
+ * sheet.
  *
  * Vite still writes the sheet to `/assets/` under its content hash. Nothing
  * asks for it.

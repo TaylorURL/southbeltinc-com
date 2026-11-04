@@ -13,6 +13,10 @@
  * rounded bar is a shape the content never takes, and the difference shows at
  * the moment of the swap.
  *
+ * It holds a screen's height below the band as well, so while a chunk is on
+ * the wire the footer stays below the fold instead of jumping up under the
+ * header and back down when the page lands.
+ *
  * The whole block is held at zero opacity for the first fifth of a second,
  * which is longer than a warm cache takes: a chunk that arrives in that window
  * is never announced by a flash of grey, and a chunk that does not still fills
@@ -20,41 +24,43 @@
  */
 export default function RouteFallback() {
   return (
-    <section
-      role="status"
-      aria-busy="true"
-      data-skeleton="hero"
-      className="skeleton-in relative overflow-hidden bg-surface-inverse-wash"
-    >
-      <div className="absolute inset-0 bg-grid bg-grid-tile opacity-60" aria-hidden="true" />
-      <div className="container-page relative flex flex-col items-start gap-8 pb-16 pt-12 lg:pb-20 lg:pt-16">
-        <span className="sr-only">Loading the page</span>
-        <div className="flex w-full flex-col items-start gap-5">
-          <div className="flex w-full flex-col items-start gap-4">
-            {/* Sized to the eyebrows the routes actually set, which run from
+    <div className="min-h-[100svh]">
+      <section
+        role="status"
+        aria-busy="true"
+        data-skeleton="hero"
+        className="skeleton-in relative overflow-hidden bg-surface-inverse-wash"
+      >
+        <div className="absolute inset-0 bg-grid bg-grid-tile opacity-60" aria-hidden="true" />
+        <div className="container-page relative flex flex-col items-start gap-8 pb-16 pt-12 lg:pb-20 lg:pt-16">
+          <span className="sr-only">Loading the page</span>
+          <div className="flex w-full flex-col items-start gap-5">
+            <div className="flex w-full flex-col items-start gap-4">
+              {/* Sized to the eyebrows the routes actually set, which run from
                 "Parts" to "Services" - 47 to 80 pixels at this step. */}
-            <div data-skeleton="eyebrow" className="h-4 w-24 bg-white/10" aria-hidden="true" />
-            {/* Two lines of the heading's own step, and the width the heading
+              <div data-skeleton="eyebrow" className="h-4 w-24 bg-white/10" aria-hidden="true" />
+              {/* Two lines of the heading's own step, and the width the heading
                 itself is capped at. The bars carry w-full because the columns
                 above them shrink to their content, and a bar holds no content
                 to give it width. */}
-            <div
-              data-skeleton="headline"
-              className="h-24 w-full max-w-3xl bg-white/10 lg:h-[7.25rem]"
-              aria-hidden="true"
-            />
-          </div>
-          {/* Two lines of the intro's own type - text-lg at leading-relaxed -
+              <div
+                data-skeleton="headline"
+                className="h-24 w-full max-w-3xl bg-white/10 lg:h-[7.25rem]"
+                aria-hidden="true"
+              />
+            </div>
+            {/* Two lines of the intro's own type - text-lg at leading-relaxed -
               rather than a height picked to look about right. The bar is set in
               that type too, so its max-w-prose counts the same 65 characters
               the intro's does rather than 65 of the inherited step. */}
-          <div
-            data-skeleton="intro"
-            className="h-[calc(2*1.625*1.125rem)] w-full max-w-prose bg-white/10 text-lg"
-            aria-hidden="true"
-          />
+            <div
+              data-skeleton="intro"
+              className="h-[calc(2*1.625*1.125rem)] w-full max-w-prose bg-white/10 text-lg"
+              aria-hidden="true"
+            />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

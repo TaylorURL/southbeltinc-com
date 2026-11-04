@@ -1,3 +1,5 @@
+import { keepModelsWhole } from '../../lib/keep-models-whole';
+
 /**
  * The opening of a content section: a navy eyebrow, an extra-bold heading, and
  * an optional line under it, with the section's one action set to the right on
@@ -19,7 +21,7 @@ export default function SectionHeading({ eyebrow, title, intro, id, tone = 'ligh
             id={id}
             className={`text-3xl leading-tight sm:text-4xl ${dark ? 'text-ink-inverse' : ''}`.trim()}
           >
-            {title}
+            {keepModelsWhole(title)}
           </h2>
         </div>
         {intro && (
@@ -28,7 +30,7 @@ export default function SectionHeading({ eyebrow, title, intro, id, tone = 'ligh
               dark ? 'text-ink-inverse-muted' : 'text-ink-muted'
             }`}
           >
-            {intro}
+            {keepModelsWhole(intro)}
           </p>
         )}
       </div>

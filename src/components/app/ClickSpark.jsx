@@ -44,12 +44,9 @@ export default function ClickSpark() {
     const context = canvas.getContext('2d');
 
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const schemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
     // The accent is read back off the stylesheet rather than restated here, so
-    // the three themes stay defined in exactly one place. It is re-read on every
-    // theme change because each theme moves the accent to a step that holds up
-    // on its own ground.
+    // the colour stays defined in exactly one place.
     let stroke = '';
     const readAccent = () => {
       stroke = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
@@ -141,27 +138,16 @@ export default function ClickSpark() {
       }, 100);
     };
 
-    // The accent follows the attribute when a theme is chosen, and the system
-    // preference when none is.
-    const observer = new MutationObserver(readAccent);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-    });
-
     readAccent();
     size();
     window.addEventListener('pointerdown', onPointerDown);
     window.addEventListener('resize', onResize);
-    schemeQuery.addEventListener('change', readAccent);
     motionQuery.addEventListener('change', onMotionChange);
 
     return () => {
       window.removeEventListener('pointerdown', onPointerDown);
       window.removeEventListener('resize', onResize);
-      schemeQuery.removeEventListener('change', readAccent);
       motionQuery.removeEventListener('change', onMotionChange);
-      observer.disconnect();
       window.clearTimeout(resizeTimer);
       if (frame.current !== null) cancelAnimationFrame(frame.current);
       frame.current = null;

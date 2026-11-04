@@ -142,9 +142,16 @@ function EquipmentPage({ item, specs }) {
             <h2 id="specifications" className="text-xl">
               Specifications
             </h2>
-            <div className="grid gap-5 md:grid-cols-2">
+            {/* Two columns that each run their own length, rather than a grid
+                whose rows take the height of the longer card and leave the
+                shorter one half empty. Reading order runs down the first column
+                and then the second, as the brochure does. */}
+            <div className="flex flex-col gap-5 md:-mb-5 md:block md:columns-2 md:gap-5">
               {specs.sections.map((section) => (
-                <div key={section.title} className="card flex flex-col gap-4 p-5">
+                <div
+                  key={section.title}
+                  className="card flex flex-col gap-4 p-5 md:mb-5 md:break-inside-avoid"
+                >
                   <h3 className="border-b border-line pb-3 text-base">{section.title}</h3>
                   <ul className="flex flex-col gap-2.5">
                     {section.items.map((spec) => (
