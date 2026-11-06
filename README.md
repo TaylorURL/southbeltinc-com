@@ -6,7 +6,7 @@ Website for a Texas company that builds, supplies and repairs concrete batch pla
 
 [southbelt.taylorurl.com](https://southbelt.taylorurl.com)
 
-<img src="https://img.shields.io/badge/version-2026.45.1-272b67?style=for-the-badge" alt="Version 2026.45.1" />
+<img src="https://img.shields.io/badge/version-2026.45.2-272b67?style=for-the-badge" alt="Version 2026.45.2" />
 
 Every machine and part has its own page. Rentals and used equipment are one page each. It's staged at southbelt.taylorurl.com and kept out of search until it moves to southbeltinc.com.
 
